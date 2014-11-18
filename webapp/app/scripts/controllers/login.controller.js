@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('LoginCtrl', ['$scope', 
-        function ($scope) {
+  .controller('LoginCtrl', ['$scope', function ($scope) {
 
   }]);
