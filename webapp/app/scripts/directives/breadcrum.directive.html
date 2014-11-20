@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+    <li ng-repeat="c in crumbs | limitTo:minusLast">
+        <i class="fa fa-dashboard"></i>  <a href="#"> {{c}} </a>
+    </li>
+    <li class="active">
+        <i class="fa fa-file"></i> {{ getLast() }}
+    </li>
+</ol>
