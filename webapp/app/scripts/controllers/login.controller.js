@@ -1,22 +1,32 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('LoginCtrl', ['$scope', '$location', function ($scope, $location) {
+  .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', function ($scope, $location, $auth, $user) {
 
   	$scope.login_data = {
   		username: '',
   		password: ''
-  	}
+  	};
 
   	$scope.login = function login () {
   		$location.path('/');
+  		/*
+		$auth.login($scope.login_data.username, $scope.login_data.password).then(
+			function onSuccess(userData){
+				$user.setUser(userData);
+				$location.path('/');
+			},
+			function onError(e){
+				console.log("Failed Login", e);
+			});
+  		*/
   	};
 
-  	this.showPassword = function showPassword() {
+  	$scope.showPassword = function showPassword() {
     
 	    var key_attr = $('#key').attr('type');
 	    
-	    if(key_attr != 'text') {
+	    if(key_attr !== 'text') {
 	        
 	        $('.checkbox').addClass('show');
 	        $('#key').attr('type', 'text');
