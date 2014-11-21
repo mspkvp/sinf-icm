@@ -2,7 +2,22 @@
 
 angular.module('icmApp')
 	.service('NavigationService', [function service(){
-		var _path = ['Main', 'Test', 'Breadcrumb'];
+		var _path = [
+			{
+				name:'Main',
+				icon:'glyphicon glyphicon-th-large',
+				url:'#'
+			},
+			{
+				name:'Test',
+				icon:'',
+				url:'#'
+			},
+			{
+				name:'Breadcrumb',
+				icon:''
+			}
+		];
 
 		this.getPath = function getPath(){
 			return _path;
