@@ -1,23 +1,16 @@
 'use strict';
 
 angular.module('icmApp')
-	.service('NavigationService', [function service(){
+	.service('NavigationService', ['$location', 'UserService', function service($location, $user){
 		var _path = [
 			{
-				name:'Main',
+				name:'Home',
 				icon:'glyphicon glyphicon-th-large',
-				url:'#'
-			},
-			{
-				name:'Test',
-				icon:'',
-				url:'#'
-			},
-			{
-				name:'Breadcrumb',
-				icon:''
+				url:'/'
 			}
 		];
+
+		var _viewingCompany = {};
 
 		this.getPath = function getPath(){
 			return _path;
@@ -33,6 +26,18 @@ angular.module('icmApp')
 
 		this.setPath = function setPath(path){
 			_path = path;
+		};
+
+		this.resetPath = function resetPath(){
+			_path = [_path[0]];
+		}
+		this.setViewingCompany = function setViewingCompany(company){
+			_viewingCompany = company;
+			console.log('Company was Set!', _viewingCompany);
+		};
+
+		this.go = function go(route){
+			$location.path('/'+route);
 		};
 
 	}]);

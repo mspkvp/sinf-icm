@@ -4,8 +4,9 @@ angular.module('icmApp')
     .service('UserService', [function service(){
 
     	var user = {
-    		name: 'Mister Crowley',
-    		access_type: 'admin'
+    		name: undefined,
+    		access_type: undefined,
+            login_status: false
     	};
 
     	this.getUser = function getUser(){
@@ -13,7 +14,20 @@ angular.module('icmApp')
     	};
 
     	this.setUser = function setUser(user_set){
-    		user = user_set;
+    		user.name = user_set.name;
+            user.access_type = user_set.access_type;
+            user.login_status = true;
     	};
 
+        this.resetUser = function setUser(user_set){
+            user = {
+                name: undefined,
+                access_type: undefined,
+                login_status: false
+            };
+        };
+
+        this.getLoginStatus = function getLoginStatus () {
+            return user.login_status;
+        };
     }]);

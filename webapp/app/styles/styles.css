@@ -89,3 +89,8 @@
 #footer a {
     color: inherit;
 }
+
+
+.align * {
+    text-align: center;
+}

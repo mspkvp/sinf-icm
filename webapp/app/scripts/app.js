@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc overview
- * @name thatAppApp
+ * @name icmApp
  * @description
- * # thatAppApp
+ * # icmApp
  *
  * Main module of the application.
  */
@@ -32,6 +32,10 @@ angular
       .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
+      })
+      .when('/companies', {
+        templateUrl: 'views/companies.html',
+        controller: 'CompaniesCtrl'
       })
       .otherwise({
         redirectTo: '/'

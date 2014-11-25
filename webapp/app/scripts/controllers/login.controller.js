@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', function ($scope, $location, $auth, $user) {
+  .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', 'NavigationService', function ($scope, $location, $auth, $user, $nav) {
 
   	$scope.login_data = {
   		username: '',
@@ -9,7 +9,11 @@ angular.module('icmApp')
   	};
 
   	$scope.login = function login () {
-  		$location.path('/');
+		$user.setUser({
+            name: 'Mister Crowley',
+            access_type: 'admin'
+        });
+       	$nav.go('');
   		/*
 		$auth.login($scope.login_data.username, $scope.login_data.password).then(
 			function onSuccess(userData){
