@@ -1,23 +1,23 @@
+var serverUrl = 'http://localhost/'; // actualizar com o necessário
 var	endpointsAPI = {
-		serverUrl: '',
 		login: {
 			method: 'POST',
-			url: this.serverUrl + ''
+			url: serverUrl + 'login'
 		},
 		register : {
 			method: 'POST',
-			url: this.serverUrl + ''
+			url: serverUrl + ''
 		},
 		clients : { 
 			method: 'GET',
-			url: this.serverUrl + ''
+			url: serverUrl + ''
 		},
 		suppliers : { 
 			method: 'GET',
-			url: this.serverUrl + ''
+			url: serverUrl + ''
 		},
 		companies : {
 			method: 'GET',
-			url: this.serverUrl + ''
+			url: serverUrl + ''
 		}
 	};
