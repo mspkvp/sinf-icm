@@ -6,6 +6,7 @@ angular.module('icmApp')
 
 		$scope.logout = function logout() {
   			$nav.go('');
-  			$user.resetUser();
+  			$userS.resetUser();
+  			$scope.logged_user = $userS.getUser();
   		};
 	}]);
