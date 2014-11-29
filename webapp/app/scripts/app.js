@@ -40,6 +40,9 @@ angular
       .when('/client', {
         templateUrl: 'views/clientMain.html'
       })
+      .when('/newOrder', {
+        templateUrl: 'views/newOrder.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
