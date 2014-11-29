@@ -30,7 +30,8 @@ angular.module('icmApp')
 
 		this.resetPath = function resetPath(){
 			_path = [_path[0]];
-		}
+		};
+
 		this.setViewingCompany = function setViewingCompany(company){
 			_viewingCompany = company;
 			console.log('Company was Set!', _viewingCompany);

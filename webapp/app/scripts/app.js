@@ -37,6 +37,9 @@ angular
         templateUrl: 'views/companies.html',
         controller: 'CompaniesCtrl'
       })
+      .when('/client', {
+        templateUrl: 'views/clientMain.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
