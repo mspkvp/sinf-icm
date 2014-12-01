@@ -1,8 +1,21 @@
 'use strict';
 
 angular.module('icmApp')
-	.controller('SupplierCtrl', ['$scope', '$interval', 
-		function($scope, $interval){
+	.controller('SupplierCtrl', ['$scope', 'NavigationService', 
+		function($scope, $nav){
+			$nav.setPath([
+				$nav.getPath()[0],
+				{
+					name: 'Gerir',
+					icon:'',
+					url: '/'
+				},
+				{
+					name: 'Fornecedor',
+					icon: '',
+					url: ''
+				}
+			]);
 			$scope.ordersToProcess = [
 				{
 					code: '1',
@@ -67,8 +80,6 @@ angular.module('icmApp')
 			];
 
 			$scope.selectedClient = undefined;
-
-			$interval(function(){console.log("client:",$scope.selectedClient);}, 1000);
 
 		}
 	]);
