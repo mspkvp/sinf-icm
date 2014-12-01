@@ -42,55 +42,35 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="">
-                <a href="#/"><i class="fa fa-fw fa-home"></i> Home</a>
+            <li ng-init="homeSelected = true" ng-class="{active: homeSelected && !otherSelected}">
+                <a href="#/" ng-click="homeSelected = true; otherSelected = false;"><i class="fa fa-fw fa-home"></i> Home</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#gestao"><i class="fa fa-fw fa-folder-o"></i> Gestão <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="gestao" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#consulta" ng-click="otherSelected = true"><i class="fa fa-fw fa-folder-o"></i> Consultar <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="consulta" class="collapse">
                     <li>
                         <a href="#/companies">Empresas</a>
                     </li>
                     <li>
-                        <a href="#">Clientes</a>
+                        <a href="#/clients">Clientes</a>
                     </li>
                     <li>
-                        <a href="#">Fornecedores</a>
+                        <a href="#/suppliers">Fornecedores</a>
                     </li>
                     <li>
-                        <a href="#">Artigos</a>
+                        <a href="#/articles">Artigos</a>
                     </li>
 
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#acoes"><i class="fa fa-fw fa-folder-o"></i> Ações <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="acoes" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#gestao"><i class="fa fa-fw fa-folder-o"></i> Gerir <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="gestao" class="collapse">
                     <li>
-                        <a href="#">Venda</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#empresa"><i class="fa fa-fw fa-folder-o"></i> Empresa <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="empresa" class="collapse">
-                    <li>
-                        <a href="#">Perfil</a>
+                        <a href="#/client">Cliente</a>
                     </li>
                     <li>
-                        <a href="#">Clientes</a>
-                    </li>
-                    <li>
-                        <a href="#">Fornecedores</a>
-                    </li>
-                    <li>
-                        <a href="#">Artigos</a>
-                    </li>
-                    <li>
-                        <a href="#">Encomendas</a>
-                    </li>
-                    <li>
-                        <a href="#">Faturas</a>
+                        <a href="#/supplier">Fornecedor</a>
                     </li>
                 </ul>
             </li>

@@ -43,7 +43,11 @@ angular
       .when('/newOrder', {
         templateUrl: 'views/newOrder.html'
       })
+      .when('/supplier', {
+        templateUrl: 'views/supplier.html',
+        controller: 'SupplierCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        templateUrl:'404.html'
       });
   });
