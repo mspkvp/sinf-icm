@@ -47,6 +47,10 @@ angular
         templateUrl: 'views/supplier.html',
         controller: 'SupplierCtrl'
       })
+	  .when('/invoice', {
+		templateUrl: 'views/invoice.html',
+		controller: 'InvoiceCtrl'
+	  })
       .otherwise({
         templateUrl:'404.html'
       });
