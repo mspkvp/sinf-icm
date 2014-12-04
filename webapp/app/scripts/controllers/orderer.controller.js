@@ -16,6 +16,34 @@ angular.module('icmApp')
           url: ''
         }
       ]);
+
+      $scope.products = [
+        {
+          code: '1',
+          descr: 'nome1',
+          stock: 420,
+          pvp: 81.5
+        },
+        {
+          code: '2',
+          descr: 'nome2',
+          stock: 420,
+          pvp: 81.5
+        },
+        {
+          code: '3',
+          descr: 'nome3',
+          stock: 420,
+          pvp: 81.5
+        },
+        {
+          code: '4',
+          descr: 'nome4',
+          stock: 420,
+          pvp: 81.5
+        }
+      ];
+
       $scope.orderHistory = [
         {
           code: '1',
@@ -47,6 +75,15 @@ angular.module('icmApp')
         }
       ];
 
+      $scope.orderList = [
+        {
+          code: "a1",
+          desc: "cenas",
+          quantity: 24,
+          pvp: 15.79
+        }
+      ];
+      $scope.orderList.total = 123;
 
       $scope.suppliers = [
         {

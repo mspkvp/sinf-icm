@@ -38,7 +38,8 @@ angular
         controller: 'CompaniesCtrl'
       })
       .when('/client', {
-        templateUrl: 'views/clientMain.html'
+        templateUrl: 'views/orderer.html',
+        controller: 'OrdererCtrl'
       })
       .when('/newOrder', {
         templateUrl: 'views/newOrder.html'
@@ -50,10 +51,6 @@ angular
       .when('/invoice', {
         templateUrl: 'views/invoice.html',
         controller: 'InvoiceCtrl'
-      })
-      .when('/orderer', {
-        templateUrl: 'views/orderer.html',
-        controller: 'OrdererCtrl'
       })
       .otherwise({
         templateUrl:'404.html'
