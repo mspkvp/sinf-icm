@@ -8,10 +8,14 @@
         <div class="panel-body">
           <h3>Supplier</h3>
 
-          <select class="form-control" ng-model="selectedSupplier">
+          <!--<select class="form-control" ng-model="selectedSupplier">
             <option hidden value="">Escolher Fornecedor</option>
             <option value="undefined">Nenhum</option>
-            <option ng-repeat="supplier in suppliers" value="{{supplier}}">{{supplier.name}}</option>
+            <option ng-repeat="sup in suppliers" value="{{sup}}">{{sup.name}}</option>
+          </select>-->
+          
+          <select class="form-control" ng-model="selectedSupplier" ng-options="sup as sup.name for sup in suppliers" ng-change="setSupplier(sup)">
+            <option hidden value="">Escolher Fornecedor</option>
           </select>
         </div>
 

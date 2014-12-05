@@ -29,7 +29,7 @@
         </h2>
       </div>
       <div class="col-lg-6">
-        <select class="form-control" ng-model="selectedSupplier">
+        <select class="form-control" ng-model="supplier">
           <option hidden value="">Filtrar por fornecedor</option>
           <option value="undefined">Nenhum</option>
           <option ng-repeat="supplier in suppliers" value="{{supplier}}">{{supplier.name}}</option>

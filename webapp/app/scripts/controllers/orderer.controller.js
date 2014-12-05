@@ -97,21 +97,37 @@ angular.module('icmApp')
         }
       ];
 
-      $scope.selectedSupplier = undefined;
-
       $scope.newOrder = function(){
         $scope.orderModal = $modal.open({
           templateUrl: 'views/orderer-modal.html',
+          controller: OrdererModalCtrl,
           scope: $scope
         });
-        $scope.company = $nav.getViewingCompany();
-        $scope.cancel = function(){
-          $scope.orderModal.dismiss('cancel');
-        };
       };
 
       $scope.emitOrder = function(){
         $scope.orderModal.dismiss('cancel');
+      };
+
+      $scope.cancelModal = function(){
+        $scope.orderModal.dismiss('cancel');
+      };
+
+      $scope.company = $nav.getViewingCompany();
+
+      $scope.setSupplier = function(supplier){
+        console.log('Supplier selected: ', supplier);
+        $scope.selectedSupplier = supplier;
+      };
+
+      var OrdererModalCtrl = function($scope, $interval){
+        $scope.suppliers = $scope.$parent.suppliers;
+        $scope.company = $scope.$parent.company;
+        $scope.setSupplier = function(){
+          $scope.$parent.setSupplier($scope.selectedSupplier);
+        };
+        $scope.emitOrder = $scope.$parent.emitOrder;
+        $scope.cancel = $scope.$parent.cancelModal;
       };
     }
   ]);
