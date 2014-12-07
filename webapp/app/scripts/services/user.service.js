@@ -5,29 +5,29 @@ angular.module('icmApp')
 
     	var user = {
     		name: undefined,
-    		access_type: undefined,
-            login_status: false
+    		accessType: undefined,
+            loginStatus: false
     	};
 
     	this.getUser = function getUser(){
     		return user;
     	};
 
-    	this.setUser = function setUser(user_set){
-    		user.name = user_set.name;
-            user.access_type = user_set.access_type;
-            user.login_status = true;
+    	this.setUser = function setUser(userSet){
+    		user.name = userSet.name;
+            user.accessType = userSet.accessType;
+            user.loginStatus = true;
     	};
 
-        this.resetUser = function setUser(user_set){
+        this.resetUser = function setUser(userSet){
             user = {
                 name: undefined,
-                access_type: undefined,
-                login_status: false
+                accessType: undefined,
+                loginStatus: false
             };
         };
 
         this.getLoginStatus = function getLoginStatus () {
-            return user.login_status;
+            return user.loginStatus;
         };
     }]);

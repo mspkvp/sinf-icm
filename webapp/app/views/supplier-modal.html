@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3 class="modal-title"><i class="fa fa-check-square-o"></i> <strong>{{order.code}}</strong> - {{order.name}}</h3>
+</div>
+<div class="modal-body">
+    <table class="col-md-12 table table-hover table-striped table-condensed">
+        <tbody>
+            <tr>
+                <td class="h6"><strong>Código</strong></td>
+                <td> </td>
+                <td class="h5">{{order.code}}</td>
+            </tr>
+
+            <tr>
+                <td class="h6"><strong>Descrição</strong></td>
+                <td> </td>
+                <td class="h5">{{order.item}}</td>
+            </tr>
+            <tr>
+                <td class="h6"><strong>Empresa fornecedora</strong></td>
+                <td> </td>
+                <td class="h5">{{order.company = company}}</td>
+            </tr>                     
+
+            <tr>
+                <td class="h6"><strong>Quantidade</strong></td>
+                <td> </td>
+                <td class="h5">
+                    <div class="input-group">
+                        <input type="number" class="form-control" ng-model="order.quantity">
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="h6"><strong>Custo p/ unidade</strong></td>
+                <td> </td>
+                <td class="h5">{{order.pricepu}} €</td>
+            </tr> 
+
+            <tr>
+                <td class="h6"><strong>Total</strong></td>
+                <td> </td>
+                <td class="h5">{{order.total = order.pricepu * order.quantity}} €</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="emitInvoice()">Aviar</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+</div>

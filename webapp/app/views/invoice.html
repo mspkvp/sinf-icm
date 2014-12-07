@@ -1,0 +1,47 @@
+<div class="container-fluid">
+ 
+<div class="col-xs-6">
+<h2 class="sub-header">Encomenda</h2>
+  <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="col-md-1">Cód.</th>
+                  <th class="col-md-2">Descrição</th>
+                  <th class="col-md-3">Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="order in orders">
+                  <td class="col-md-1">{{order.code}}</td>
+                  <td class="col-md-2">{{order.desc | limitTo : 20}}</td>
+                  <td class="col-md-3">{{order.date | date : 'dd/MM/yyyy'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+</div>
+  <div class="col-xs-6">
+          <h2 class="sub-header">Fatura</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="col-md-1">Cód.</th>
+                  <th class="col-md-2">Descrição</th>
+                  <th class="col-md-3">Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="invoice in invoices">
+                  <td class="col-md-1">{{invoice.code}}</td>
+                  <td class="col-md-2">{{invoice.desc | limitTo : 20}}</td>
+                  <td class="col-md-3">{{invoice.date | date : 'dd/MM/yyyy'}}</td>
+                </tr>
+              </tbody>
+            </table></div>
+
+
+            <div id="push"></div>
+        </div>
+</div>

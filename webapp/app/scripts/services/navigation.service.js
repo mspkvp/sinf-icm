@@ -10,7 +10,7 @@ angular.module('icmApp')
 			}
 		];
 
-		var _viewingCompany = {};
+		var _viewingCompany = undefined;
 
 		this.getPath = function getPath(){
 			return _path;
@@ -30,10 +30,15 @@ angular.module('icmApp')
 
 		this.resetPath = function resetPath(){
 			_path = [_path[0]];
-		}
+		};
+
 		this.setViewingCompany = function setViewingCompany(company){
 			_viewingCompany = company;
 			console.log('Company was Set!', _viewingCompany);
+		};
+
+		this.getViewingCompany = function getViewingCompany(){
+			return _viewingCompany;
 		};
 
 		this.go = function go(route){

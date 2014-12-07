@@ -3,7 +3,7 @@
 angular.module('icmApp')
   .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', 'NavigationService', function ($scope, $location, $auth, $user, $nav) {
 
-  	$scope.login_data = {
+  	$scope.loginData = {
   		username: '',
   		password: ''
   	};
@@ -11,11 +11,11 @@ angular.module('icmApp')
   	$scope.login = function login () {
 		$user.setUser({
             name: 'Mister Crowley',
-            access_type: 'admin'
+            accessType: 'admin'
         });
        	$nav.go('');
   		/*
-		$auth.login($scope.login_data.username, $scope.login_data.password).then(
+		$auth.login($scope.loginData.username, $scope.loginData.password).then(
 			function onSuccess(userData){
 				$user.setUser(userData);
 				$location.path('/');
@@ -27,22 +27,22 @@ angular.module('icmApp')
   	};
 
   	$scope.showPassword = function showPassword() {
-    
-	    var key_attr = $('#key').attr('type');
-	    
-	    if(key_attr !== 'text') {
-	        
+
+	    var keyAttr = $('#key').attr('type');
+
+	    if(keyAttr !== 'text') {
+
 	        $('.checkbox').addClass('show');
 	        $('#key').attr('type', 'text');
-	        
+
 	    } else {
-	        
+
 	        $('.checkbox').removeClass('show');
 	        $('#key').attr('type', 'password');
-	        
+
 	    }
-	    
+
 	};
 
-	
+
   }]);

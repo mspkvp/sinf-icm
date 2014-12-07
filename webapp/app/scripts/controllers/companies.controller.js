@@ -6,7 +6,7 @@ angular.module('icmApp')
 		$nav.setPath([
 			$nav.getPath()[0],
 			{
-				name: 'Gestão',
+				name: 'Consultar',
 				icon:'',
 				url: '/'
 			},
@@ -60,6 +60,5 @@ angular.module('icmApp')
 
 		$scope.goCompany = function goCompany(company){
 			$nav.setViewingCompany(company);
-			$nav.go(company);
 		};
 	}]);

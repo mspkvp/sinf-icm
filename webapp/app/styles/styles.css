@@ -94,3 +94,21 @@
 .align * {
     text-align: center;
 }
+
+.center-404 {text-align: center; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;}
+
+.bodycontainer {
+    max-height: 200px;
+    width: 100%;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.table-scrollable {
+    margin: 0;
+    padding: 0;
+}
+
+.white-text {
+    color: #fff !important;
+}
