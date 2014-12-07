@@ -37,7 +37,6 @@ angular
         templateUrl: 'views/companies.html',
         controller: 'CompaniesCtrl'
       })
-
       .when('/relation',{
         templateUrl: 'views/relation.html',
         controller: 'RelationCtrl'
@@ -45,7 +44,7 @@ angular
       .when('/sync',{
         templateUrl:'views/sync.html',
         controller:'SyncCtrl'
-
+      })
       .when('/client', {
         templateUrl: 'views/orderer.html',
         controller: 'OrdererCtrl'
