@@ -37,6 +37,14 @@ angular
         templateUrl: 'views/companies.html',
         controller: 'CompaniesCtrl'
       })
+      .when('/relation',{
+        templateUrl: 'views/relation.html',
+        controller: 'RelationCtrl'
+      })
+      .when('/sync',{
+        templateUrl:'views/sync.html',
+        controller:'SyncCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
