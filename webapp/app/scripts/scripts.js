@@ -108,39 +108,43 @@ var	endpointsAPI = {
 	},
 	doc : {
 		order: {
-			to.supplier : {
-				default: {
-					get: {
-						method: 'GET',
-						url: serverUrl + 'DocEncomendaAFornecedor'
+			to: {
+				supplier : {
+					default: {
+						get: {
+							method: 'GET',
+							url: serverUrl + 'DocEncomendaAFornecedor'
+						},
+						post: {
+							method: 'POST',
+							url: serverUrl + 'DocEncomendaAFornecedor'
+						}
 					},
-					post: {
-						method: 'POST',
-						url: serverUrl + 'DocEncomendaAFornecedor'
-					}
-				},
-				byID: {
-					get: {
-						method: 'GET',
-						url: serverUrl + 'DocEncomendaAFornecedor/'
+					byID: {
+						get: {
+							method: 'GET',
+							url: serverUrl + 'DocEncomendaAFornecedor/'
+						}
 					}
 				}
 			},
-			from.client : {
-				default: {
-					get: {
-						method: 'GET',
-						url: serverUrl + 'DocEncomendaDeCliente'
+			from: {
+				client : {
+					default: {
+						get: {
+							method: 'GET',
+							url: serverUrl + 'DocEncomendaDeCliente'
+						},
+						post: {
+							method: 'POST',
+							url: serverUrl + 'DocEncomendaDeCliente'
+						}
 					},
-					post: {
-						method: 'POST',
-						url: serverUrl + 'DocEncomendaDeCliente'
-					}
-				},
-				byID: {
-					get: {
-						method: 'GET',
-						url: serverUrl + 'DocEncomendaDeCliente/'
+					byID: {
+						get: {
+							method: 'GET',
+							url: serverUrl + 'DocEncomendaDeCliente/'
+						}
 					}
 				}
 			}
@@ -163,7 +167,7 @@ var	endpointsAPI = {
 				}
 			}
 		},
-		v.invoice : {
+		invoiceV : {
 			default: {
 				get: {
 					method: 'GET',
