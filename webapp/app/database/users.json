@@ -1,0 +1,12 @@
+[
+	{
+		"username": "client1",
+		"password": "passclient",
+		"permission": "CLIENT"
+	},
+	{
+		"username": "supplier1",
+		"password": "passsuplier",
+		"permission": "SUPPLIER"
+	}
+]

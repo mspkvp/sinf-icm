@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 
 /**
  * @ngdoc overview
@@ -21,9 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/landing.html',
+        templateUrl: 'views/login.html',
         abstract: true,
-        controller: 'LandingCtrl'
+        controller: 'LoginCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -59,7 +59,6 @@ angular
       .when('/invoice', {
         templateUrl: 'views/invoice.html',
         controller: 'InvoiceCtrl'
-
       })
       .otherwise({
         templateUrl:'404.html'

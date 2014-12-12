@@ -115,15 +115,24 @@
 
 
 /*--------------------------------------------------
-:: Forms validation colors
+:: Forms validation border
 -------------------------------------------------- */
 
 .ng-invalid.ng-dirty {
+    pad
     border-color: #FA787E;
-    border-width: 3px;
+    border-width: 1px;
 }
 
 .ng-valid.ng-dirty {
     border-color: #78FA89;
-    border-width: 3px;
+    border-width: 1px;
+}
+
+/*--------------------------------------------------
+:: Navbar elements
+-------------------------------------------------- */
+
+.navbar .dropdown-toggle {
+    cursor: pointer;
 }

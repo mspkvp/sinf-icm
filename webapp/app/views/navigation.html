@@ -48,7 +48,7 @@
             <li ng-init="homeSelected = true" ng-class="{active: homeSelected && !otherSelected}">
                 <a href="#/" ng-click="homeSelected = true; otherSelected = false;"><i class="fa fa-fw fa-home"></i> Home</a>
             </li>
-            <li>
+            <li ng-show="isLoggedIn()">
                 <a href="javascript:;" data-toggle="collapse" data-target="#consulta" ng-click="otherSelected = true"><i class="fa fa-fw fa-folder-o"></i> Consultar <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="consulta" class="collapse">
                     <li>
@@ -66,16 +66,12 @@
 
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#gestao"><i class="fa fa-fw fa-folder-o"></i> Gerir <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="gestao" class="collapse">
-                    <li>
-                        <a href="#/client">Cliente</a>
-                    </li>
-                    <li>
-                        <a href="#/supplier">Fornecedor</a>
-                    </li>
-                </ul>
+            <li ng-show="isClient()">
+                <a href="#/client">Gerir Cliente</a>
+            </li>
+
+            <li ng-show="isSupplier()">
+                <a href="#/supplier">Gerir Fornecedor</a>
             </li>
         </ul>
     </div>
