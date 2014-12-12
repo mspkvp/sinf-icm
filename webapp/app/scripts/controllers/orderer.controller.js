@@ -17,30 +17,39 @@ angular.module('icmApp')
         }
       ]);
 
+      /* A product
+        {
+          "CodArtigo": "sample string 1",
+          "DescArtigo": "sample string 2",
+          "Stock": 3.1,
+          "PVP": 4.1
+        }
+      */
+
       $scope.products = [
         {
-          code: '1',
-          descr: 'nome1',
-          stock: 420,
-          pvp: 81.5
+          CodArtigo: '1',
+          DescArtigo: 'nome1',
+          Stock: 70,
+          PVP: 23.5
         },
         {
-          code: '2',
-          descr: 'nome2',
-          stock: 420,
-          pvp: 81.5
+          CodArtigo: '2',
+          DescArtigo: 'nome2',
+          Stock: 20,
+          PVP: 34.5
         },
         {
-          code: '3',
-          descr: 'nome3',
-          stock: 420,
-          pvp: 81.5
+          CodArtigo: '3',
+          DescArtigo: 'nome3',
+          Stock: 10,
+          PVP: 81.5
         },
         {
-          code: '4',
-          descr: 'nome4',
-          stock: 420,
-          pvp: 81.5
+          CodArtigo: '4',
+          DescArtigo: 'nome4',
+          Stock: 42,
+          PVP: 53.5
         }
       ];
 
