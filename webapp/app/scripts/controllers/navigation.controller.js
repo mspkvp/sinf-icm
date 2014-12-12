@@ -18,7 +18,7 @@ angular.module('icmApp')
  };
 
  $scope.isLoggedIn = function() {
-  return $scope.isClient || $scope.isSupplier;
+  return $scope.isClient() || $scope.isSupplier();
 };
 
 $scope.isClient = function() {

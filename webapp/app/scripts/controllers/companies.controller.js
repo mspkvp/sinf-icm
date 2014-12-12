@@ -3,7 +3,7 @@
 angular.module('icmApp')
 	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', function($scope, $http, $nav){
 
-		$nav.setPath([
+		/*$nav.setPath([
 			$nav.getPath()[0],
 			{
 				name: 'Consultar',
@@ -15,7 +15,7 @@ angular.module('icmApp')
 				icon: '',
 				url: ''
 			}
-		]);
+		]);*/
 		
 		$scope.companies = [
 			{
