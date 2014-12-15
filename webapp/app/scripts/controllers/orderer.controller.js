@@ -1,19 +1,22 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('OrdererCtrl', ['$scope', '$modal', 'NavigationService',
-    function($scope, $modal, $nav){
+  .controller('OrdererCtrl', ['$scope', '$interval', 'NavigationService',
+    function($scope, $i, $nav){
+
+      $scope.company = $nav.getViewingCompany();
+
       $nav.setPath([
         $nav.getPath()[0],
         {
           name: 'Gerir',
           icon:'',
-          url: '/'
+          url: '#/'
         },
         {
           name: 'Cliente',
           icon: '',
-          url: ''
+          url: '#/client'
         }
       ]);
 
@@ -25,6 +28,8 @@ angular.module('icmApp')
           "PVP": 4.1
         }
       */
+
+      $scope.makeOrderOn = false;
 
       $scope.products = [
         {
@@ -107,36 +112,26 @@ angular.module('icmApp')
       ];
 
       $scope.newOrder = function(){
-        $scope.orderModal = $modal.open({
-          templateUrl: 'views/orderer-modal.html',
-          controller: OrdererModalCtrl,
-          scope: $scope
+        $scope.makeOrderOn = true;
+        $nav.addPath({
+          name: 'Encomenda',
+          icon: '',
+          url: ''
         });
       };
 
+      function clear(){
+        $scope.makeOrderOn = false;
+        $nav.pathRmvLast();
+      }
+
       $scope.emitOrder = function(){
-        $scope.orderModal.dismiss('cancel');
+        clear();
       };
 
-      $scope.cancelModal = function(){
-        $scope.orderModal.dismiss('cancel');
+      $scope.cancel = function(){
+        clear();
       };
 
-      $scope.company = $nav.getViewingCompany();
-
-      $scope.setSupplier = function(supplier){
-        console.log('Supplier selected: ', supplier);
-        $scope.selectedSupplier = supplier;
-      };
-
-      var OrdererModalCtrl = function($scope, $interval){
-        $scope.suppliers = $scope.$parent.suppliers;
-        $scope.company = $scope.$parent.company;
-        $scope.setSupplier = function(){
-          $scope.$parent.setSupplier($scope.selectedSupplier);
-        };
-        $scope.emitOrder = $scope.$parent.emitOrder;
-        $scope.cancel = $scope.$parent.cancelModal;
-      };
     }
   ]);

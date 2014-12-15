@@ -6,6 +6,7 @@ angular.module('icmApp')
 	$scope.last = $scope.crumbs[$scope.crumbs.length-1];
 	
 	$scope.minusLast = function(){
+		$scope.last = $scope.crumbs[$scope.crumbs.length-1];
 		return $scope.crumbs.length-1;
 	};
 	
