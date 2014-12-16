@@ -5,7 +5,7 @@ angular.module('icmApp')
   $scope.company = $nav.getViewingCompany();
   $scope.suppliers = [];
   $scope.optionText;
-  $scope.selectedSupplier;
+  $scope.selectedSupplier = "";
   $scope.selectedProducts = [];
   $scope.products = [];
   $scope.newProduct;
@@ -35,6 +35,7 @@ angular.module('icmApp')
   };
 
   $scope.codeWritten = function(){
+    if($scope.company === undefined || $scope.selectedSupplier == "") return;
     for(var i = 0; i < $scope.selectedProducts.length; i++){
       if($scope.newProduct == $scope.selectedProducts[i].CodArtigo){
         $scope.newProductText = $scope.selectedProducts[i].DescArtigo;
