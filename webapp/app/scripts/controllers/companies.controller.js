@@ -16,7 +16,11 @@ angular.module('icmApp')
 				url: ''
 			}
 		]);*/
-		
+	/*	$http.defaults.useXDomain = true;
+		$http.defaults.withCredentials = false;
+		delete $http.defaults.headers.common["X-Requested-With"];*/
+		$http.defaults.headers.common["Accept"] = "application/json";
+		$http.defaults.headers.common["Content-Type"] = "application/json";
 		$scope.companies = [
 			{
 				id: 1,
@@ -60,5 +64,18 @@ angular.module('icmApp')
 
 		$scope.goCompany = function goCompany(company){
 			$nav.setViewingCompany(company);
+			$http.get('http://localhost:49209/api/Fornecedores?empresa=EMP1').
+				success(function(data, status, headers, config){
+					alert("CONSEGEUI CARALHO = " + data);
+				}).
+				error(function(data, status, headers, config){
+					alert("ERRO CARALHO " + data + " " + status + " --" + headers() + " --" + config);
+					console.log(headers());
+					console.log(config);
+				});
 		};
-	}]);
+	}])
+	.config(function($httpProvider){
+		delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		$httpProvider.defaults.headers.common['Access-Control-Allow-Headers']
+	});
