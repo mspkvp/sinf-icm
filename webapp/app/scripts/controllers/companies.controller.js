@@ -21,31 +21,28 @@ angular.module('icmApp')
 		delete $http.defaults.headers.common["X-Requested-With"];*/
 		$http.defaults.headers.common["Accept"] = "application/json";
 		$http.defaults.headers.common["Content-Type"] = "application/json";
+
 		$scope.companies = [
 			{
-				id: 1,
-				name: 'Empresa 1',
+				"id" : "EMP1",
+				"name" : "FOObin"
 			},
 			{
-				id: 2,
-				name: 'Empresa 2',
+				"id" : "EMP2",
+				"name" : "PixFlag"
 			},
 			{
-				id: 3,
-				name: 'Empresa 3',
+				"id" : "EMP3",
+				"name" : "SINFTech"
 			},
 			{
-				id: 4,
-				name: 'Empresa 4',
+				"id" : "EMP4",
+				"name" : "botNET"
 			},
 			{
-				id: 5,
-				name: 'Empresa 5',
+				"id" : "EMP4",
+				"name" : "Bragaboard"
 			},
-			{
-				id: 6,
-				name: 'Empresa 6',
-			}
 		];
 
 		$scope.selectedCompany = {};
@@ -64,15 +61,6 @@ angular.module('icmApp')
 
 		$scope.goCompany = function goCompany(company){
 			$nav.setViewingCompany(company);
-			$http.get('http://localhost:49209/api/Fornecedores?empresa=EMP1').
-				success(function(data, status, headers, config){
-					alert("CONSEGEUI CARALHO = " + data);
-				}).
-				error(function(data, status, headers, config){
-					alert("ERRO CARALHO " + data + " " + status + " --" + headers() + " --" + config);
-					console.log(headers());
-					console.log(config);
-				});
 		};
 	}])
 	.config(function($httpProvider){
