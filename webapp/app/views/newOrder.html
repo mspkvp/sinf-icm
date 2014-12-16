@@ -19,12 +19,8 @@
         <div class="panel-body">
           <h3>Supplier</h3>
 
-          <select class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select class="form-control" ng-change="supplierChosen()" ng-model="optionText">
+            <option ng-repeat="supplier in suppliers">{{supplier.CodFornecedor}} -> {{supplier.NomeFornecedor}}</option>
           </select>
         </div>
 
@@ -52,41 +48,23 @@
             <th>Stock Disponível</th>
             <th>Ações</th>
           </tr>
-          <tr>
-            <td>A1</td>
-            <td>Caneta</td>
-            <td>50</td>
-            <td>104</td>
-            <td>
-              <button type="button" class="btn btn-sm btn-danger">Remover</button>
-            </td>
-          </tr>
-          <tr>
-            <td>A1</td>
-            <td>Caneta</td>
-            <td>50</td>
-            <td>104</td>
-            <td>
-              <button type="button" class="btn btn-sm btn-danger">Remover</button>
-            </td>
-          </tr>
-          <tr>
-            <td>A1</td>
-            <td>Caneta</td>
-            <td>50</td>
-            <td>104</td>
+          <tr ng-repeat="product in products">
+            <td>{{product.code}}</td>
+            <td>{{product.desc}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.stock}}</td>
             <td>
               <button type="button" class="btn btn-sm btn-danger">Remover</button>
             </td>
           </tr>
           <tr>
             <td class="col-md-2">
-              <input type="text" class="form-control" placeholder="Código/Descrição"></td>
-            <td>Isto Preenche Automático</td>
+              <input type="text" class="form-control" placeholder="Código/Descrição" ng-blur="codeWritten()" ng-model="newProduct"></td>
+            <td>{{newProductText}}</td>
             <td class="col-md-2">
               <input type="text" class="form-control" placeholder="">
             </td>
-            <td>104</td>
+            <td>{{newProductStock}}</td>
             <td>
               <button type="button" class="btn btn-sm btn-primary">Adicionar</button>
             </td>

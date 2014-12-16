@@ -50,7 +50,8 @@ angular
         controller: 'OrdererCtrl'
       })
       .when('/newOrder', {
-        templateUrl: 'views/newOrder.html'
+        templateUrl: 'views/newOrder.html',
+        controller: 'newOrderCtrl'
       })
       .when('/supplier', {
         templateUrl: 'views/supplier.html',
