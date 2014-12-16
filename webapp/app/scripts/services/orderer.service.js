@@ -18,6 +18,12 @@ angular.module('icmApp')
 			var company = $nav.getViewingCompany();
 			return $http.post(endpoints.default.post, order, {empresa: company.id});
 		};
+
+		this.getProducts = function(id){
+			var company = $nav.getViewingCompany();
+			var url = endpointsAPI.articles.default.get.url;
+			return $http.get(url, {empresa: company.id});
+		};
 	
 	}
 ]);
