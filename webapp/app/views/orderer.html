@@ -33,7 +33,7 @@
           <select class="form-control" ng-model="supplier">
             <option hidden value="">Filtrar por fornecedor</option>
             <option value="undefined">Todos</option>
-            <option ng-repeat="supplier in suppliers" value="{{supplier}}">{{supplier.name}}</option>
+            <option ng-repeat="supplier in suppliers" value="{{supplier}}">{{supplier.NomeFornecedor}}</option>
           </select>
         </div>
         <br>
@@ -83,7 +83,7 @@
             <div class="panel-body">
               <h3>Fornecedor</h3>
           
-          <select class="form-control" ng-model="selectedSupplier" ng-options="sup as sup.name for sup in suppliers" ng-change="setSupplier()">
+          <select class="form-control" ng-model="selectedSupplier" ng-options="sup as sup.NomeFornecedor for sup in suppliers" ng-change="setSupplier()">
             <option hidden value="">Escolher Fornecedor</option>
           </select>
         </div>
@@ -155,7 +155,7 @@
             <th class="col-lg-2">Adicionar linha |</th>
             <th class="col-lg-2">Selecione um produto</th>
             <th class="col-lg-1">
-              <select class="form-control" ng-model="tmpProduct" ng-options="product as product.CodArtigo for product in products" ng-change="setupLine()"></select>
+              <select class="form-control" ng-model="tmpProduct" ng-options="product as product.DescArtigo for product in products" ng-change="setupLine()"></select>
             </th>
             <th class="col-lg-1"></th>
             <th class="col-lg-6"></th>

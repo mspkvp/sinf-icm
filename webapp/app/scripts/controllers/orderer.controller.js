@@ -102,17 +102,18 @@ angular.module('icmApp')
       // supplier stuff
       $scope.setSupplier = function() {
         $scope.orderToSend.Entidade = $scope.selectedSupplier.id;
-        /*$orderS.getProducts()
+        $orderS.getProducts()
           .then(
             function onSuccess(result){
-              $scope.products = data;
+              console.log(result);
+              $scope.products = result.data;
               $scope.gotSupplier = true;
             },
             function onError(e){
               console.log(e);
               alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
             }
-          );*/
+          );
         $scope.gotSupplier = true;
       };
 
@@ -138,23 +139,24 @@ angular.module('icmApp')
 
       (function getSuppliers(){
         //OFFLINE
-        var companies = $nav.getCompanies();
+        /*var companies = $nav.getCompanies();
         for(var i = 0; i<companies.length; i++){
           if(companies[i].name === $scope.company.name){
             companies.splice(i,1);
             break;
           }
         }
-        $scope.suppliers = companies;
+        $scope.suppliers = companies;*/
         //ONLINE
-        /*$orderS.getSuppliers()
+        $orderS.getSuppliers()
           .then(
             function onSuccess(result){
               $scope.suppliers = result.data;
+              console.log(result);
             },
             function onError(e){
               console.log(e);
-            });*/
+            });
       })();
       
 
@@ -235,10 +237,11 @@ angular.module('icmApp')
 
       $scope.rmvLine = function(line){
         var nr = line.NumLinha;
+        console.log("linha"+nr,"index"+nr-1);
         $scope.orderList.splice(nr-1, 1);
         line_counter--;
         for(var i=0; i < $scope.orderList.length; i++){
-          $scope.orderList.NumLinha = i+1;
+          $scope.orderList[i].NumLinha = i+1;
         }
       };
     }
