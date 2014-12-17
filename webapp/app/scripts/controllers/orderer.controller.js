@@ -109,7 +109,10 @@ angular.module('icmApp')
         $orderS.getSuppliers()
           .then(
             function onSuccess(result){
-              $scope.suppliers = result.data;
+              for(var i = 0; i < result.data.length; i++){
+                if(result.data[i].CodFornecedor == "FVD") continue;
+                $scope.suppliers.push(result.data[i]);
+              }
               console.log(result);
             },
             function onError(e){
@@ -188,12 +191,16 @@ angular.module('icmApp')
         selected.TotalILiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
         selected.TotalLiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
 
+
+
         $scope.addLineObj = selected;
 
         //console.log($scope.addLineObj);
       };
 
       $scope.addLine = function(){
+        $scope.addLineObj.TotalLiquido = Math.round(parseFloat($scope.addLineObj.TotalLiquido)*100)/100;
+        $scope.addLineObj.TotalILiquido = Math.round(parseFloat($scope.addLineObj.TotalILiquido)*100)/100;
         $scope.orderList.push($scope.addLineObj);
         $scope.addLineObj = undefined;
         $scope.tmpProduct = undefined;

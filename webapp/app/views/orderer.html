@@ -82,7 +82,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <h3>Fornecedor</h3>
-          
+
           <select class="form-control" ng-model="selectedSupplier" ng-options="sup as sup.NomeFornecedor for sup in suppliers" ng-change="setSupplier()">
             <option hidden value="">Escolher Fornecedor</option>
           </select>
@@ -104,11 +104,11 @@
             <th class="col-lg-1">Descrição</th>
             <th class="col-lg-1">Quantidade</th>
             <th class="col-lg-1">Unidade</th>
-            <th class="col-lg-1">Desconto (em %)</th>
-            <th class="col-lg-2">Preço Unitário (em €)</th>
-            <th class="col-lg-2">Total ILíquido (em €)</th>
-            <th class="col-lg-2">Total Líquido (em €)</th>
-            <th class="col-lg-1"></th>
+            <th class="col-lg-2">Desconto(%)</th>
+            <th class="col-lg-2">Preço Unitário(€)</th>
+            <th class="col-lg-2">Total ILíquido(€)</th>
+            <th class="col-lg-2">Total Líquido(€)</th>
+            <th class="col-lg-2">Remove</th>
           </tr>
         </thead>
       </table>
@@ -148,7 +148,7 @@
           </tr>
         </tfoot>
       </table>
-
+      <br><br>
       <table class="table table-condensed table-rmv">
         <thead>
           <tr>
@@ -180,8 +180,8 @@
               <th class="col-lg-2">
                 <input type="number" class="form-control" ng-model="addLineObj.PrecoUnitario" min="1" step="0.01" required>
               </th>
-              <th class="col-lg-2">{{addLineObj.TotalILiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100]}}</th>
-              <th class="col-lg-2">{{addLineObj.TotalLiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] * 1.23}}</th>
+              <th class="col-lg-2">{{addLineObj.TotalILiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] | number:2}}</th>
+              <th class="col-lg-2">{{addLineObj.TotalLiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] * 1.23 | number:2}}</th>
               <th class="col-lg-1">
                  <button type="submit" class="btn btn-success" ng-click="addLine()" ng-class="{disabled: !addLineObj}">Adicionar</button>
               </th>
