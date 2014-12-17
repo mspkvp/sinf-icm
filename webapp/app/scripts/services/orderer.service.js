@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('icmApp')
-.service('OrdererService', ['$http', 'NavigationService', 
+.service('OrdererService', ['$http', 'NavigationService',
 	function($http, $nav){
 		$http.defaults.headers.common["Accept"] = "application/json";
 		$http.defaults.headers.common["Content-Type"] = "application/json";
@@ -26,10 +26,10 @@ angular.module('icmApp')
 			return $http.post(endpointsAPI.doc.order.to.supplier.default.post.url+'?empresa='+supplierID, order);
 		};
 
-		this.getProducts = function(){
-			var company = $nav.getViewingCompany();
+		this.getProducts = function(company){
+			//var company = $nav.getViewingCompany();
 			var url = endpointsAPI.articles.default.get.url;
-			return $http.get(url+'?empresa='+company.id);
+			return $http.get(url+'?empresa='+company);
 		};
 
 		this.getSuppliers = function(){

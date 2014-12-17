@@ -62,7 +62,7 @@ angular.module('icmApp')
       // supplier stuff
       $scope.setSupplier = function() {
         $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
-        $orderS.getProducts()
+        $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
           .then(
             function onSuccess(result){
               console.log(result);
@@ -116,7 +116,7 @@ angular.module('icmApp')
               console.log(e);
             });
       })();
-      
+
 
       $scope.newOrder = function(){
         $scope.makeOrderOn = true;
