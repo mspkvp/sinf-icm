@@ -9,30 +9,34 @@ angular.module('icmApp')
 		var endpoints = endpointsAPI.doc.order.from.client;
 		this.getOrders = function(){
 			var company = $nav.getViewingCompany();
-			return $http.get(endpoints.default.get, {empresa: company.id});
+			return $http.get(endpoints.default.get.url+'?empresa='+company.id);
 		};
 
 		this.getOrders = function(id){
 			var company = $nav.getViewingCompany();
-			return $http.get(endpoints.byID.get+id, {empresa: company.id});
+			return $http.get(endpoints.byID.get.url+id+'?empresa='+company.id);
 		};
 
 		this.sendOrder = function(order){
 			var company = $nav.getViewingCompany();
-			return $http.post(endpoints.default.post, order, {empresa: company.id});
+			return $http.post(endpoints.default.post.url+'?empresa='+company.id, order);
 		};
 
-		this.getProducts = function(id){
+		this.sendOrderNext = function(supplierID, order){
+			return $http.post(endpointsAPI.doc.order.to.supplier.default.post.url+'?empresa='+supplierID, order);
+		};
+
+		this.getProducts = function(){
 			var company = $nav.getViewingCompany();
 			var url = endpointsAPI.articles.default.get.url;
-			return $http.get(url, {empresa: company.id});
+			return $http.get(url+'?empresa='+company.id);
 		};
 
 		this.getSuppliers = function(){
 			var company = $nav.getViewingCompany();
-			var url = endpointsAPI.suppliers.default.get;
-			return $http.get(url, {empresa: company.id});
+			var url = endpointsAPI.suppliers.default.get.url;
+			return $http.get(url+'?empresa='+company.id);
 		};
-	
+
 	}
 ]);

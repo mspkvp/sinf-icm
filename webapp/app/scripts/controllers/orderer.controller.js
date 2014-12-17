@@ -8,6 +8,7 @@ angular.module('icmApp')
         alert("Please login first!");
         $nav.setRedirection('client');
         $nav.go('login');
+        return;
       }
 
       $scope.company = $nav.getViewingCompany();
@@ -32,6 +33,21 @@ angular.module('icmApp')
         }
       ]);
 
+      $scope.orderHistory = [];
+
+      (function getHistory(){
+        //ONLINE
+        $orderS.getOrders()
+          .then(
+            function onSuccess(result){
+              $scope.orderHistory = result.data;
+              console.log(result);
+            },
+            function onError(e){
+              console.log(e);
+            });
+      })();
+
       /* A product
         {
           "CodArtigo": "sample string 1",
@@ -41,67 +57,11 @@ angular.module('icmApp')
         }
       */
 
-      $scope.products = [
-        {
-          CodArtigo: '1',
-          DescArtigo: 'nome1',
-          Stock: 70,
-          PVP: 23.5
-        },
-        {
-          CodArtigo: '2',
-          DescArtigo: 'nome2',
-          Stock: 20,
-          PVP: 34.5
-        },
-        {
-          CodArtigo: '3',
-          DescArtigo: 'nome3',
-          Stock: 10,
-          PVP: 81.5
-        },
-        {
-          CodArtigo: '4',
-          DescArtigo: 'nome4',
-          Stock: 42,
-          PVP: 53.5
-        }
-      ];
-
-      $scope.orderHistory = [
-        {
-          code: '1',
-          name: 'nome1',
-          orderDate: new Date(),
-          deliveryDate: new Date(),
-          status: 'Pago'
-        },
-        {
-          code: '2',
-          name: 'nome2',
-          orderDate: new Date(),
-          deliveryDate: '',
-          status: 'Pedido'
-        },
-        {
-          code: '3',
-          name: 'nome3',
-          orderDate: new Date(),
-          deliveryDate: new Date(),
-          status: 'Em Discussão'
-        },
-        {
-          code: '4',
-          name: 'nome4',
-          orderDate: new Date(),
-          deliveryDate: new Date(),
-          status: 'Recebido'
-        }
-      ];
+      $scope.products = [];
 
       // supplier stuff
       $scope.setSupplier = function() {
-        $scope.orderToSend.Entidade = $scope.selectedSupplier.id;
+        $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
         $orderS.getProducts()
           .then(
             function onSuccess(result){
@@ -124,13 +84,11 @@ angular.module('icmApp')
       $scope.makeOrderOn = false;
 
       $scope.orderToSend = {
-        id: "sample string 1",
         Entidade: "sample string 2",
         NumDoc: 1,
-        NumDocExterno: "",
         Data: new Date().toJSON(),
         TotalMerc: 0,
-        Serie: "serie",
+        Serie: "B",
         LinhasDoc: []
       };
 
@@ -169,7 +127,6 @@ angular.module('icmApp')
         });
         $scope.orderToSend.NumDoc = ++doc_number;
         $scope.orderToSend.NumDocExterno = ""+doc_number;
-        $scope.orderToSend.id =  "enc_"+$scope.orderToSend.Entidade+"_"+doc_number;
       };
 
       function clear(){
@@ -185,10 +142,18 @@ angular.module('icmApp')
         }
         $scope.orderToSend.TotalMerc = total;
 
-        /*$orderS.sendOrder($scope.orderToSend)
+        $orderS.sendOrder($scope.orderToSend)
         .then(
-            function onSuccess(data){
-              console.log("Order placed succesfully");
+            function onSuccess(result){
+              console.log("Order from client placed succesfully", result.data);
+              $scope.orderToSend.id = result.data.id;
+              $scope.orderToSend.Entidade = $scope.company.id;
+              $orderS.sendOrderNext($scope.selectedSupplier.CodFornecedor, $scope.orderToSend)
+                .then(function onSuccess(result2){
+                  console.log("Order to supplier placed succesfully", result2);
+                }, function onError(e){
+                  console.log(e);
+                });
             },
             function onError(e){
               console.log(e);
@@ -198,7 +163,7 @@ angular.module('icmApp')
           function(){
               clear();
             }
-        );*/
+        );
       };
 
       $scope.cancel = function(){
@@ -237,7 +202,6 @@ angular.module('icmApp')
 
       $scope.rmvLine = function(line){
         var nr = line.NumLinha;
-        console.log("linha"+nr,"index"+nr-1);
         $scope.orderList.splice(nr-1, 1);
         line_counter--;
         for(var i=0; i < $scope.orderList.length; i++){
