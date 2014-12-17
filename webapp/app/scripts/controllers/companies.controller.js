@@ -3,7 +3,7 @@
 angular.module('icmApp')
 	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', function($scope, $http, $nav){
 
-		/*$nav.setPath([
+		$nav.setPath([
 			$nav.getPath()[0],
 			{
 				name: 'Consultar',
@@ -15,35 +15,14 @@ angular.module('icmApp')
 				icon: '',
 				url: ''
 			}
-		]);*/
+		]);
 	/*	$http.defaults.useXDomain = true;
 		$http.defaults.withCredentials = false;
 		delete $http.defaults.headers.common["X-Requested-With"];*/
 		$http.defaults.headers.common["Accept"] = "application/json";
 		$http.defaults.headers.common["Content-Type"] = "application/json";
 
-		$scope.companies = [
-			{
-				"id" : "EMP1",
-				"name" : "FOObin"
-			},
-			{
-				"id" : "EMP2",
-				"name" : "PixFlag"
-			},
-			{
-				"id" : "EMP3",
-				"name" : "SINFTech"
-			},
-			{
-				"id" : "EMP4",
-				"name" : "botNET"
-			},
-			{
-				"id" : "EMP4",
-				"name" : "Bragaboard"
-			},
-		];
+		$scope.companies = $nav.getCompanies();
 
 		$scope.selectedCompany = {};
 		$scope.viewCompanyModal = false;

@@ -128,230 +128,35 @@ angular.module('icmApp')
         NumDoc: 1,
         NumDocExterno: "",
         Data: new Date().toJSON(),
-        TotalMerc: 6.1,
+        TotalMerc: 0,
         Serie: "serie",
-        LinhasDoc: [
-          {
-            CodArtigo: "sample string 1",
-            DescArtigo: "sample string 2",
-            IdCabecDoc: "sample string 3",
-            NumLinha: 4,
-            Quantidade: 5.1,
-            Unidade: "sample string 6",
-            Desconto: 7.1,
-            PrecoUnitario: 8.1,
-            TotalILiquido: 9.1,
-            TotalLiquido: 10.1
-          },
-          {
-            CodArtigo: "sample string 1",
-            DescArtigo: "sample string 2",
-            IdCabecDoc: "sample string 3",
-            NumLinha: 4,
-            Quantidade: 5.1,
-            Unidade: "sample string 6",
-            Desconto: 7.1,
-            PrecoUnitario: 8.1,
-            TotalILiquido: 9.1,
-            TotalLiquido: 10.1
-          },
-         {
-            CodArtigo: "sample string 1",
-            DescArtigo: "sample string 2",
-            IdCabecDoc: "sample string 3",
-            NumLinha: 4,
-            Quantidade: 5.1,
-            Unidade: "sample string 6",
-            Desconto: 7.1,
-            PrecoUnitario: 8.1,
-            TotalILiquido: 9.1,
-            TotalLiquido: 10.1
-          }
-        ]
+        LinhasDoc: []
       };
 
-      $scope.orderList = [
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        },
-        {
-          CodArtigo: "art_1",
-          DescArtigo: "Artigo nr 1",
-          IdCabecDoc: "N sei qual é",
-          NumLinha: 1,
-          Quantidade: 5,
-          Unidade: "UN",
-          Desconto: 0.0,
-          PrecoUnitario: 8.4,
-          TotalILiquido: 9.1,
-          TotalLiquido: 10.1
-        }
-      ];
+      $scope.orderList = [];
+      $scope.suppliers = [];
 
-      $scope.suppliers = [
-        {
-          name:'fornecedor1'
-        },
-        {
-          name:'fornecedor2'
-        },
-        {
-          name:'fornecedor3'
+      (function getSuppliers(){
+        //OFFLINE
+        var companies = $nav.getCompanies();
+        for(var i = 0; i<companies.length; i++){
+          if(companies[i].name === $scope.company.name){
+            companies.splice(i,1);
+            break;
+          }
         }
-      ];
+        $scope.suppliers = companies;
+        //ONLINE
+        /*$orderS.getSuppliers()
+          .then(
+            function onSuccess(result){
+              $scope.suppliers = result.data;
+            },
+            function onError(e){
+              console.log(e);
+            });*/
+      })();
+      
 
       $scope.newOrder = function(){
         $scope.makeOrderOn = true;
@@ -421,5 +226,20 @@ angular.module('icmApp')
         //console.log($scope.addLineObj);
       };
 
+      $scope.addLine = function(){
+        $scope.orderList.push($scope.addLineObj);
+        $scope.addLineObj = undefined;
+        $scope.tmpProduct = undefined;
+        $scope.gotSelected = false;
+      };
+
+      $scope.rmvLine = function(line){
+        var nr = line.NumLinha;
+        $scope.orderList.splice(nr-1, 1);
+        line_counter--;
+        for(var i=0; i < $scope.orderList.length; i++){
+          $scope.orderList.NumLinha = i+1;
+        }
+      };
     }
   ]);

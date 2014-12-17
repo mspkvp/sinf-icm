@@ -12,6 +12,28 @@ angular.module('icmApp')
 
 		var _viewingCompany = undefined;
 		var _redirection = undefined;
+		var _companies = [
+			{
+				"id" : "EMP1",
+				"name" : "FOObin"
+			},
+			{
+				"id" : "EMP2",
+				"name" : "PixFlag"
+			},
+			{
+				"id" : "EMP3",
+				"name" : "SINFTech"
+			},
+			{
+				"id" : "EMP4",
+				"name" : "botNET"
+			},
+			{
+				"id" : "EMP5",
+				"name" : "Bragaboard"
+			}
+		];
 
 		this.getPath = function getPath(){
 			return _path;
@@ -58,4 +80,7 @@ angular.module('icmApp')
 			}	
 		};
 
+		this.getCompanies = function(){
+			return _companies;
+		}
 	}]);
