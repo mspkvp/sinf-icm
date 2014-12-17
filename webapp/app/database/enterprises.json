@@ -1,1 +1,10 @@
-["EMP 1", "EMP 2"]
+[
+	{
+		"id": "EMP1",
+		"name": "Pito Doce"
+	},
+	{
+		"id": "EMP2",
+		"name": "Jumbo"
+	}
+]

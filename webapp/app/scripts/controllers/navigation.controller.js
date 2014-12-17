@@ -6,7 +6,7 @@ angular.module('icmApp')
 
   $scope.company = $nav.getViewingCompany();
 
-  $scope.logout = function logout() {
+  $scope.logout = function() {
    $nav.go('');
    $userS.resetUser();
    $scope.loggedUser = $userS.getUser();
@@ -18,15 +18,15 @@ angular.module('icmApp')
  };
 
  $scope.isLoggedIn = function() {
-  return $scope.isClient() || $scope.isSupplier();
+  return $userS.getLoginStatus();
 };
 
 $scope.isClient = function() {
-  return $scope.loggedUser.permission == "CLIENT";
+  return $userS.isClient() && $nav.getViewingCompany() != undefined;
 };
 
 $scope.isSupplier = function() {
-  return $scope.loggedUser.permission == "SUPPLIER";
+  return $userS.isSupplier() && $nav.getViewingCompany() != undefined;
 };
 
 $interval(update, 1000);

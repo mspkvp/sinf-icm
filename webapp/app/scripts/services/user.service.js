@@ -4,8 +4,8 @@ angular.module('icmApp')
     .service('UserService', [function service(){
 
     	var user = {
-    		name: undefined,
-    		accessType: undefined,
+    		username: undefined,
+    		permission: undefined,
             loginStatus: false
     	};
 
@@ -14,20 +14,28 @@ angular.module('icmApp')
     	};
 
     	this.setUser = function setUser(userSet){
-    		user.name = userSet.name;
-            user.accessType = userSet.accessType;
+    		user.username = userSet.username;
+            user.permission = userSet.permission;
             user.loginStatus = true;
     	};
 
         this.resetUser = function setUser(userSet){
             user = {
-                name: undefined,
-                accessType: undefined,
+                username: undefined,
+                permission: undefined,
                 loginStatus: false
             };
         };
 
         this.getLoginStatus = function getLoginStatus () {
             return user.loginStatus;
+        };
+
+        this.isClient = function () {
+            return user.permission == 'CLIENT';
+        };
+
+        this.isSupplier = function () {
+            return user.permission == 'SUPPLIER';
         };
     }]);

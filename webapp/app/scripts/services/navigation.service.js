@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('icmApp')
-	.service('NavigationService', ['$location', 'UserService', function service($location, $user){
+	.service('NavigationService', ['$location', 'UserService', '$http', '$interval', function service($location, $user, $http, $inter){
 		var _path = [
 			{
 				name:'Home',
@@ -12,28 +12,17 @@ angular.module('icmApp')
 
 		var _viewingCompany = undefined;
 		var _redirection = undefined;
-		var _companies = [
-			{
-				"id" : "EMP1",
-				"name" : "FOObin"
+		var _companies = undefined;
+
+		(function loadCompanies() {
+			$http.get('/database/enterprises.json').then(
+			function onSuccess(result) {
+				_companies = result.data;
 			},
-			{
-				"id" : "EMP2",
-				"name" : "PixFlag"
-			},
-			{
-				"id" : "EMP3",
-				"name" : "SINFTech"
-			},
-			{
-				"id" : "EMP4",
-				"name" : "botNET"
-			},
-			{
-				"id" : "EMP5",
-				"name" : "Bragaboard"
-			}
-		];
+			function onError(e) {
+				throw new Error("Could not load companies. Problems with the database");
+			});
+		})();
 
 		this.getPath = function getPath(){
 			return _path;
@@ -57,7 +46,6 @@ angular.module('icmApp')
 
 		this.setViewingCompany = function setViewingCompany(company){
 			_viewingCompany = company;
-			console.log('Company was Set!', _viewingCompany);
 		};
 
 		this.getViewingCompany = function getViewingCompany(){
@@ -81,6 +69,7 @@ angular.module('icmApp')
 		};
 
 		this.getCompanies = function(){
+			console.log(_companies);
 			return _companies;
-		}
+		};
 	}]);

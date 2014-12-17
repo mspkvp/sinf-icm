@@ -53,21 +53,14 @@
                 <a href="#/" ng-click="homeSelected = true; otherSelected = false;"><i class="fa fa-fw fa-home"></i> Home</a>
             </li>
             <li ng-show="isLoggedIn()"> 
-                <a href="javascript:;" data-toggle="collapse" data-target="#consulta" ng-click="otherSelected = true"><i class="fa fa-fw fa-folder-o"></i> Consultar <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="consulta" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#sync" ng-click="otherSelected = true"><i class="fa fa-fw fa-folder-o"></i> Sincronizar <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="sync" class="collapse">
                     <li>
-                        <a href="#/companies">Empresas</a>
+                        <a href="#/sync">Artigos</a>
                     </li>
                     <li>
-                        <a href="#/clients">Clientes</a>
+                        <a href="#/relation">Relações de terceiros</a>
                     </li>
-                    <li>
-                        <a href="#/suppliers">Fornecedores</a>
-                    </li>
-                    <li>
-                        <a href="#/articles">Artigos</a>
-                    </li>
-
                 </ul>
             </li>
             <li ng-show="isClient()">
