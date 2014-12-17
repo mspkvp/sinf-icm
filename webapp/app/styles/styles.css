@@ -145,3 +145,21 @@
 .navbar .dropdown-toggle {
     cursor: pointer;
 }
+
+.img-logo {
+    width: 110px;
+    height: auto;
+}
+
+@font-face {
+    font-family: 'adamcg';
+    src: local('adamcg'), url('./fonts/adamcg.otf') format('opentype');
+}
+
+.font-logo {
+    font-family: adamcg;
+}
+
+.title-small {
+    font-size: x-small;
+}
