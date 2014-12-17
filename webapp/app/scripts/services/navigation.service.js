@@ -11,6 +11,7 @@ angular.module('icmApp')
 		];
 
 		var _viewingCompany = undefined;
+		var _redirection = undefined;
 
 		this.getPath = function getPath(){
 			return _path;
@@ -43,6 +44,18 @@ angular.module('icmApp')
 
 		this.go = function go(route){
 			$location.path('/'+route);
+		};
+
+		this.setRedirection = function setRedirection(route){
+			_redirection = route;
+		};
+
+		this.redirect = function redirect(){
+			if(_redirection){
+				var tmpRoute = _redirection;
+				_redirection = undefined;
+				this.go(tmpRoute);
+			}	
 		};
 
 	}]);

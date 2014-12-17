@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService','NavigationService',
-    function($scope, $i, $orderS,$nav){
+  .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService','NavigationService', 'UserService',
+    function($scope, $i, $orderS,$nav, $userS){
+
+      if(!$userS.getLoginStatus){
+        alert("Please login first!");
+        $nav.setRedirection('client');
+        $nav.go('login');
+      }
 
       $scope.company = $nav.getViewingCompany();
 
       if(!$scope.company){
         alert("Please select a company first!");
+        $nav.setRedirection('client');
         $nav.go('companies');
       }
 
@@ -95,7 +102,7 @@ angular.module('icmApp')
       // supplier stuff
       $scope.setSupplier = function() {
         $scope.orderToSend.Entidade = $scope.selectedSupplier.id;
-        $orderS.getProducts()
+        /*$orderS.getProducts()
           .then(
             function onSuccess(result){
               $scope.products = data;
@@ -105,7 +112,8 @@ angular.module('icmApp')
               console.log(e);
               alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
             }
-          );
+          );*/
+        $scope.gotSupplier = true;
       };
 
       // order stuff
@@ -370,7 +378,7 @@ angular.module('icmApp')
         }
         $scope.orderToSend.TotalMerc = total;
 
-        $orderS.sendOrder($scope.orderToSend)
+        /*$orderS.sendOrder($scope.orderToSend)
         .then(
             function onSuccess(data){
               console.log("Order placed succesfully");
@@ -383,7 +391,7 @@ angular.module('icmApp')
           function(){
               clear();
             }
-        );
+        );*/
       };
 
       $scope.cancel = function(){

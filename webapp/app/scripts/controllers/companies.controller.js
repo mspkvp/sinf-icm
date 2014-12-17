@@ -61,6 +61,7 @@ angular.module('icmApp')
 
 		$scope.goCompany = function goCompany(company){
 			$nav.setViewingCompany(company);
+			$nav.redirect();
 		};
 	}])
 	.config(function($httpProvider){
