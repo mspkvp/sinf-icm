@@ -10,7 +10,7 @@
         </button>
         <a class="navbar-brand font-logo" href="#/">
             Intercompany
-            <small class="title-small">with</small>
+            <small class="title-small">com</small>
             <img class="img-logo" src="resources/primaveralogo.png">
         </a>
     </div>
@@ -19,15 +19,15 @@
         <li ng-show="company">
             <a class="white-text" href="#/companies"><strong>Empresa Selecionada:</strong> {{company.name}}</a>
         </li>
-        <li class="dropdown">
+        <!--<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bell"></i> <b class="caret"></b></a>
             <ul class="dropdown-menu alert-dropdown" role="menu">
                 <li>
                     <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
                 </li>
-                <!-- NOTIFICATIONS LIST -->
+                
             </ul>
-        </li>
+        </li>-->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{loggedUser.name}} <b class="caret"></b></a>
             <ul class="dropdown-menu" ng-show="loggedUser.loginStatus">
