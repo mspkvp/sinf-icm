@@ -127,8 +127,12 @@
 :: Forms validation border
 -------------------------------------------------- */
 
+.overStock {
+    border-color: #FA787E;
+    border-width: 1px;
+}
+
 .ng-invalid.ng-dirty {
-    pad
     border-color: #FA787E;
     border-width: 1px;
 }
