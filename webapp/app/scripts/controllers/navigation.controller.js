@@ -22,11 +22,11 @@ angular.module('icmApp')
 };
 
 $scope.isClient = function() {
-  return $userS.isClient() && $nav.getViewingCompany() != undefined;
+  return $userS.isClient() && $scope.company != undefined;
 };
 
 $scope.isSupplier = function() {
-  return $userS.isSupplier() && $nav.getViewingCompany() != undefined;
+  return $userS.isSupplier() && $scope.company != undefined;
 };
 
 $interval(update, 1000);

@@ -27,8 +27,8 @@ angular.module('icmApp')
 		};
 
 		this.getProducts = function(company){
-			//var company = $nav.getViewingCompany();
-			var url = endpointsAPI.articles.default.get.url;
+			var company = $nav.getViewingCompany();
+			var url = endpointsAPI.products.default.get.url;
 			return $http.get(url+'?empresa='+company);
 		};
 
@@ -37,6 +37,5 @@ angular.module('icmApp')
 			var url = endpointsAPI.suppliers.default.get.url;
 			return $http.get(url+'?empresa='+company.id);
 		};
-
 	}
-]);
+	]);
