@@ -30,10 +30,10 @@
           </h2>
         </div>
         <div class="col-lg-6">
-          <select class="form-control" ng-model="supplier">
+          <select class="form-control" ng-model="searchHistory.Entidade">
             <option hidden value="">Filtrar por fornecedor</option>
             <option value="undefined">Todos</option>
-            <option ng-repeat="supplier in suppliers" value="{{supplier}}">{{supplier.NomeFornecedor}}</option>
+            <option ng-repeat="supplier in orderHistorySuppliers" value="{{supplier}}">{{supplier}}</option>
           </select>
         </div>
         <br>
@@ -45,24 +45,20 @@
         <div class="table-responsive">
           <table class="table table-striped table-hover table-condensed">
             <thead>
-              <tr class="align">
-                <th class="col-lg-2">Código Encomenda</th>
-                <th class="col-lg-2">Nº Documento</th>
-                <th class="col-lg-3">Nº Documento Externo</th>
-                <th class="col-lg-3">Data</th>
-                <th class="col-lg-2">Total</th>
-              </tr>
+            <tr class="align">
+              <th class="col-lg-4">ID Encomenda</th>
+              <th class="col-lg-4">Cliente</th>
+              <th class="col-lg-4">Data da Encomenda</th>
+            </tr>
             </thead>
           </table>
           <div class="bodycontainer scrollable">
             <table class="table table-hover table-striped table-condensed table-scrollable">
               <tbody>
-                <tr ng-repeat="order in orderHistory" class="align">
-                  <td class="col-lg-2">{{order.id}}</td>
-                  <td class="col-lg-2">{{order.NumDoc}}</td>
-                  <td class="col-lg-3">{{order.NumDocExterno}}</td>
-                  <td class="col-lg-3">{{order.Data | date: 'dd/MM/yyyy'}}</td>
-                  <td class="col-lg-2">{{order.TotalMerc}}</td>
+                <tr ng-repeat="order in orderHistory | filter:searchHistory" class="align">
+                  <td class="col-lg-4">{{order.id}}</td>
+                  <td class="col-lg-4">{{order.Entidade | limitTo: 20}}</td>
+                  <td class="col-lg-4">{{order.Data | date: 'dd/MM/yyyy'}}</td>
                 </tr>
               </tbody>
             </table>
