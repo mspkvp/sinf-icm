@@ -3,6 +3,8 @@
 angular.module('icmApp')
 .controller('SyncCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'OrdererService', 'UserService', function($scope, $http, $nav, $interval, $orderer, $userS){
 
+	$scope.addState = '';
+
 	if(!$userS.getLoginStatus()){
 		alert("Please login first!");
 		$nav.setRedirection('/login');
@@ -36,7 +38,10 @@ angular.module('icmApp')
 	$scope.updateBaseCompany = function() {
 		$scope.addState = '';
 		$nav.setLoading(true);
-		$scope.products = $orderer.getProducts($scope.baseCompany);
+		$orderer.getProducts($scope.baseCompany)
+		.success( function(result) {
+			$scope.products = result.data;
+		});
 		$nav.setLoading(false);
 	};
 
@@ -45,7 +50,11 @@ angular.module('icmApp')
 		$nav.setLoading(true);
 		for (i = 0; i < companies.length; i++) {
 			if (companies[i].id != $scope.baseCompany) {
-				companies[i].products = $orderer.getProducts($companies[i].id);
+				$orderer.getProducts($companies[i].id)
+				.success(
+					function(result) {
+						companies[i].products = result.data
+					});
 
 				if (companies[i].indexOf($scope.product) == -1) {
 					$scope.missingCompanies.push(companies[i]);
@@ -59,7 +68,10 @@ angular.module('icmApp')
 		$nav.setLoading(true);
 		for (i = 0; i < companies.length; i++) {
 			if (companies[i].id != companyID) {
-				var res = $orderer.addProduct(companyID, $scope.product);
+				$orderer.addProduct(companyID, $scope.product)
+				.success(function(result) {
+					var res = result.data;
+				});
 
 				if (res) {
 					$scope.addState = '';
