@@ -6,7 +6,7 @@ angular.module('icmApp')
     var user = {
       username: undefined,
       permission: undefined,
-      loginStatus: true
+      loginStatus: false
     };
 
     this.getUser = function getUser() {

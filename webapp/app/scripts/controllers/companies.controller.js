@@ -4,13 +4,7 @@ angular.module('icmApp')
   .controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'UserService', function controller($scope, $http, $nav, $interval, $userS) {
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
-      $nav.setRedirection('/login');
-      $nav.go('login');
-      return;
-    }
-    if (!$userS.getLoginStatus()) {
-      alert("Please login first!");
-      $nav.setRedirection('/login');
+      $nav.setRedirection('login');
       $nav.go('login');
       return;
     }
@@ -18,12 +12,12 @@ angular.module('icmApp')
     $nav.setPath([
       $nav.getPath()[0],
       {
-        name: 'Consultar',
+        name: 'Escolher',
         icon: '',
-        url: '/'
+        url: ''
       },
       {
-        name: 'Empresas',
+        name: 'Empresa',
         icon: '',
         url: ''
       }
@@ -54,6 +48,11 @@ angular.module('icmApp')
 
     $scope.goCompany = function goCompany(company) {
       $nav.setViewingCompany(company);
+      if ($userS.isClient()) {
+        $nav.setRedirection('client');
+      } else {
+        $nav.setRedirection('supplier');
+      }
       $nav.redirect();
     };
 
