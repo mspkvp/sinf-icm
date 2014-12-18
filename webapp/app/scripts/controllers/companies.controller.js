@@ -47,10 +47,15 @@ angular.module('icmApp')
 					});*/
 		};
 
-		$scope.goCompany = function goCompany(company){
-			$nav.setViewingCompany(company);
-			$nav.redirect();
-		};
+		$scope.goCompany = function goCompany(company) {
+      $nav.setViewingCompany(company);
+      if ($userS.isClient()) {
+        $nav.setRedirection('client');
+      } else {
+        $nav.setRedirection('supplier');
+      }
+      $nav.redirect();
+    };
 
 		$nav.setLoading(true);
 
