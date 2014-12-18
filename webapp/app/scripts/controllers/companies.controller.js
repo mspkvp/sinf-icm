@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('icmApp')
-	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', '$interval', function controller($scope, $http, $nav, $interval){
+	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'UserService', function controller($scope, $http, $nav, $interval, $userS){
+
+	if(!$userS.getLoginStatus()){
+		alert("Please login first!");
+		$nav.setRedirection('/login');
+		$nav.go('login');
+		return;
+	}
 
 		$nav.setPath([
 			$nav.getPath()[0],

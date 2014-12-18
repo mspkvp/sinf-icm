@@ -4,7 +4,7 @@ angular.module('icmApp')
   .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService','NavigationService', 'UserService',
     function($scope, $i, $orderS,$nav, $userS){
 
-      if(!$userS.getLoginStatus){
+      if(!$userS.getLoginStatus()){
         alert("Please login first!");
         $nav.setRedirection('client');
         $nav.go('login');
