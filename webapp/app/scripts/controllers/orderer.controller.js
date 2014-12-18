@@ -147,7 +147,7 @@ angular.module('icmApp')
         }
       ];
 
-      if (!$userS.getLoginStatus) {
+      if (!$userS.getLoginStatus()) {
         alert("Please login first!");
         $nav.setRedirection('client');
         $nav.go('login');
@@ -176,6 +176,7 @@ angular.module('icmApp')
         }
       ]);
 
+      $scope.orderHistory = [];
 
       /*(function getHistory() {
         //ONLINE
@@ -321,12 +322,12 @@ angular.module('icmApp')
         );
       };
 
-      $scope.cancel = function () {
+      $scope.cancel = function(){
         doc_number--;
         clear();
       };
 
-      $scope.setupLine = function () {
+      $scope.setupLine = function(){
         $scope.maxStock = $scope.tmpProduct.Stock;
         $scope.gotSelected = true;
         var selected = {

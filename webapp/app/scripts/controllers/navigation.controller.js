@@ -2,6 +2,7 @@
 
 angular.module('icmApp')
 .controller('NavCtrl', ['$scope', '$interval', 'UserService', 'NavigationService', function controller($scope, $interval, $userS, $nav){
+
   $scope.loggedUser = $userS.getUser();
 
   $scope.company = $nav.getViewingCompany();
@@ -9,6 +10,7 @@ angular.module('icmApp')
   $scope.logout = function() {
    $nav.go('');
    $userS.resetUser();
+   $nav.setViewingCompany(undefined);
    $scope.loggedUser = $userS.getUser();
  };
 
@@ -22,11 +24,11 @@ angular.module('icmApp')
 };
 
 $scope.isClient = function() {
-  return $userS.isClient() && $nav.getViewingCompany() != undefined;
+  return $userS.isClient() && $scope.company != undefined;
 };
 
 $scope.isSupplier = function() {
-  return $userS.isSupplier() && $nav.getViewingCompany() != undefined;
+  return $userS.isSupplier() && $scope.company != undefined;
 };
 
 $interval(update, 1000);

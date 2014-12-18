@@ -24,6 +24,14 @@ angular.module('icmApp')
         });
     })();
 
+		this.setLoading = function(loadingState) {
+			if (loadingState) {
+				$(".loader").fadeIn("slow");
+			} else {
+				$(".loader").fadeOut("slow");
+			}
+		}
+
 		this.getPath = function getPath(){
 			return _path;
 		};
@@ -69,7 +77,6 @@ angular.module('icmApp')
 		};
 
 		this.getCompanies = function(){
-			console.log(_companies);
 			return _companies;
 		};
 	}]);
