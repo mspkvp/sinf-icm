@@ -16,7 +16,12 @@ angular.module('icmApp')
 	$nav.setPath([
 		$nav.getPath()[0],
 		{
-			name: 'Syncronizar Artigos',
+			name: 'Sincronizar',
+			icon: '',
+			url: ''
+		},
+		{
+			name: 'Artigos',
 			icon: '',
 			url: '/sync'
 		}
