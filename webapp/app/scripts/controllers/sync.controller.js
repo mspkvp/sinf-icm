@@ -34,7 +34,42 @@ angular.module('icmApp')
 	};
 
 	$scope.updateBaseCompany = function() {
-		$orderer.getProducts()
+		$scope.addState = '';
+		$nav.setLoading(true);
+		$scope.products = $orderer.getProducts($scope.baseCompany);
+		$nav.setLoading(false);
+	};
+
+	$scope.updateSelectedProduct = function() {
+		$scope.addState = '';
+		$nav.setLoading(true);
+		for (i = 0; i < companies.length; i++) {
+			if (companies[i].id != $scope.baseCompany) {
+				companies[i].products = $orderer.getProducts($companies[i].id);
+
+				if (companies[i].indexOf($scope.product) == -1) {
+					$scope.missingCompanies.push(companies[i]);
+				}
+			}
+		}
+		$nav.setLoading(false);
+	}
+
+	$scope.updateCompany = function(companyID) {
+		$nav.setLoading(true);
+		for (i = 0; i < companies.length; i++) {
+			if (companies[i].id != companyID) {
+				var res = $orderer.addProduct(companyID, $scope.product);
+
+				if (res) {
+					$scope.addState = '';
+					angular.element('#cb_' + companyID).attr('disabled','disabled');
+				} else {
+					$scope.addState = "Error inserting"
+				}
+			}
+		}
+		$nav.setLoading(false);
 	}
 
 	this.getCompanies();

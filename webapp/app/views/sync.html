@@ -19,25 +19,28 @@
   <label for="sel1">Select Company:</label>
   <input list="companies" name="company" class="form-control" ng-change="updateBaseCompany()"  ng-model="baseCompany">
   <datalist id="companies">
-   <option ng-repeat="company in companies" value="{{company.name}}">{{company.name}}</option>
+   <option ng-repeat="company in companies" value="{{company.id}}">{{company.id}} - {{company.name}}</option>
  </datalist>
 </div>
 
 <div class="form-group">
   <label for="sel1">Select Item:</label>
-  <input list="items" name="item" class="form-control">
-  <datalist id="items">
-   <option ng-repeat="item in items">{{item.id}} - {{item.description}}</option>
- </datalist>
+  <input list="products" name="product" class="form-control"  ng-change="updateSelectedProduct()"  ng-model="product">
+  <datalist id="products">
+    <option ng-repeat="product in products" value="{{product.id}}">{{product.id}} - {{product.description}}</option>
+  </datalist>
 </div>
 
-<div class="col-lg-6">
-  <div ng-repeat="company in companies" class="input-group">
-    <span class="input-group-addon">
-      <input type="checkbox">
-    </span>
-    <p class="form-control">{{company.name}}</p>
-  </div><!-- /input-group -->
+<div class="col-lg-6"  ng-repeat="company in missingCompanies">
+<input id="cb_{{company.id}}" type="checkbox" name="{{company.id}}" ng-change="updateCompany({{company.id}})">
+  <p class="form-control">{{company.id}} - {{company.name}}</p>
+  <br>
 </div><!-- /.col-lg-6 -->
+
+<div class="alert alert-danger" role="alert" ng-show="loginState != ''">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{addState}}
+</div> <!-- /.alert-danger -->
 
 </div>
