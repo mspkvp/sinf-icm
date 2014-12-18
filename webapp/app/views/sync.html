@@ -37,10 +37,16 @@
   <br>
 </div><!-- /.col-lg-6 -->
 
-<div class="alert alert-danger" role="alert" ng-show="addState != ''">
+<div class="alert alert-danger" role="alert" ng-show="syncErr != ''">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <span class="sr-only">Error:</span>
-    {{addState}}
+    {{syncErr}}
+</div> <!-- /.alert-danger -->
+
+<div class="alert alert-danger" role="alert" ng-show="syncSucc != ''">
+    <span class="glyphicon glyphicon-ok-2" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{syncSucc}}
 </div> <!-- /.alert-danger -->
 
 </div>
