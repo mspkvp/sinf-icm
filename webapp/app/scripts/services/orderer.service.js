@@ -28,18 +28,22 @@ angular.module('icmApp')
 
 		this.getProducts = function(company){
 			var url = endpointsAPI.products.default.get.url;
-			return $http.get(url+'?empresa='+ company);
+			return $http.get(url+'?empresa=' + company);
 		};
+
+		this.getClients = function(company){
+			var url = endpointsAPI.clients.default.get.url;
+			return $http.get(url+'?empresa=' + company);
+		}
 
 		this.addProduct = function(company, product) {
 			var url = endpointsAPI.products.default.post.url;
 			return $http.post(url + "?empresa=" + company.id, product)
 		}
 
-		this.getSuppliers = function(){
-			var company = $nav.getViewingCompany();
+		this.getSuppliers = function(company){
 			var url = endpointsAPI.suppliers.default.get.url;
-			return $http.get(url+'?empresa='+company.id);
+			return $http.get(url+'?empresa='+company);
 		};
 
 		this.sendSupplier = function(company, newSupplier){

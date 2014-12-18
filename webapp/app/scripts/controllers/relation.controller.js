@@ -11,14 +11,14 @@ angular.module('icmApp')
 		$nav.setPath([
 			$nav.getPath()[0],
 			{
-				name: 'Gestão',
+				name: 'Sincronizar',
 				icon:'',
 				url: '/'
 			},
 			{
-				name: 'Empresas',
+				name: 'Terceiros',
 				icon: '',
-				url: ''
+				url: '/relation'
 			}
 		]);
 
@@ -31,8 +31,12 @@ angular.module('icmApp')
 		$scope.clientsSuppliers = []; //The client's suppliers
 		$scope.fullClient;//JSON client
 		$scope.fullSupplier;//JSON supplier
+		$scope.relationSuccess="";
+		$scope.relationError="";
+		$scope.addedRelation = false;
 
 		$scope.selectedSupplier = function(){
+			$scope.addedRelation = false;
 			for(var key in $scope.companies){
 				if($scope.companies.hasOwnProperty(key)){
 					if($scope.companies[key].name == $scope.supplier){
@@ -42,7 +46,7 @@ angular.module('icmApp')
 					}
 				}
 			}
-			$http.get('http://localhost:49209/api/Clientes?empresa=' + $scope.supplierID).
+			$ord.getClients($scope.supplierID).
 				success(function(data, status, headers, config){
 					$scope.suppliersClients = data;
 				});
@@ -50,6 +54,7 @@ angular.module('icmApp')
 		}
 
 		$scope.selectedClient = function(){
+			$scope.addedRelation = false;
 			for(var key in $scope.companies){
 				if($scope.companies.hasOwnProperty(key)){
 					if($scope.companies[key].name == $scope.client){
@@ -60,13 +65,15 @@ angular.module('icmApp')
 				}
 			}
 
-			$http.get('http://localhost:49209/api/Fornecedores?empresa=' + $scope.clientID).
+			$ord.getSuppliers($scope.clientID).
 				success(function(data, status, headers, config){
 					$scope.clientsSuppliers = data;
 				});
 		}
 
 		$scope.alreadyConnected = function(){
+			$scope.relationSuccess="";
+			$scope.relationError="";
 			if($scope.suppliersClients.length == 0 || $scope.clientsSuppliers.length == 0 || $scope.clientID == $scope.supplierID) {
 				return true;
 			}
@@ -83,14 +90,21 @@ angular.module('icmApp')
 				}
 			}
 
+			if(disabled == true){
+				$scope.relationError = "Já existe esta relação cliente->fornecedor";
+			}
+
 			return disabled;
 		}
 
 		$scope.submit = function(){
-			var tmpClient = $scope.fullClient;
-			var tmpSupplier = $scope.fullSupplier;
-			delete tmpClient['$$hashKey'];
-			delete tmpSupplier['$$hashKey'];
+			$scope.addedRelation = false;
+			$scope.relationError = "";
+			$scope.relationSuccess = "";
+			var tmpClient = jQuery.extend({}, $scope.fullClient);
+			var tmpSupplier = jQuery.extend({}, $scope.fullSupplier);
+			//delete tmpClient['$$hashKey'];
+			//delete tmpSupplier['$$hashKey'];
 			tmpClient['Moeda'] = "EUR";
 			tmpSupplier['Moeda'] = "EUR";
 			tmpSupplier['CodFornecedor'] = $scope.fullSupplier['id'];
@@ -101,14 +115,15 @@ angular.module('icmApp')
 			delete tmpSupplier['name'];
 			delete tmpClient['id'];
 			delete tmpClient['name'];
-			console.log("SUPPLIER = " + JSON.stringify(tmpSupplier));
-			console.log("CLIENT = " + JSON.stringify(tmpClient));
 
+			$nav.setLoading(true);
 			$ord.sendSupplier($scope.clientID, tmpSupplier).
 				success(function(data, status, headers, config){
 					$ord.sendClient($scope.supplierID, tmpClient).
 					success(function(data, status, headers, config){
-						console.log("SYNC MADE");
+						$scope.relationSuccess = "Relação adicionada com successo";
+						$nav.setLoading(false);
+						$scope.addedRelation = true;
 					});
 				});
 		}

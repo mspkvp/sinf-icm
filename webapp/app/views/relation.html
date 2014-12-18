@@ -14,7 +14,7 @@
     <!-- /.row -->
 
     <div class="form-group">
-      <label for="sel1">Select Supplier:</label>
+      <label for="sel1">Selecione Fornecedor:</label>
       <input list="suppliers" class="form-control" ng-change="selectedSupplier()" ng-model="supplier">
       <datalist id="suppliers">
        <option ng-repeat="company in companies">{{company.name}}</option>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-      <label for="sel1">Select Client:</label>
+      <label for="sel1">Selecione Cliente:</label>
       <input list="clients" class="form-control" ng-change="selectedClient()" ng-model="client">
       <datalist id="clients">
        <option ng-repeat="company in companies">{{company.name}}</option>
@@ -32,6 +32,17 @@
 
 
 
-    <button class="btn btn-success btn-large" ng-disabled="alreadyConnected()" ng-click="submit()"><i class="icon-white icon-ok-sign"></i> Confirm</button>
+    <button class="btn btn-success btn-large" ng-disabled="alreadyConnected() || addedRelation" ng-click="submit()"><i class="icon-white icon-ok-sign"></i> Confirm</button>
 
+    <div class="alert alert-success" role="alert" ng-show="relationSuccess != ''">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{relationSuccess}}
+    </div> <!-- /.alert-danger -->
+
+    <div class="alert alert-warning" role="alert" ng-show="relationError != ''">
+      <span class="glyphicons-ok-2" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{relationError}}
+    </div> <!-- /.alert-danger -->
 </div>

@@ -20,7 +20,7 @@ angular.module('icmApp')
 				if (e.message === "err1") {
 					$scope.loginState = "Invalid username or password";
 					$scope.loginData.password = '';
-				} 
+				}
 				else {
 					$scope.loginState = "Error accessing users' database";
 					$scope.loginData.password = '';
