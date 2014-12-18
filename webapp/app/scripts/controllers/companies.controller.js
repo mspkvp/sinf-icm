@@ -8,12 +8,6 @@ angular.module('icmApp')
       $nav.go('login');
       return;
     }
-    if (!$userS.getLoginStatus()) {
-      alert("Please login first!");
-      $nav.setRedirection('/login');
-      $nav.go('login');
-      return;
-    }
 
     $nav.setPath([
       $nav.getPath()[0],
