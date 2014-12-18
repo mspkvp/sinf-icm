@@ -5,12 +5,12 @@ angular.module('icmApp')
 
 	$scope.addState = '';
 
-	if(!$userS.getLoginStatus()){
-		alert("Please login first!");
-		$nav.setRedirection('/login');
-		$nav.go('login');
-		return;
-	}
+    if (!$userS.getLoginStatus()) {
+      alert("Please login first!");
+      $nav.setRedirection('/login');
+      $nav.go('login');
+      return;
+    }
 
 	$nav.setPath([
 		$nav.getPath()[0],
@@ -48,7 +48,7 @@ angular.module('icmApp')
 	$scope.updateSelectedProduct = function() {
 		$scope.addState = '';
 		$nav.setLoading(true);
-		for (i = 0; i < companies.length; i++) {
+		for (var i = 0; i < companies.length; i++) {
 			if (companies[i].id != $scope.baseCompany) {
 				$orderer.getProducts($companies[i].id)
 				.success(
@@ -66,7 +66,7 @@ angular.module('icmApp')
 
 	$scope.updateCompany = function(companyID) {
 		$nav.setLoading(true);
-		for (i = 0; i < companies.length; i++) {
+		for (var i = 0; i < companies.length; i++) {
 			if (companies[i].id != companyID) {
 				$orderer.addProduct(companyID, $scope.product)
 				.success(function(result) {
