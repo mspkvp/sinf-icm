@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('AppCtrl', 'NavigationService', ['$http', function ($scope, $http, $nav) {
+  .controller('AppCtrl', ['$http', 'NavigationService', function ($scope, $http, $nav) {
     $http.defaults.headers.common.Accept = 'text/json';
     $http.defaults.useXDomain = true;
     $http.defaults.withCredentials = true;
