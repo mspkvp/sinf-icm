@@ -1,8 +1,8 @@
 <ol class="breadcrumb">
-    <li ng-repeat="c in crumbs | limitTo:minusLast()">
-        <i class="{{c.icon}}"></i>  <a href="{{c.url}}"> {{ c.name }} </a>
-    </li>
-    <li class="active">
-        <i class="{{last.icon}}"></i> {{ last.name }}
-    </li>
+  <li ng-repeat="c in crumbs | limitTo:minusLast()">
+    <i class="{{c.icon}}"></i> <a href="{{c.url}}"> {{ c.name }} </a>
+  </li>
+  <li class="active">
+    <i class="{{last.icon}}"></i> {{ last.name }}
+  </li>
 </ol>

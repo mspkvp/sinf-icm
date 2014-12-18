@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('AppCtrl', ['$http',function ($scope, $http) {
+  .controller('AppCtrl', ['$http', function ($scope, $http) {
+    if (!$userS.getLoginStatus()) {
+      alert("Please login first!");
+      $nav.setRedirection('/login');
+      $nav.go('login');
+      return;
+    }
     $http.defaults.headers.common.Accept = 'text/json';
     $http.defaults.useXDomain = true;
     $http.defaults.withCredentials = true;
