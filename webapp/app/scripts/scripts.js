@@ -54,7 +54,7 @@ var	endpointsAPI = {
 			}
 		}
 	},
-	articles: {
+	products: {
 		default: {
 			get: {
 				method: 'GET',

@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('icmApp')
-	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', function($scope, $http, $nav){
+	.controller('CompaniesCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'UserService', function controller($scope, $http, $nav, $interval, $userS){
+
+	if(!$userS.getLoginStatus()){
+		alert("Please login first!");
+		$nav.setRedirection('/login');
+		$nav.go('login');
+		return;
+	}
 
 		$nav.setPath([
 			$nav.getPath()[0],
@@ -22,26 +29,32 @@ angular.module('icmApp')
 		$http.defaults.headers.common["Accept"] = "application/json";
 		$http.defaults.headers.common["Content-Type"] = "application/json";
 
-		$scope.companies = $nav.getCompanies();
-
 		$scope.selectedCompany = {};
 		$scope.viewCompanyModal = false;
 
-		this.getCompanies = function getCompanies(){
-			$http(angular.extend({}, endpointsAPI.companies, { data: {} }))
+		this.getCompanies = function(){
+			$scope.companies = $nav.getCompanies();
+			if ($scope.companies != undefined) {
+				$nav.setLoading(false);
+			}
+			/*$http(angular.extend({}, endpointsAPI.companies, { data: {} }))
 				.then(
 					function onSuccess(data){
 						$scope.companies = data.companies;
 					},
 					function onError(e){
 						console.log(e);
-					});
+					});*/
 		};
 
 		$scope.goCompany = function goCompany(company){
 			$nav.setViewingCompany(company);
 			$nav.redirect();
 		};
+
+		$nav.setLoading(true);
+
+		$interval(this.getCompanies, 1000);
 	}])
 	.config(function($httpProvider){
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];

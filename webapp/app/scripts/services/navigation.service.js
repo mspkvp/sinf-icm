@@ -14,15 +14,23 @@ angular.module('icmApp')
 		var _redirection = undefined;
 		var _companies = undefined;
 
-		(function loadCompanies() {
-			$http.get('/database/enterprises.json').then(
-			function onSuccess(result) {
-				_companies = result.data;
-			},
-			function onError(e) {
-				throw new Error("Could not load companies. Problems with the database");
-			});
-		})();
+    (function loadCompanies() {
+      $http.get('/database/enterprises.json').then(
+        function onSuccess(result) {
+          _companies = result.data;
+        },
+        function onError(e) {
+          throw new Error("Could not load companies. Problems with the database");
+        });
+    })();
+
+		this.setLoading = function(loadingState) {
+			if (loadingState) {
+				$(".loader").fadeIn("slow");
+			} else {
+				$(".loader").fadeOut("slow");
+			}
+		}
 
 		this.getPath = function getPath(){
 			return _path;
@@ -65,11 +73,10 @@ angular.module('icmApp')
 				var tmpRoute = _redirection;
 				_redirection = undefined;
 				this.go(tmpRoute);
-			}	
+			}
 		};
 
 		this.getCompanies = function(){
-			console.log(_companies);
 			return _companies;
 		};
 	}]);

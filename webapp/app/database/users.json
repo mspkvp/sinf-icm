@@ -1,12 +1,12 @@
 [
 	{
-		"username": "client1",
-		"password": "passclient",
+		"username": "2",
+		"password": "2",
 		"permission": "CLIENT"
 	},
 	{
-		"username": "supplier1",
-		"password": "passsuplier",
+		"username": "1",
+		"password": "1",
 		"permission": "SUPPLIER"
 	}
 ]
