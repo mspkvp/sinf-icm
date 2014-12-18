@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">
-        Client
+        Supplier
         <small>Shipping Page</small>
       </h1>
 
@@ -43,28 +43,20 @@
             <th>Código Artigo</th>
             <th>Descrição</th>
             <th>Quantidade</th>
+            <th>Preço Unitário</th>
             <th>Stock Disponível</th>
-            <th>Ações</th>
+            <th>Aviar</th>
           </tr>
-          <tr ng-repeat="product in products">
-            <td>{{product.code}}</td>
-            <td>{{product.desc}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.stock}}</td>
+          <tr ng-repeat="product in order.LinhasDoc">
+            <td>{{product.CodArtigo}}</td>
+            <td>{{product.DescArtigo}}</td>
+            <td><input type = text value= {{product.Quantidade}}></td>
+            <td>{{product.PrecoUnitario}}</td>
+            <td>-</td>
             <td>
-              <button type="button" class="btn btn-sm btn-danger">Remover</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-2">
-              <input type="text" class="form-control" placeholder="Código/Descrição" ng-blur="codeWritten()" ng-model="newProduct"></td>
-            <td>{{newProductText}}</td>
-            <td class="col-md-2">
-              <input type="text" class="form-control" placeholder="">
-            </td>
-            <td>{{newProductStock}}</td>
-            <td>
-              <button type="button" class="btn btn-sm btn-primary">Adicionar</button>
+              <button class="btn btn-default btn-sm" ng-click="shipOrder()">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </button>
             </td>
           </tr>
         </table>
