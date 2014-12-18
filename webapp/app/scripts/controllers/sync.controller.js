@@ -47,8 +47,11 @@ angular.module('icmApp')
 		$scope.syncErr = '';
 		$nav.setLoading(true);
 		$orderer.getProducts($scope.baseCompany)
-		.success( function(result) {
-			$scope.products = result.data;
+		.success( function(data, status, headers, config) {
+			$scope.products = data;
+      if ($scope.products === undefined || $scope.products.length == 0){
+        $scope.syncErr = "A empresa selecionada não tem produtos";
+      }
 			$nav.setLoading(false);
 		});
 	};

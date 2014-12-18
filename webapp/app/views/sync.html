@@ -23,9 +23,9 @@
 
   <div class="form-group" ng-show="products.length > 0">
     <label for="sel1">Selecione Artigo:</label>
-    <input list="products" name="product" class="form-control" ng-change="updateSelectedProduct()" ng-model="product">
-    <datalist id="products">
-      <option ng-repeat="product in products" value="{{product.id}}">{{product.id}} - {{product.description}}</option>
+    <input list="Products" class="form-control" ng-change="updateSelectedProduct()" ng-model="product">
+    <datalist id="Products">
+      <option ng-repeat="selProduct in products" value="{{selProduct.CodArtigo}}">{{selProduct.CodArtigo}} - {{selProduct.DescArtigo}}</option>
     </datalist>
   </div>
 
