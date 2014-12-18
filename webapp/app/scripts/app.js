@@ -1,4 +1,4 @@
-    'use strict';
+'use strict';
 
 /**
  * @ngdoc overview
@@ -37,13 +37,13 @@ angular
         templateUrl: 'views/companies.html',
         controller: 'CompaniesCtrl'
       })
-      .when('/relation',{
+      .when('/relation', {
         templateUrl: 'views/relation.html',
         controller: 'RelationCtrl'
       })
-      .when('/sync',{
-        templateUrl:'views/sync.html',
-        controller:'SyncCtrl'
+      .when('/sync', {
+        templateUrl: 'views/sync.html',
+        controller: 'SyncCtrl'
       })
       .when('/client', {
         templateUrl: 'views/orderer.html',
@@ -66,6 +66,6 @@ angular
         controller: 'ShippingCtrl'
       })
       .otherwise({
-        templateUrl:'404.html'
+        templateUrl: '404.html'
       });
   });

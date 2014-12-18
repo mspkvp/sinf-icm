@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('icmApp')
-	.config(['$httpProvider',function($httpProvider){
-		$httpProvider.defaults.useXDomain = true;
-		delete $httpProvider.defaults.headers.common['X-Requested-With'];
-	}])
-	.controller('RelationCtrl', ['$scope', '$http' ,'NavigationService','OrdererService', function($scope, $http,$nav, $ord){
-
+  .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  }])
+  .controller('RelationCtrl', ['$scope', '$http', 'NavigationService', 'OrdererService', 'UserService',function ($scope, $http, $nav, $ord, $userS) {
+    if (!$userS.getLoginStatus()) {
+      alert("Please login first!");
+      $nav.setRedirection('/login');
+      $nav.go('login');
+      return;
+    }
 
 		$nav.setPath([
 			$nav.getPath()[0],
@@ -50,8 +55,8 @@ angular.module('icmApp')
 				success(function(data, status, headers, config){
 					$scope.suppliersClients = data;
 				});
+			};
 
-		}
 
 		$scope.selectedClient = function(){
 			$scope.addedRelation = false;

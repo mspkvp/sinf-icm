@@ -3,6 +3,14 @@
 angular.module('icmApp')
   .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService',
     function ($scope, $modal, $nav, $ship) {
+
+      if (!$userS.getLoginStatus()) {
+        alert("Please login first!");
+        $nav.setRedirection('/login');
+        $nav.go('login');
+        return;
+      }
+
       $nav.setPath([
         $nav.getPath()[0],
         {
