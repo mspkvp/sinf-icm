@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService',
-    function ($scope, $modal, $nav, $ship) {
+  .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'UserService',
+    function ($scope, $modal, $nav, $ship, $userS) {
 
       if (!$userS.getLoginStatus()) {
         alert("Please login first!");

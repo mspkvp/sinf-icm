@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('SyncCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'OrdererService', 'UserService', function($scope, $http, $nav, $interval, $orderer, $userS){
+.controller('SyncCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'OrdererService', 'UserService',
+    function($scope, $http, $nav, $interval, $orderer, $userS){
 
 	$scope.syncErr = '';
 	$scope.syncSucc = '';
@@ -75,7 +76,7 @@ angular.module('icmApp')
 	$scope.updateCompany = function(companyID) {
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
-		for (i = 0; i < companies.length; i++) {
+		for (var i = 0; i < companies.length; i++) {
 			if (companies[i].id != companyID) {
 				$nav.setLoading(true);
 				$orderer.addProduct(companyID, $scope.product)

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('ShippingCtrl', ['$scope', '$http', 'NavigationService', 'ShippingService', 'OrdererService', function controller($scope, $http, $nav, $ship, $or) {
+  .controller('ShippingCtrl', ['$scope', '$http', 'NavigationService', 'ShippingService', 'OrdererService', 'UserService',
+    function controller($scope, $http, $nav, $ship, $or, $userS) {
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
       $nav.setRedirection('/login');

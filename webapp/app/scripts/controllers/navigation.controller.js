@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('NavCtrl', ['$scope', '$interval', 'UserService', 'NavigationService', function controller($scope, $interval, $userS, $nav) {
+  .controller('NavCtrl', ['$scope', '$interval', 'UserService', 'NavigationService',
+    function controller($scope, $interval, $userS, $nav) {
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
       $nav.setRedirection('/login');

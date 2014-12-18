@@ -5,7 +5,8 @@ angular.module('icmApp')
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }])
-  .controller('RelationCtrl', ['$scope', '$http', 'NavigationService', 'OrdererService', 'UserService',function ($scope, $http, $nav, $ord, $userS) {
+  .controller('RelationCtrl', ['$scope', '$http', 'NavigationService', 'OrdererService', 'UserService',
+    function ($scope, $http, $nav, $ord, $userS) {
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
       $nav.setRedirection('/login');
@@ -58,6 +59,7 @@ angular.module('icmApp')
 			};
 
 
+
 		$scope.selectedClient = function(){
 			$scope.addedRelation = false;
 			for(var key in $scope.companies){
@@ -74,7 +76,7 @@ angular.module('icmApp')
 				success(function(data, status, headers, config){
 					$scope.clientsSuppliers = data;
 				});
-		}
+		};
 
 		$scope.alreadyConnected = function(){
 			$scope.relationSuccess="";
@@ -100,7 +102,7 @@ angular.module('icmApp')
 			}
 
 			return disabled;
-		}
+		};
 
 		$scope.submit = function(){
 			$scope.addedRelation = false;
