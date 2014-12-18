@@ -1,50 +1,50 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', 'NavigationService',
-    function ($scope, $location, $auth, $userS, $nav) {
+.controller('LoginCtrl', ['$scope', '$location', 'AuthService', 'UserService', 'NavigationService', function ($scope, $location, $auth, $user, $nav) {
 
-    $scope.loginData = {
-      username: '',
-      password: ''
-    };
+	$scope.loginData = {
+		username: '',
+		password: ''
+	};
 
-    $scope.loginState = "";
-    $scope.login = function login() {
-      $auth.login($scope.loginData.username, $scope.loginData.password).then(
-        function onSuccess(userData) {
-          $userS.setUser(userData);
-          $location.path('/companies');
-        },
-        function onError(e) {
-          if (e.message === "err1") {
-            $scope.loginState = "Invalid username or password";
-            $scope.loginData.password = '';
-          }
-          else {
-            $scope.loginState = "Error accessing users' database";
-            $scope.loginData.password = '';
-          }
-        });
-    };
+	$scope.loginState = "";
 
-    $scope.showPassword = function showPassword() {
+	$scope.login = function login () {
+		$auth.login($scope.loginData.username, $scope.loginData.password).then(
+			function onSuccess(userData){
+				$user.setUser(userData);
+				$location.path('/companies');
+			},
+			function onError(e){
+				if (e.message === "err1") {
+					$scope.loginState = "Invalid username or password";
+					$scope.loginData.password = '';
+				}
+				else {
+					$scope.loginState = "Error accessing users' database";
+					$scope.loginData.password = '';
+				}
+			});
+	};
 
-      var keyAttr = $('#key').attr('type');
+	$scope.showPassword = function showPassword() {
 
-      if (keyAttr !== 'text') {
+		var keyAttr = $('#key').attr('type');
 
-        $('.checkbox').addClass('show');
-        $('#key').attr('type', 'text');
+		if(keyAttr !== 'text') {
 
-      } else {
+			$('.checkbox').addClass('show');
+			$('#key').attr('type', 'text');
 
-        $('.checkbox').removeClass('show');
-        $('#key').attr('type', 'password');
+		} else {
 
-      }
+			$('.checkbox').removeClass('show');
+			$('#key').attr('type', 'password');
 
-    };
+		}
+
+	};
 
 
-  }]);
+}]);

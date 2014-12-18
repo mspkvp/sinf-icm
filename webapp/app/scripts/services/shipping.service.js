@@ -5,15 +5,15 @@ angular.module('icmApp')
     function ($http, $nav) {
       this.order = undefined;
 
-      this.setOrder = function (newOrder) {
+      this.setOrder = function (newOrder){
         this.order = newOrder;
       };
 
-      this.getOrder = function () {
+      this.getOrder = function (){
         return this.order;
       };
 
-      this.deleteOrder = function () {
+      this.deleteOrder = function (){
         this.order = undefined;
       };
     }]);

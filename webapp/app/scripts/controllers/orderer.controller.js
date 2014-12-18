@@ -3,13 +3,6 @@
 angular.module('icmApp')
   .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService',
     function ($scope, $i, $orderS, $nav, $userS) {
-
-      if (!$userS.getLoginStatus()) {
-        alert("Please login first!");
-        $nav.setRedirection('login');
-        $nav.go('login');
-        return;
-      }
       $scope.orderHistory = [
         {
           "id": "sample string 1",
@@ -186,17 +179,17 @@ angular.module('icmApp')
       $scope.orderHistory = [];
 
       /*(function getHistory() {
-       //ONLINE
-       $orderS.getOrders()
-       .then(
-       function onSuccess(result) {
-       $scope.orderHistory = result.data;
-       console.log(result);
-       },
-       function onError(e) {
-       console.log(e);
-       });
-       })();*/
+        //ONLINE
+        $orderS.getOrders()
+          .then(
+          function onSuccess(result) {
+            $scope.orderHistory = result.data;
+            console.log(result);
+          },
+          function onError(e) {
+            console.log(e);
+          });
+      })();*/
 
       /* A product
        {
@@ -329,12 +322,12 @@ angular.module('icmApp')
         );
       };
 
-      $scope.cancel = function () {
+      $scope.cancel = function(){
         doc_number--;
         clear();
       };
 
-      $scope.setupLine = function () {
+      $scope.setupLine = function(){
         $scope.maxStock = $scope.tmpProduct.Stock;
         $scope.gotSelected = true;
         var selected = {

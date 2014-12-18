@@ -1,28 +1,21 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('SyncCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'OrdererService', 'UserService',
-    function($scope, $http, $nav, $interval, $orderer, $userS){
+.controller('SyncCtrl', ['$scope', '$http', 'NavigationService', '$interval', 'OrdererService', 'UserService', function($scope, $http, $nav, $interval, $orderer, $userS){
 
-	$scope.syncErr = '';
-	$scope.syncSucc = '';
+	$scope.addState = '';
 
-    if (!$userS.getLoginStatus()) {
-      alert("Please login first!");
-      $nav.setRedirection('login');
-      $nav.go('login');
-      return;
-    }
+	if(!$userS.getLoginStatus()){
+		alert("Please login first!");
+		$nav.setRedirection('/login');
+		$nav.go('login');
+		return;
+	}
 
 	$nav.setPath([
 		$nav.getPath()[0],
 		{
-			name: 'Sincronizar',
-			icon: '',
-			url: ''
-		},
-		{
-			name: 'Artigos',
+			name: 'Syncronizar Artigos',
 			icon: '',
 			url: '/sync'
 		}
@@ -43,27 +36,24 @@ angular.module('icmApp')
 	};
 
 	$scope.updateBaseCompany = function() {
-		$scope.syncSucc = '';
-		$scope.syncErr = '';
+		$scope.addState = '';
 		$nav.setLoading(true);
 		$orderer.getProducts($scope.baseCompany)
 		.success( function(result) {
 			$scope.products = result.data;
-			$nav.setLoading(false);
 		});
+		$nav.setLoading(false);
 	};
 
 	$scope.updateSelectedProduct = function() {
-		$scope.syncErr = '';
-		$scope.syncSucc = '';
-		for (var i = 0; i < companies.length; i++) {
+		$scope.addState = '';
+		$nav.setLoading(true);
+		for (i = 0; i < companies.length; i++) {
 			if (companies[i].id != $scope.baseCompany) {
-				$nav.setLoading(true);
 				$orderer.getProducts($companies[i].id)
 				.success(
 					function(result) {
-						companies[i].products = result.data;
-						$nav.setLoading(false);
+						companies[i].products = result.data
 					});
 
 				if (companies[i].indexOf($scope.product) == -1) {
@@ -71,29 +61,27 @@ angular.module('icmApp')
 				}
 			}
 		}
+		$nav.setLoading(false);
 	}
 
 	$scope.updateCompany = function(companyID) {
-		$scope.syncErr = '';
-		$scope.syncSucc = '';
-		for (var i = 0; i < companies.length; i++) {
+		$nav.setLoading(true);
+		for (i = 0; i < companies.length; i++) {
 			if (companies[i].id != companyID) {
-				$nav.setLoading(true);
 				$orderer.addProduct(companyID, $scope.product)
 				.success(function(result) {
 					var res = result.data;
-					$nav.setLoading(false);
 				});
 
 				if (res) {
-					$scope.syncErr = '';
+					$scope.addState = '';
 					angular.element('#cb_' + companyID).attr('disabled','disabled');
-					$scope.syncSucc = 'Sucesso ao sincronizar produtos';
 				} else {
-					$scope.syncErr = "Erro ao sincronizar produtos";
+					$scope.addState = "Error inserting"
 				}
 			}
 		}
+		$nav.setLoading(false);
 	}
 
 	this.getCompanies();
