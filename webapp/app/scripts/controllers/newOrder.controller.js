@@ -5,7 +5,7 @@ angular.module('icmApp')
     function controller($scope, $http, $nav, $userS) {
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
-      $nav.setRedirection('/login');
+      $nav.setRedirection('login');
       $nav.go('login');
       return;
     }
