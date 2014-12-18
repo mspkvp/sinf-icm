@@ -38,5 +38,15 @@ angular.module('icmApp')
 			return $http.get(url+'?empresa='+company.id);
 		};
 
+		this.sendSupplier = function(company, newSupplier){
+			var url = endpointsAPI.suppliers.default.post.url;
+			return $http.post(url+'?empresa='+company, newSupplier);
+		}
+
+		this.sendClient = function(company, newClient){
+			var url = endpointsAPI.clients.default.post.url;
+			return $http.post(url+'?empresa='+company, newClient);
+		}
+
 	}
 ]);

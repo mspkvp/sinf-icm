@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <label for="sel1">Select Supplier:</label>
-      <input list="suppliers" name="supplier" class="form-control">
+      <input list="suppliers" class="form-control" ng-change="selectedSupplier()" ng-model="supplier">
       <datalist id="suppliers">
        <option ng-repeat="company in companies">{{company.name}}</option>
       </datalist>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
       <label for="sel1">Select Client:</label>
-      <input list="clients" name="client" class="form-control">
+      <input list="clients" class="form-control" ng-change="selectedClient()" ng-model="client">
       <datalist id="clients">
        <option ng-repeat="company in companies">{{company.name}}</option>
       </datalist>
@@ -32,6 +32,6 @@
 
 
 
-    <button class="btn btn-success btn-large"><i class="icon-white icon-ok-sign"></i> Confirm</button>
+    <button class="btn btn-success btn-large" ng-disabled="alreadyConnected()" ng-click="submit()"><i class="icon-white icon-ok-sign"></i> Confirm</button>
 
 </div>
