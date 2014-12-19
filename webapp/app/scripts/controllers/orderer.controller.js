@@ -4,6 +4,43 @@ angular.module('icmApp')
 .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService',
 function ($scope, $i, $orderS, $nav, $userS) {
   $scope.orderHistory = [
+
+  $scope.paymentModes = 
+  [
+    {
+      id: "1",
+      description: "Pronto Pagamento"
+    },
+    {
+      id: "2",
+      description: "Factura 30 dias"
+    },
+    {
+      id: "3",
+      description: "Factura 45 dias"
+    },
+    {
+      id: "4",
+      description: "Factura 60 dias"
+    },
+    {
+      id: "5",
+      description: "Fim do Mês"
+    },
+    {
+      id: "6",
+      description: "Próximo dia 30"
+    },
+    {
+      id: "7",
+      description: "Próximo Mês, dia 31"
+    },
+    {
+      id: "8",
+      description: "Prestações"
+    },
+  ];
+
 {
   "id": "sample string 1",
   "Entidade": "sample string 1",

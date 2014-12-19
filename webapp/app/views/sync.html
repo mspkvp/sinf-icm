@@ -30,7 +30,7 @@
   </div>
 
   <div class="col-lg-6" ng-repeat="company in missingCompanies">
-    <input id="cb_{{company.id}}" type="checkbox" name="{{company.id}}" ng-change="updateCompany({{company.id}})">
+    <input id="cb_{{company.id}}" type="checkbox" name="{{company.id}}" ng-change="updateCompany(company.id)" ng-model="selectedCompanies">
 
     <p class="form-control">{{company.id}} - {{company.name}}</p><br>
   </div>

@@ -6,6 +6,7 @@ angular.module('icmApp')
 
 	$scope.syncErr = '';
 	$scope.syncSucc = '';
+  $scope.missingCompanies = [];
 
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
@@ -43,6 +44,7 @@ angular.module('icmApp')
 	};
 
 	$scope.updateBaseCompany = function() {
+    $scope.missingCompanies = [];
 		$scope.syncSucc = '';
 		$scope.syncErr = '';
 		$nav.setLoading(true);
@@ -57,47 +59,67 @@ angular.module('icmApp')
 	};
 
 	$scope.updateSelectedProduct = function() {
+    $scope.missingCompanies = [];
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
-		for (var i = 0; i < companies.length; i++) {
-			if (companies[i].id != $scope.baseCompany) {
+		for (var i = 0; i < $scope.companies.length; i++) {
+      delete $scope.companies[i]['$$hashKey'];
+			if ($scope.companies[i].id != $scope.baseCompany) {
 				$nav.setLoading(true);
-				$orderer.getProducts($companies[i].id)
-				.success(
-					function(result) {
-						companies[i].products = result.data;
-						$nav.setLoading(false);
-					});
-
-				if (companies[i].indexOf($scope.product) == -1) {
-					$scope.missingCompanies.push(companies[i]);
-				}
+        $scope.setProducts(i);
 			}
 		}
+
 	}
+
+  $scope.setProducts = function(itCounter){
+    $orderer.getProducts($scope.companies[itCounter].id)
+    .success(
+      function(data, status, headers, config) {
+        $scope.companies[itCounter].products = data;
+
+        var found = false;
+        for(var key in $scope.companies[itCounter].products[0]){
+          if($scope.companies[itCounter].products[0].hasOwnProperty(key)){
+            if($scope.companies[itCounter].products[0][key] == $scope.product){
+              found = true;console.log("I, " + JSON.stringify($scope.companies[itCounter]), " ALREADY HAVE " + $scope.product);
+            }
+          }
+        }
+
+        if(found == false){
+          $scope.missingCompanies.push($scope.companies[itCounter]);
+        }
+        $nav.setLoading(false);
+      });
+  }
 
 	$scope.updateCompany = function(companyID) {
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
-		for (var i = 0; i < companies.length; i++) {
-			if (companies[i].id != companyID) {
+		for (var i = 0; i < $scope.companies.length; i++) {
+			if ($scopecompanies[i].id != companyID) {
 				$nav.setLoading(true);
-				$orderer.addProduct(companyID, $scope.product)
-				.success(function(result) {
-					var res = result.data;
-					$nav.setLoading(false);
-				});
-
-				if (res) {
-					$scope.syncErr = '';
-					angular.element('#cb_' + companyID).attr('disabled','disabled');
-					$scope.syncSucc = 'Sucesso ao sincronizar produtos';
-				} else {
-					$scope.syncErr = "Erro ao sincronizar produtos";
-				}
+        $scope.sendProducts(companyID);
 			}
 		}
 	}
+
+  $scope.sendProducts = function(id){
+    $orderer.addProduct(id, $scope.product)
+    .success(function(data, status, headers, comfig) {
+      var res = data;
+      $nav.setLoading(false);
+    });
+
+    if (res) {
+      $scope.syncErr = '';
+      angular.element('#cb_' + companyID).attr('disabled','disabled');
+      $scope.syncSucc = 'Sucesso ao sincronizar produtos';
+    } else {
+      $scope.syncErr = "Erro ao sincronizar produtos";
+    }
+  }
 
 	this.getCompanies();
 	$interval(this.getCompanies, 1000);
