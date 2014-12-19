@@ -2,11 +2,153 @@
 
 angular.module('icmApp')
 .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService',
-function ($scope, $i, $orderS, $nav, $userS) {
-  $scope.orderHistory = [
+  function ($scope, $i, $orderS, $nav, $userS) {
+    $scope.orderHistory = [
+    {
+      "id": "sample string 1",
+      "Entidade": "sample string 1",
+      "NumDoc": 3,
+      "NumDocExterno": "sample string 4",
+      "Data": "2014-12-12T10:06:16.9440679+00:00",
+      "TotalMerc": 6.1,
+      "Serie": "sample string 7",
+      "LinhasDoc": [
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      }
+      ]
+    },
+    {
+      "id": "sample string 1",
+      "Entidade": "sample string 2",
+      "NumDoc": 3,
+      "NumDocExterno": "sample string 4",
+      "Data": "2014-12-12T10:06:16.9440679+00:00",
+      "TotalMerc": 6.1,
+      "Serie": "sample string 7",
+      "LinhasDoc": [
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      }
+      ]
+    },
+    {
+      "id": "sample string 1",
+      "Entidade": "sample string 3",
+      "NumDoc": 3,
+      "NumDocExterno": "sample string 4",
+      "Data": "2014-12-12T10:06:16.9440679+00:00",
+      "TotalMerc": 6.1,
+      "Serie": "sample string 7",
+      "LinhasDoc": [
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      },
+      {
+        "CodArtigo": "sample string 1",
+        "DescArtigo": "sample string 2",
+        "IdCabecDoc": "sample string 3",
+        "NumLinha": 4,
+        "Quantidade": 5.1,
+        "Unidade": "sample string 6",
+        "Desconto": 7.1,
+        "PrecoUnitario": 8.1,
+        "TotalILiquido": 9.1,
+        "TotalLiquido": 10.1
+      }
+      ]
+    }
+    ];
 
-  $scope.paymentModes = 
-  [
+    $scope.paymentModes = 
+    [
     {
       id: "1",
       description: "Pronto Pagamento"
@@ -39,181 +181,40 @@ function ($scope, $i, $orderS, $nav, $userS) {
       id: "8",
       description: "Prestações"
     },
-  ];
+    ];
 
-{
-  "id": "sample string 1",
-  "Entidade": "sample string 1",
-  "NumDoc": 3,
-  "NumDocExterno": "sample string 4",
-  "Data": "2014-12-12T10:06:16.9440679+00:00",
-  "TotalMerc": 6.1,
-  "Serie": "sample string 7",
-  "LinhasDoc": [
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-}
-]
-},
-{
-  "id": "sample string 1",
-  "Entidade": "sample string 2",
-  "NumDoc": 3,
-  "NumDocExterno": "sample string 4",
-  "Data": "2014-12-12T10:06:16.9440679+00:00",
-  "TotalMerc": 6.1,
-  "Serie": "sample string 7",
-  "LinhasDoc": [
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-}
-]
-},
-{
-  "id": "sample string 1",
-  "Entidade": "sample string 3",
-  "NumDoc": 3,
-  "NumDocExterno": "sample string 4",
-  "Data": "2014-12-12T10:06:16.9440679+00:00",
-  "TotalMerc": 6.1,
-  "Serie": "sample string 7",
-  "LinhasDoc": [
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-},
-{
-  "CodArtigo": "sample string 1",
-  "DescArtigo": "sample string 2",
-  "IdCabecDoc": "sample string 3",
-  "NumLinha": 4,
-  "Quantidade": 5.1,
-  "Unidade": "sample string 6",
-  "Desconto": 7.1,
-  "PrecoUnitario": 8.1,
-  "TotalILiquido": 9.1,
-  "TotalLiquido": 10.1
-}
-]
-}
-];
 
-if (!$userS.getLoginStatus()) {
-  alert("Please login first!");
-  $nav.setRedirection('client');
-  $nav.go('login');
-  return;
-}
 
-$scope.company = $nav.getViewingCompany();
+    if (!$userS.getLoginStatus()) {
+      alert("Please login first!");
+      $nav.setRedirection('client');
+      $nav.go('login');
+      return;
+    }
 
-if (!$scope.company) {
-  alert("Please select a company first!");
-  $nav.setRedirection('client');
-  $nav.go('companies');
-}
+    $scope.company = $nav.getViewingCompany();
 
-$nav.setPath([
-  $nav.getPath()[0],
-{
-  name: 'Gerir',
-  icon: '',
-  url: '#/'
-},
-{
-  name: 'Cliente',
-  icon: '',
-  url: '#/client'
-}
-]);
+    if (!$scope.company) {
+      alert("Please select a company first!");
+      $nav.setRedirection('client');
+      $nav.go('companies');
+    }
 
-$scope.orderHistory = [];
+    $nav.setPath([
+      $nav.getPath()[0],
+      {
+        name: 'Gerir',
+        icon: '',
+        url: '#/'
+      },
+      {
+        name: 'Cliente',
+        icon: '',
+        url: '#/client'
+      }
+      ]);
+
+    $scope.orderHistory = [];
 
 /*(function getHistory() {
 //ONLINE
@@ -253,7 +254,7 @@ $scope.setSupplier = function () {
       console.log(e);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     }
-  );
+    );
   $scope.gotSupplier = true;
 };
 
@@ -352,37 +353,37 @@ $scope.emitOrder = function () {
       console.log(e);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     })
-    .finally(
-      function () {
-        clear();
-      }
+  .finally(
+    function () {
+      clear();
+    }
     );
+};
+
+$scope.cancel = function(){
+  doc_number--;
+  clear();
+};
+
+$scope.setupLine = function(){
+  $scope.maxStock = $scope.tmpProduct.Stock;
+  $scope.gotSelected = true;
+  var selected = {
+    CodArtigo: $scope.tmpProduct.CodArtigo,
+    DescArtigo: $scope.tmpProduct.DescArtigo,
+    IdCabecDoc: $scope.orderToSend.id,
+    NumLinha: ++line_counter,
+    Quantidade: 1.0,
+    Unidade: "UN",
+    Desconto: 0.0,
+    PrecoUnitario: $scope.tmpProduct.PVP
   };
 
-  $scope.cancel = function(){
-    doc_number--;
-    clear();
-  };
-
-  $scope.setupLine = function(){
-    $scope.maxStock = $scope.tmpProduct.Stock;
-    $scope.gotSelected = true;
-    var selected = {
-      CodArtigo: $scope.tmpProduct.CodArtigo,
-      DescArtigo: $scope.tmpProduct.DescArtigo,
-      IdCabecDoc: $scope.orderToSend.id,
-      NumLinha: ++line_counter,
-      Quantidade: 1.0,
-      Unidade: "UN",
-      Desconto: 0.0,
-      PrecoUnitario: $scope.tmpProduct.PVP
-    };
-
-    selected.TotalILiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
-    selected.TotalLiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
+  selected.TotalILiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
+  selected.TotalLiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
 
 
-    $scope.addLineObj = selected;
+  $scope.addLineObj = selected;
 
     //console.log($scope.addLineObj);
   };
