@@ -1,4 +1,4 @@
-var serverUrl = 'http://localhost/FirstRest/api/'; // actualizar com o necessário
+var serverUrl = 'http://localhost:49822/api/'; // actualizar com o necessário
 // A empresa tem de ir sempre nos headers 'empresa={{idEmpresa}}'
 // byID significa que o id faz parte do url, é um simples append da variável id ao URL
 var	endpointsAPI = {

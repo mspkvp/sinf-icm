@@ -3,8 +3,6 @@
 angular.module('icmApp')
 .service('OrdererService', ['$http', 'NavigationService',
 	function ($http, $nav) {
-		$http.defaults.headers.common["Accept"] = "application/json";
-		$http.defaults.headers.common["Content-Type"] = "application/json";
 
 		var endpoints = endpointsAPI.doc.order.from.client;
 		this.getOrders = function () {
@@ -38,7 +36,7 @@ angular.module('icmApp')
 
 		this.addProduct = function(company, product) {
 			var url = endpointsAPI.products.default.post.url;
-			return $http.post(url + "?empresa=" + company.id, product)
+			return $http.post(url+"?empresa="+company, product)
 		}
 
 		this.getSuppliers = function(company){

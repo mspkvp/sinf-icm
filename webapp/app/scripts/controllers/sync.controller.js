@@ -7,6 +7,7 @@ angular.module('icmApp')
 	$scope.syncErr = '';
 	$scope.syncSucc = '';
   $scope.missingCompanies = [];
+  $scope.sendingProduct;
 
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
@@ -62,6 +63,12 @@ angular.module('icmApp')
     $scope.missingCompanies = [];
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
+   for(var i = 0; i < $scope.products.length; i++){
+      if($scope.products[i]['CodArtigo'] == $scope.product){
+        $scope.sendingProduct = $scope.products[i];
+        delete $scope.sendingProduct['$$hashKey'];
+      }
+    }
 		for (var i = 0; i < $scope.companies.length; i++) {
       delete $scope.companies[i]['$$hashKey'];
 			if ($scope.companies[i].id != $scope.baseCompany) {
@@ -82,7 +89,7 @@ angular.module('icmApp')
         for(var key in $scope.companies[itCounter].products[0]){
           if($scope.companies[itCounter].products[0].hasOwnProperty(key)){
             if($scope.companies[itCounter].products[0][key] == $scope.product){
-              found = true;console.log("I, " + JSON.stringify($scope.companies[itCounter]), " ALREADY HAVE " + $scope.product);
+              found = true;
             }
           }
         }
@@ -97,18 +104,21 @@ angular.module('icmApp')
 	$scope.updateCompany = function(companyID) {
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
-		for (var i = 0; i < $scope.companies.length; i++) {
-			if ($scopecompanies[i].id != companyID) {
+	/*	for (var i = 0; i < $scope.companies.length; i++) {
+			if ($scope.companies[i].id != companyID) {
 				$nav.setLoading(true);
         $scope.sendProducts(companyID);
 			}
-		}
+		}*/
+    $scope.sendProducts("EMP5");
 	}
 
   $scope.sendProducts = function(id){
-    $orderer.addProduct(id, $scope.product)
-    .success(function(data, status, headers, comfig) {
-      var res = data;
+    var res;
+    console.log("TRYING TO ADD " + JSON.stringify($scope.sendingProduct));
+    $orderer.addProduct(id, $scope.sendingProduct)
+    .success(function(data, status, headers, config) {
+      res = data;
       $nav.setLoading(false);
     });
 

@@ -2,8 +2,6 @@
 
 angular.module('icmApp')
 	.config(['$httpProvider',function($httpProvider){
-		$httpProvider.defaults.useXDomain = true;
-		delete $httpProvider.defaults.headers.common['X-Requested-With'];
 	}])
 	.controller('RelationCtrl', ['$scope', '$http' ,'NavigationService','OrdererService', function($scope, $http,$nav, $ord){
 
@@ -103,8 +101,6 @@ angular.module('icmApp')
 			$scope.relationSuccess = "";
 			var tmpClient = jQuery.extend({}, $scope.fullClient);
 			var tmpSupplier = jQuery.extend({}, $scope.fullSupplier);
-			//delete tmpClient['$$hashKey'];
-			//delete tmpSupplier['$$hashKey'];
 			tmpClient['Moeda'] = "EUR";
 			tmpSupplier['Moeda'] = "EUR";
 			tmpSupplier['CodFornecedor'] = $scope.fullSupplier['id'];
@@ -125,6 +121,9 @@ angular.module('icmApp')
 						$nav.setLoading(false);
 						$scope.addedRelation = true;
 					});
+				}).
+				error(function(data, status, headers, config){
+					console.log("ERROR  =" + JSON.stringify(data));
 				});
 		}
 
