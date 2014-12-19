@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', function controller($scope, $http, $timeout, $nav, $ship, $or){
+  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
+    function controller($scope, $http, $timeout, $nav, $ship, $or, $io){
 
     $scope.company = $nav.getViewingCompany();
     $scope.order = $ship.getOrder();
@@ -62,7 +63,7 @@ angular.module('icmApp')
 
     $scope.submitInvoice = function submitInvoice(){
     	// update on quantities is done with ng-model
-        $or.sendInvoice($nav.getViewingCompany().id, $scope.order)
+        /*$or.sendInvoice($nav.getViewingCompany().id, $scope.order)
             .then(
                 function onSuccess(result){
                     $or.sendInvoiceV($nav.getViewingCompany().id, $scope.order)
@@ -78,6 +79,10 @@ angular.module('icmApp')
                 function onError(e){
                     console.log(e);
                 }
-            );
+            );*/
+        $io.addFatura($nav.getViewingCompany().id, $scope.order);
+        var idcliente = $scope.order.Entidade;
+        $scope.order.Entidade = $nav.getViewingCompany().id; 
+        $io.addVFatura(idcliente, $scope.order);
     };
   }]);

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService',
-    function ($scope, $modal, $nav, $ship, $orderS) {
+  .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
+    function ($scope, $modal, $nav, $ship, $orderS, $io) {
       $nav.setPath([
         $nav.getPath()[0],
         {
@@ -329,7 +329,7 @@ angular.module('icmApp')
           };
         };
 
-        $orderS.getInvoices($nav.getViewingCompany().id)
+        /*$orderS.getInvoices($nav.getViewingCompany().id)
           .then(
             function onSuccess(result){
               invoices = result.data;
@@ -347,7 +347,14 @@ angular.module('icmApp')
             },
             function onError(e){
               console.log(e);
-            });
+            });*/
+
+        $io.get();
+        invoices = $io.getFatura($nav.getViewingCompany().id);
+        orders = $io.getEncomendaDeCliente($nav.getViewingCompany().id);
+        sortOrders();
+        loadOrdersToProcessCompanies();
+        loadOrdersProcessedCompaniesH();
       })();
 
       function loadOrdersToProcessCompanies() {

@@ -216,7 +216,7 @@ angular.module('icmApp')
 
     $scope.orderHistory = [];
 
-/*(function getHistory() {
+(function getHistory() {
 //ONLINE
 $orderS.getOrders()
 .then(
@@ -227,7 +227,7 @@ console.log(result);
 function onError(e) {
 console.log(e);
 });
-})();*/
+})();
 
 /* A product
 {
@@ -336,7 +336,7 @@ $scope.emitOrder = function () {
   }
   $scope.orderToSend.TotalMerc = total;
 
-  $orderS.sendOrder($scope.orderToSend)
+  /*$orderS.sendOrder($scope.orderToSend)
   .then(
     function onSuccess(result) {
       console.log("Order from client placed succesfully", result.data);
@@ -357,7 +357,16 @@ $scope.emitOrder = function () {
     function () {
       clear();
     }
-    );
+    );*/
+  $io.get();
+  var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
+  $scope.orderToSend.NumDoc = numDoc; 
+  $io.addEncomendaAFornecedor($nav.getViewingCompany().id, $scope.orderToSend);
+  
+  var supplier = $scope.orderToSend.Entidade;
+  $scope.orderToSend.Entidade = $nav.getViewingCompany().id;
+  $io.addEncomendaDeCliente(supplier, $scope.orderToSend);
+
 };
 
 $scope.cancel = function(){

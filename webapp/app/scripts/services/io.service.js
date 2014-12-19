@@ -41,7 +41,7 @@ angular.module('icmApp')
 			var count = 0;
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					count = ++data[i].docCounter;
 					break;
@@ -55,7 +55,7 @@ angular.module('icmApp')
 		this.addEncomendaDeCliente = function(id, doc){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					data[i].encomendaDeCliente.push(doc);
 					break;
@@ -68,7 +68,7 @@ angular.module('icmApp')
 		this.getEncomendaDeCliente = function(id){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					return data[i].encomendaDeCliente;
 				}
@@ -78,7 +78,7 @@ angular.module('icmApp')
 		this.addEncomendaAFornecedor = function(id, doc){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					data[i].encomendaAFornecedor.push(doc);
 					break;
@@ -91,7 +91,7 @@ angular.module('icmApp')
 		this.getEncomendaAFornecedor = function(id){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					return data[i].encomendaAFornecedor;
 				}
@@ -101,7 +101,7 @@ angular.module('icmApp')
 		this.addFatura = function(id, doc){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					data[i].fatura.push(doc);
 					break;
@@ -114,7 +114,7 @@ angular.module('icmApp')
 		this.getFatura = function(id){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					return data[i].fatura;
 				}
@@ -124,7 +124,7 @@ angular.module('icmApp')
 		this.addVFatura = function(id, doc){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					data[i].vFatura.push(doc);
 					break;
@@ -137,7 +137,7 @@ angular.module('icmApp')
 		this.getVFatura = function(id){
 			data = $storage.getData();
 
-			for(var i=0; i<companies.length; i++){
+			for(var i=0; i<data.length; i++){
 				if( data[i].id === id){
 					return data[i].vFatura;
 				}
