@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', function controller($scope, $http, $timeout, $nav, $ship, $or){
+  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
+    function controller($scope, $http, $timeout, $nav, $ship, $or, $io){
 
     $scope.company = $nav.getViewingCompany();
     $scope.order = $ship.getOrder();
@@ -27,19 +28,7 @@ angular.module('icmApp')
 	    	PVP: 4.1
 	  	}];
 
-
-    /* GET PRODUCTS
-    $or.getProducts($nav.getViewingCompany().id).then(
-		function onSuccess(result){
-			$scope.products = result.data;
-			console.log($scope.products);
-		},
-		function onError(e){
-			console.log(e);
-		)
-    );*/
-
-    console.log($scope.order);
+    //console.log($scope.order);
     $scope.stocks = [];
 
     $scope.getStock = function(index){
@@ -56,13 +45,44 @@ angular.module('icmApp')
     		}
     	}
     };
-    setStocks();
     
     (function init(){
+        $or.getProducts($nav.getViewingCompany().id)
+        .then(
+            function onSuccess(result){
+                $scope.products = result.data;
+                console.log($scope.products);
+                setStocks();
+            },
+            function onError(e){
+                console.log(e);
+            }
+        );
 
     })();
 
     $scope.submitInvoice = function submitInvoice(){
-    	
+    	// update on quantities is done with ng-model
+        /*$or.sendInvoice($nav.getViewingCompany().id, $scope.order)
+            .then(
+                function onSuccess(result){
+                    $or.sendInvoiceV($nav.getViewingCompany().id, $scope.order)
+                        .then(
+                            function onSuccess(result){
+                                alert("Invoice Submitted Successfully");
+                            },
+                            function onError(e){
+                                console.log(e);
+                            }
+                        );
+                },
+                function onError(e){
+                    console.log(e);
+                }
+            );*/
+        $io.addFatura($nav.getViewingCompany().id, $scope.order);
+        var idcliente = $scope.order.Entidade;
+        $scope.order.Entidade = $nav.getViewingCompany().id; 
+        $io.addVFatura(idcliente, $scope.order);
     };
   }]);
