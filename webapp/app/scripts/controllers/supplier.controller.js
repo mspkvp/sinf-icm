@@ -329,7 +329,7 @@ angular.module('icmApp')
           };
         };
 
-        /*$orderS.getInvoices($nav.getViewingCompany().id)
+        $orderS.getInvoices($nav.getViewingCompany().id)
           .then(
             function onSuccess(result){
               invoices = result.data;
@@ -347,14 +347,14 @@ angular.module('icmApp')
             },
             function onError(e){
               console.log(e);
-            });*/
-
+            });
+        /*
         $io.get();
         invoices = $io.getFatura($nav.getViewingCompany().id);
         orders = $io.getEncomendaDeCliente($nav.getViewingCompany().id);
         sortOrders();
         loadOrdersToProcessCompanies();
-        loadOrdersProcessedCompaniesH();
+        loadOrdersProcessedCompaniesH();*/
       })();
 
       function loadOrdersToProcessCompanies() {

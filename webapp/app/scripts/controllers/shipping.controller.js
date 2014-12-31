@@ -63,10 +63,12 @@ angular.module('icmApp')
 
     $scope.submitInvoice = function submitInvoice(){
     	// update on quantities is done with ng-model
-        /*$or.sendInvoice($nav.getViewingCompany().id, $scope.order)
+        $or.sendInvoice($nav.getViewingCompany().id, $scope.order)
             .then(
                 function onSuccess(result){
-                    $or.sendInvoiceV($nav.getViewingCompany().id, $scope.order)
+                    var idcliente = $scope.order.Entidade;
+                    $scope.order.Entidade = $nav.getViewingCompany().id;
+                    $or.sendInvoiceV(idcliente, $scope.order)
                         .then(
                             function onSuccess(result){
                                 alert("Invoice Submitted Successfully");
@@ -79,10 +81,10 @@ angular.module('icmApp')
                 function onError(e){
                     console.log(e);
                 }
-            );*/
-        $io.addFatura($nav.getViewingCompany().id, $scope.order);
+            );
+        /*$io.addFatura($nav.getViewingCompany().id, $scope.order);
         var idcliente = $scope.order.Entidade;
         $scope.order.Entidade = $nav.getViewingCompany().id; 
-        $io.addVFatura(idcliente, $scope.order);
+        $io.addVFatura(idcliente, $scope.order);*/
     };
   }]);
