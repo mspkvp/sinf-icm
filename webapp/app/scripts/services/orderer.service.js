@@ -10,7 +10,7 @@ angular.module('icmApp')
 			return $http.get(endpoints.default.get.url + '?empresa=' + company.id);
 		};
 
-		this.getOrders = function (id) {
+		this.getOrdersByID = function (id) {
 			var company = $nav.getViewingCompany();
 			return $http.get(endpoints.byID.get.url + id + '?empresa=' + company.id);
 		};
