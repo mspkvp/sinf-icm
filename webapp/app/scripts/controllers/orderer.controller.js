@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService',
-  function ($scope, $i, $orderS, $nav, $userS) {
+.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService',
+  function ($scope, $i, $orderS, $nav, $userS, $io) {
     $scope.orderHistory = [
     {
       "id": "sample string 1",
@@ -147,7 +147,7 @@ angular.module('icmApp')
     }
     ];
 
-    $scope.paymentModes = 
+    $scope.paymentModes =
     [
     {
       id: "1",
@@ -328,7 +328,7 @@ function clear() {
   $nav.pathRmvLast();
 }
 
-$scope.emitOrder = function () {
+$scope.submitOrder = function () {
   $scope.orderToSend.Data = new Date().toJSON();
   var total = 0;
   for (var i = 0; i < $scope.orderToSend.LinhasDoc; i++) {
@@ -338,7 +338,7 @@ $scope.emitOrder = function () {
 
   $io.get();
   var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
-  $scope.orderToSend.NumDoc = numDoc; 
+  $scope.orderToSend.NumDoc = numDoc;
   $orderS.sendOrder($scope.orderToSend)
   .then(
     function onSuccess(result) {
@@ -364,9 +364,9 @@ $scope.emitOrder = function () {
   /*
   $io.get();
   var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
-  $scope.orderToSend.NumDoc = numDoc; 
+  $scope.orderToSend.NumDoc = numDoc;
   $io.addEncomendaAFornecedor($nav.getViewingCompany().id, $scope.orderToSend);
-  
+
   var supplier = $scope.orderToSend.Entidade;
   $scope.orderToSend.Entidade = $nav.getViewingCompany().id;
   $io.addEncomendaDeCliente(supplier, $scope.orderToSend);
@@ -406,6 +406,8 @@ $scope.setupLine = function(){
     $scope.addLineObj.TotalLiquido = Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
     $scope.addLineObj.TotalILiquido = Math.round(parseFloat($scope.addLineObj.TotalILiquido) * 100) / 100;
     $scope.orderList.push($scope.addLineObj);
+    $scope.orderToSend.TotalMerc += $scope.addLineObj.TotalLiquido;
+    $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
     $scope.addLineObj = undefined;
     $scope.tmpProduct = undefined;
     $scope.gotSelected = false;
@@ -413,6 +415,8 @@ $scope.setupLine = function(){
 
   $scope.rmvLine = function (line) {
     var nr = line.NumLinha;
+    $scope.orderToSend.TotalMerc -= line.TotalLiquido;
+    $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
     $scope.orderList.splice(nr - 1, 1);
     line_counter--;
     for (var i = 0; i < $scope.orderList.length; i++) {

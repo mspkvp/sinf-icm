@@ -25,7 +25,7 @@
                 <li>
                     <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
                 </li>
-                
+
             </ul>
         </li>-->
         <li class="dropdown">
@@ -50,9 +50,12 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li ng-init="homeSelected = true" ng-class="{active: homeSelected && !otherSelected}">
-                <a href="#/" ng-click="homeSelected = true; otherSelected = false;"><i class="fa fa-fw fa-home"></i> Home</a>
+                <a href="#/" ng-click="homeSelected = true; otherSelected = false;"><i class="fa fa-fw fa-home"></i>Página Inicial</a>
             </li>
-            <li ng-show="isLoggedIn()"> 
+            <li>
+              <a href="#/companies" ng-show="isLoggedIn()"><i class="fa fa-building"></i>Empresas</a>
+            </li>
+            <li ng-show="isLoggedIn()">
                 <a href="javascript:;" data-toggle="collapse" data-target="#sync" ng-click="otherSelected = true"><i class="fa fa-fw fa-folder-o"></i> Sincronizar <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="sync" class="collapse">
                     <li>

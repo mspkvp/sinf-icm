@@ -84,13 +84,10 @@ angular.module('icmApp')
     .success(
       function(data, status, headers, config) {
         $scope.companies[itCounter].products = data;
-
         var found = false;
-        for(var key in $scope.companies[itCounter].products[0]){
-          if($scope.companies[itCounter].products[0].hasOwnProperty(key)){
-            if($scope.companies[itCounter].products[0][key] == $scope.product){
-              found = true;
-            }
+        for(var i = 0; i < $scope.companies[itCounter].products.length; i++){
+          if($scope.companies[itCounter].products[i]['CodArtigo'] == $scope.product){
+            found = true;
           }
         }
 
