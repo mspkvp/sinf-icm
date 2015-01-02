@@ -60,6 +60,11 @@ angular.module('icmApp')
 			return $http.get(url+'?empresa='+company);
 		};
 
+		this.getInvoicesV = function(company){
+			var url = endpointsAPI.doc.invoiceV.default.get.url;
+			return $http.get(url+'?empresa='+company);
+		};
+
 		this.sendInvoice = function(company, invoice){
 			var url = endpointsAPI.doc.invoice.default.post.url;
 			return $http.post(url+'?empresa='+company, invoice);
