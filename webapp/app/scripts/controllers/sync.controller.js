@@ -104,20 +104,20 @@ angular.module('icmApp')
 	$scope.updateCompany = function(companyID) {
 		$scope.syncErr = '';
 		$scope.syncSucc = '';
-	/*	for (var i = 0; i < $scope.companies.length; i++) {
-			if ($scope.companies[i].id != companyID) {
+		for (var i = 0; i < $scope.companies.length; i++) {
+			if ($scope.companies[i].id === companyID) {
 				$nav.setLoading(true);
         $scope.sendProducts(companyID);
+        break;
 			}
-		}*/
-    $scope.sendProducts("EMP5");
+		}
 	}
 
   $scope.sendProducts = function(id){
     var res;
     console.log("TRYING TO ADD " + JSON.stringify($scope.sendingProduct));
     $orderer.addProduct(id, $scope.sendingProduct)
-    .success(function(data, status, headers, config) {
+    /*.success(function(data, status, headers, config) {
       res = data;
       $nav.setLoading(false);
     });
@@ -128,7 +128,20 @@ angular.module('icmApp')
       $scope.syncSucc = 'Sucesso ao sincronizar produtos';
     } else {
       $scope.syncErr = "Erro ao sincronizar produtos";
-    }
+    }*/
+    .then(
+      function onSuccess(data){
+        res = data;
+        $nav.setLoading(false);
+        $scope.syncErr = '';
+        angular.element('#cb_' + id).attr('disabled','disabled');
+        $scope.syncSucc = 'Sucesso ao sincronizar produtos';
+      },
+      function onError(e){
+        console.log(e);
+        $scope.syncErr = "Erro ao sincronizar produtos";
+      }
+    );
   }
 
 	this.getCompanies();

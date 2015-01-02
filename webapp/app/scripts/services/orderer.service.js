@@ -36,7 +36,8 @@ angular.module('icmApp')
 
 		this.addProduct = function(company, product) {
 			var url = endpointsAPI.products.default.post.url;
-			return $http.post(url+"?empresa="+company, product)
+			console.log("COMPANY = " + company, " VIEWING = " + $nav.viewingCompany);
+			return $http.post(url+"?empresa="+company,product);
 		};
 
 		this.getSuppliers = function(company){

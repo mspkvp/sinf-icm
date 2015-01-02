@@ -18,7 +18,11 @@ angular
     'ngTouch',
     'ui.bootstrap'
   ])
-  .config(function ($routeProvider) {
+  .config(['$httpProvider', '$routeProvider', function ($httpProvider, $routeProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+    $httpProvider.defaults.headers.post['Accept'] = 'application/json';
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json';
     $routeProvider
       .when('/', {
         templateUrl: 'views/landing.html',
@@ -68,4 +72,4 @@ angular
       .otherwise({
         templateUrl:'404.html'
       });
-  });
+  }]);
