@@ -15,14 +15,15 @@ angular.module('icmApp')
 			return $http.get(endpoints.byID.get.url + id + '?empresa=' + company.id);
 		};
 
-		this.sendOrder = function (order) {
+		this.sendOrder = function (supplierID, order) {
+			return $http.post(endpoints.default.post.url + '?empresa=' + supplierID, order);
+		};
+
+		this.sendOrderNext = function (order) {
 			var company = $nav.getViewingCompany();
 			return $http.post(endpointsAPI.doc.order.to.supplier.default.post.url + '?empresa=' + company.id, order);
 		};
 
-		this.sendOrderNext = function (supplierID, order) {
-			return $http.post(endpoints.default.post.url + '?empresa=' + supplierID, order);
-		};
 
 		this.getProducts = function(company){
 			var url = endpointsAPI.products.default.get.url;

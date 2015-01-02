@@ -3,187 +3,6 @@
 angular.module('icmApp')
 .controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService',
   function ($scope, $i, $orderS, $nav, $userS, $io) {
-    $scope.orderHistory = [
-    {
-      "id": "sample string 1",
-      "Entidade": "sample string 1",
-      "NumDoc": 3,
-      "NumDocExterno": "sample string 4",
-      "Data": "2014-12-12T10:06:16.9440679+00:00",
-      "TotalMerc": 6.1,
-      "Serie": "sample string 7",
-      "LinhasDoc": [
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      }
-      ]
-    },
-    {
-      "id": "sample string 1",
-      "Entidade": "sample string 2",
-      "NumDoc": 3,
-      "NumDocExterno": "sample string 4",
-      "Data": "2014-12-12T10:06:16.9440679+00:00",
-      "TotalMerc": 6.1,
-      "Serie": "sample string 7",
-      "LinhasDoc": [
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      }
-      ]
-    },
-    {
-      "id": "sample string 1",
-      "Entidade": "sample string 3",
-      "NumDoc": 3,
-      "NumDocExterno": "sample string 4",
-      "Data": "2014-12-12T10:06:16.9440679+00:00",
-      "TotalMerc": 6.1,
-      "Serie": "sample string 7",
-      "LinhasDoc": [
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      },
-      {
-        "CodArtigo": "sample string 1",
-        "DescArtigo": "sample string 2",
-        "IdCabecDoc": "sample string 3",
-        "NumLinha": 4,
-        "Quantidade": 5.1,
-        "Unidade": "sample string 6",
-        "Desconto": 7.1,
-        "PrecoUnitario": 8.1,
-        "TotalILiquido": 9.1,
-        "TotalLiquido": 10.1
-      }
-      ]
-    }
-    ];
-
-    $scope.paymentModes =
-    [
-    {
-      id: "1",
-      description: "Pronto Pagamento"
-    },
-    {
-      id: "2",
-      description: "Factura 30 dias"
-    },
-    {
-      id: "3",
-      description: "Factura 45 dias"
-    },
-    {
-      id: "4",
-      description: "Factura 60 dias"
-    },
-    {
-      id: "5",
-      description: "Fim do Mês"
-    },
-    {
-      id: "6",
-      description: "Próximo dia 30"
-    },
-    {
-      id: "7",
-      description: "Próximo Mês, dia 31"
-    },
-    {
-      id: "8",
-      description: "Prestações"
-    },
-    ];
-
-
 
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
@@ -229,14 +48,6 @@ console.log(e);
 });
 })();
 
-/* A product
-{
-"CodArtigo": "sample string 1",
-"DescArtigo": "sample string 2",
-"Stock": 3.1,
-"PVP": 4.1
-}
-*/
 
 $scope.products = [];
 
@@ -244,12 +55,9 @@ $scope.products = [];
 $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
   var tmpCompanies = $nav.getCompanies();
-  console.log("GET = " + JSON.stringify(tmpCompanies));
   for(var i = 0; i < tmpCompanies.length; i++){
-    console.log("IN FOR, COMPANY = " + JSON.stringify(tmpCompanies[i]));
     if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
-      console.log("FOUND");
-      $scope.orderToSend.Entidade = tmpCompanies[i].id;
+      $scope.company = tmpCompanies[i];
       break;
     }
   }
@@ -257,34 +65,15 @@ $scope.setSupplier = function () {
   .then(
     function onSuccess(result) {
       console.log(result);
-      var supplierProducts = result.data;
-      $orderS.getProducts($nav.getViewingCompany().id).then(
-        function onSuccess(myResult){
-          $scope.products = [];
-          var myProducts = myResult.data;
-          for(int i = 0; i < myProducts.length; i++){
-            for( int j = 0; j < supplierProducts.length; j++){
-              if( myProducts[i].CodArtigo === supplierProducts[j].CodArtigo){
-                $scope.products = $scope.products.concat(myProducts[i]);
-                break;
-              }
-            }
-          }
-          $scope.gotSupplier = true;
-        },
-        function onError(e){
-          console.log(e);
-          alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
-        }
-      );
-      //$scope.products = result.data;
-      //$scope.gotSupplier = true;
+      $scope.products = result.data;
+      $scope.gotSupplier = true;
     },
     function onError(e) {
       console.log(e);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     }
-  );
+    );
+  $scope.gotSupplier = true;
 };
 
 // order stuff
@@ -316,16 +105,7 @@ $scope.suppliers = [];
 
 
 (function getSuppliers(){
-  //OFFLINE
-  /*   var companies = $nav.getCompanies();
-  for(var i = 0; i<companies.length; i++){
-  if(companies[i].name === $scope.company.name){
-  companies.splice(i,1);
-  break;
-}
-}
-$scope.suppliers = companies;*/
-//ONLINE
+
 $orderS.getSuppliers($nav.getViewingCompany().id)
 .then(
   function onSuccess(result){
@@ -358,6 +138,10 @@ function clear() {
 }
 
 $scope.submitOrder = function () {
+  $scope.orderToSend.LinhasDoc = $scope.orderList;
+  for(var i = 0; i < $scope.orderToSend.LinhasDoc.length; i++){
+    delete $scope.orderToSend.LinhasDoc[i]['$$hashKey'];
+  }
   $scope.orderToSend.Data = new Date().toJSON();
   var total = 0;
   for (var i = 0; i < $scope.orderToSend.LinhasDoc; i++) {
@@ -366,16 +150,20 @@ $scope.submitOrder = function () {
   $scope.orderToSend.TotalMerc = total;
 
   $io.get();
-  var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
-  $scope.orderToSend.NumDoc = numDoc;
-  $orderS.sendOrder($scope.orderToSend)
+  var numDoc = $io.incNewDoc($scope.company.id);
+  $scope.orderToSend.NumDoc = 23;
+  $scope.orderToSend.Entidade = $nav.getViewingCompany().id;
+  $orderS.sendOrder($scope.selectedSupplier.CodFornecedor, $scope.orderToSend)
   .then(
     function onSuccess(result) {
-      console.log("Order from client placed succesfully", result.data);
-      console.log("RESULT = " + JSON.stringify(result));
-      $scope.orderToSend.id = result.data.id;
+      console.log("Order from client placed succesfully", result);
+      console.log("COMPANY = " + JSON.stringify($scope.company));
+      numDoc = $io.incNewDoc($nav.getViewingCompany().id);
+      $scope.orderToSend.NumDoc;
       $scope.orderToSend.Entidade = $scope.company.id;
-      $orderS.sendOrderNext($scope.selectedSupplier.CodFornecedor, $scope.orderToSend)
+      $scope.orderToSend.NumDocExterno = result.data.NumDoc;
+      console.log("DOC = " + JSON.stringify($scope.orderToSend));
+      $orderS.sendOrderNext($scope.orderToSend)
       .then(function onSuccess(result2) {
         console.log("Order to supplier placed succesfully", result2);
       }, function onError(e) {
@@ -391,16 +179,6 @@ $scope.submitOrder = function () {
       clear();
     }
     );
-  /*
-  $io.get();
-  var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
-  $scope.orderToSend.NumDoc = numDoc;
-  $io.addEncomendaAFornecedor($nav.getViewingCompany().id, $scope.orderToSend);
-
-  var supplier = $scope.orderToSend.Entidade;
-  $scope.orderToSend.Entidade = $nav.getViewingCompany().id;
-  $io.addEncomendaDeCliente(supplier, $scope.orderToSend);
-  */
 
 };
 
