@@ -247,15 +247,34 @@ $scope.setSupplier = function () {
   .then(
     function onSuccess(result) {
       console.log(result);
-      $scope.products = result.data;
-      $scope.gotSupplier = true;
+      var supplierProducts = result.data;
+      $orderS.getProducts($nav.getViewingCompany().id).then(
+        function onSuccess(myResult){
+          $scope.products = [];
+          var myProducts = myResult.data;
+          for(int i = 0; i < myProducts.length; i++){
+            for( int j = 0; j < supplierProducts.length; j++){
+              if( myProducts[i].CodArtigo === supplierProducts[j].CodArtigo){
+                $scope.products = $scope.products.concat(myProducts[i]);
+                break;
+              }
+            }
+          }
+          $scope.gotSupplier = true;
+        },
+        function onError(e){
+          console.log(e);
+          alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
+        }
+      );
+      //$scope.products = result.data;
+      //$scope.gotSupplier = true;
     },
     function onError(e) {
       console.log(e);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     }
-    );
-  $scope.gotSupplier = true;
+  );
 };
 
 // order stuff
