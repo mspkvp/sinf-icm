@@ -35,18 +35,39 @@ angular.module('icmApp')
 
     $scope.orderHistory = [];
 
-(function getHistory() {
-//ONLINE
-$orderS.getOrders()
-.then(
-function onSuccess(result) {
-$scope.orderHistory = result.data;
-console.log(result);
-},
-function onError(e) {
-console.log(e);
-});
-})();
+    (function getHistory() {
+      //ONLINE
+      $orderS.getOrders()
+      .then(
+        function onSuccess(result) {
+          //$scope.orderHistory = result.data;
+          var orders = result.data;
+          console.log("Orders", result.data);
+          $orderS.getInvoicesV()
+          .then(
+            function onSucces(iResult){
+              var invoicesV = iResult.data;
+              for(var i=0; i<orders.length; i++){
+                for(var j=0, j<invoicesV.length; j++){
+                  orders[i].Completo = false;
+                  if(orders[i].DocsOriginais === invoicesV[i].NumDoc){
+                    orders[i].Completo = true;
+                    break;
+                  }
+                }
+              }
+            },
+            function onError(e){
+              console.log(e);
+            }
+          );
+          
+        },
+          function onError(e) {
+          console.log(e);
+        }
+      );
+    })();
 
 
 $scope.products = [];
