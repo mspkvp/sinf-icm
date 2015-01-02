@@ -242,7 +242,17 @@ $scope.products = [];
 
 // supplier stuff
 $scope.setSupplier = function () {
-  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
+//  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
+  var tmpCompanies = $nav.getCompanies();
+  console.log("GET = " + JSON.stringify(tmpCompanies));
+  for(var i = 0; i < tmpCompanies.length; i++){
+    console.log("IN FOR, COMPANY = " + JSON.stringify(tmpCompanies[i]));
+    if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
+      console.log("FOUND");
+      $scope.orderToSend.Entidade = tmpCompanies[i].id;
+      break;
+    }
+  }
   $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
   .then(
     function onSuccess(result) {
@@ -343,6 +353,7 @@ $scope.submitOrder = function () {
   .then(
     function onSuccess(result) {
       console.log("Order from client placed succesfully", result.data);
+      console.log("RESULT = " + JSON.stringify(result));
       $scope.orderToSend.id = result.data.id;
       $scope.orderToSend.Entidade = $scope.company.id;
       $orderS.sendOrderNext($scope.selectedSupplier.CodFornecedor, $scope.orderToSend)

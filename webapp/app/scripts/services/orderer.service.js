@@ -17,11 +17,11 @@ angular.module('icmApp')
 
 		this.sendOrder = function (order) {
 			var company = $nav.getViewingCompany();
-			return $http.post(endpoints.default.post.url + '?empresa=' + company.id, order);
+			return $http.post(endpointsAPI.doc.order.to.supplier.default.post.url + '?empresa=' + company.id, order);
 		};
 
 		this.sendOrderNext = function (supplierID, order) {
-			return $http.post(endpointsAPI.doc.order.to.supplier.default.post.url + '?empresa=' + supplierID, order);
+			return $http.post(endpoints.default.post.url + '?empresa=' + supplierID, order);
 		};
 
 		this.getProducts = function(company){
