@@ -336,7 +336,10 @@ $scope.emitOrder = function () {
   }
   $scope.orderToSend.TotalMerc = total;
 
-  /*$orderS.sendOrder($scope.orderToSend)
+  $io.get();
+  var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
+  $scope.orderToSend.NumDoc = numDoc; 
+  $orderS.sendOrder($scope.orderToSend)
   .then(
     function onSuccess(result) {
       console.log("Order from client placed succesfully", result.data);
@@ -357,7 +360,8 @@ $scope.emitOrder = function () {
     function () {
       clear();
     }
-    );*/
+    );
+  /*
   $io.get();
   var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
   $scope.orderToSend.NumDoc = numDoc; 
@@ -366,6 +370,7 @@ $scope.emitOrder = function () {
   var supplier = $scope.orderToSend.Entidade;
   $scope.orderToSend.Entidade = $nav.getViewingCompany().id;
   $io.addEncomendaDeCliente(supplier, $scope.orderToSend);
+  */
 
 };
 
