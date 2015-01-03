@@ -60,41 +60,41 @@ angular.module('icmApp')
             function onError(e){
               console.log(e);
             }
-          );
+            );
           
         },
-          function onError(e) {
+        function onError(e) {
           console.log(e);
         }
-      );
+        );
     })();
 
 
-$scope.products = [];
+    $scope.products = [];
 
 // supplier stuff
 $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
-  var tmpCompanies = $nav.getCompanies();
-  for(var i = 0; i < tmpCompanies.length; i++){
-    if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
-      $scope.company = tmpCompanies[i];
-      break;
-    }
+var tmpCompanies = $nav.getCompanies();
+for(var i = 0; i < tmpCompanies.length; i++){
+  if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
+    $scope.company = tmpCompanies[i];
+    break;
   }
-  $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
-  .then(
-    function onSuccess(result) {
-      console.log(result);
-      $scope.products = result.data;
-      $scope.gotSupplier = true;
-    },
-    function onError(e) {
-      console.log(e);
-      alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
-    }
-    );
-  $scope.gotSupplier = true;
+}
+$orderS.getProducts($scope.selectedSupplier.CodFornecedor)
+.then(
+  function onSuccess(result) {
+    console.log(result);
+    $scope.products = result.data;
+    $scope.gotSupplier = true;
+  },
+  function onError(e) {
+    console.log(e);
+    alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
+  }
+  );
+$scope.gotSupplier = true;
 };
 
 // order stuff
@@ -127,30 +127,35 @@ $scope.suppliers = [];
 
 (function getSuppliers(){
 
-$orderS.getSuppliers($nav.getViewingCompany().id)
-.then(
-  function onSuccess(result){
-    for(var i = 0; i < result.data.length; i++){
-      if(result.data[i].CodFornecedor == "FVD") continue;
-      $scope.suppliers.push(result.data[i]);
-    }
-    console.log(result);
-  },
-  function onError(e){
-    console.log(e);
-  });
+  $orderS.getSuppliers($nav.getViewingCompany().id)
+  .then(
+    function onSuccess(result){
+      for(var i = 0; i < result.data.length; i++){
+        if(result.data[i].CodFornecedor == "FVD") continue;
+        $scope.suppliers.push(result.data[i]);
+      }
+      console.log(result);
+    },
+    function onError(e){
+      console.log(e);
+    });
 })();
 
 
 $scope.newOrder = function () {
-  $scope.makeOrderOn = true;
-  $nav.addPath({
-    name: 'Encomenda',
-    icon: '',
-    url: ''
-  });
-  $scope.orderToSend.NumDoc = ++doc_number;
-  $scope.orderToSend.NumDocExterno = "" + doc_number;
+
+  if (suppliers.length <= 0 then) {
+    alert("Não tem fornecedores para efetuar encomendas");
+  } else {
+    $scope.makeOrderOn = true;
+    $nav.addPath({
+      name: 'Encomenda',
+      icon: '',
+      url: ''
+    });
+    $scope.orderToSend.NumDoc = ++doc_number;
+    $scope.orderToSend.NumDocExterno = "" + doc_number;
+  }
 };
 
 function clear() {
