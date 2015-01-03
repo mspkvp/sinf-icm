@@ -40,18 +40,17 @@ angular.module('icmApp')
       $orderS.getOrders()
       .then(
         function onSuccess(result) {
-          //$scope.orderHistory = result.data;
-          var orders = result.data;
-          console.log("Orders", result.data);
-          $orderS.getInvoicesV()
+          $scope.orderHistory = result.data;
+          $orderS.getInvoicesV($nav.getViewingCompany().id)
           .then(
-            function onSucces(iResult){
+            function onSuccess(iResult){
               var invoicesV = iResult.data;
-              for(var i=0; i<orders.length; i++){
-                for(var j=0; j<invoicesV.length; j++){
-                  orders[i].Completo = false;
-                  if(orders[i].DocsOriginais === invoicesV[i].NumDoc){
-                    orders[i].Completo = true;
+              for(var i = 0; i < $scope.orderHistory.length; i++){
+                for(var j = 0; j < invoicesV.length; j++){
+                  $scope.orderHistory[i].Completo = false;
+                  if($scope.orderHistory[i].DocsOriginais === invoicesV[i].NumDoc){
+                    $scope.orderHistory[i].Completo = true;
+                    $scope.orderHistory[i].invoice = invoicesV[i];
                     break;
                   }
                 }
@@ -60,41 +59,41 @@ angular.module('icmApp')
             function onError(e){
               console.log(e);
             }
-          );
-          
+            );
+
         },
-          function onError(e) {
+        function onError(e) {
           console.log(e);
         }
-      );
+        );
     })();
 
 
-$scope.products = [];
+    $scope.products = [];
 
 // supplier stuff
 $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
-  var tmpCompanies = $nav.getCompanies();
-  for(var i = 0; i < tmpCompanies.length; i++){
-    if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
-      $scope.company = tmpCompanies[i];
-      break;
-    }
+var tmpCompanies = $nav.getCompanies();
+for(var i = 0; i < tmpCompanies.length; i++){
+  if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
+    $scope.company = tmpCompanies[i];
+    break;
   }
-  $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
-  .then(
-    function onSuccess(result) {
-      console.log(result);
-      $scope.products = result.data;
-      $scope.gotSupplier = true;
-    },
-    function onError(e) {
-      console.log(e);
-      alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
-    }
-    );
-  $scope.gotSupplier = true;
+}
+$orderS.getProducts($scope.selectedSupplier.CodFornecedor)
+.then(
+  function onSuccess(result) {
+    console.log(result);
+    $scope.products = result.data;
+    $scope.gotSupplier = true;
+  },
+  function onError(e) {
+    console.log(e);
+    alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
+  }
+  );
+$scope.gotSupplier = true;
 };
 
 // order stuff
@@ -103,14 +102,18 @@ doc_number = 0;
 
 $scope.makeOrderOn = false;
 
-$scope.orderToSend = {
-  Entidade: "sample string 2",
-  NumDoc: 1,
-  Data: new Date().toJSON(),
-  TotalMerc: 0,
-  Serie: "B",
-  LinhasDoc: []
+function initOrder() {
+  $scope.orderToSend = {
+    Entidade: "",
+    NumDoc: 1,
+    Data: new Date().toJSON(),
+    TotalMerc: 0,
+    Serie: "B",
+    LinhasDoc: []
+  };
 };
+
+initOrder();
 
 $scope.orderList = [];
 $scope.suppliers = [];
@@ -127,30 +130,35 @@ $scope.suppliers = [];
 
 (function getSuppliers(){
 
-$orderS.getSuppliers($nav.getViewingCompany().id)
-.then(
-  function onSuccess(result){
-    for(var i = 0; i < result.data.length; i++){
-      if(result.data[i].CodFornecedor == "FVD") continue;
-      $scope.suppliers.push(result.data[i]);
-    }
-    console.log(result);
-  },
-  function onError(e){
-    console.log(e);
-  });
+  $orderS.getSuppliers($nav.getViewingCompany().id)
+  .then(
+    function onSuccess(result){
+      for(var i = 0; i < result.data.length; i++){
+        if(result.data[i].CodFornecedor == "FVD") continue;
+        $scope.suppliers.push(result.data[i]);
+      }
+      console.log(result);
+    },
+    function onError(e){
+      console.log(e);
+    });
 })();
 
 
 $scope.newOrder = function () {
-  $scope.makeOrderOn = true;
-  $nav.addPath({
-    name: 'Encomenda',
-    icon: '',
-    url: ''
-  });
-  $scope.orderToSend.NumDoc = ++doc_number;
-  $scope.orderToSend.NumDocExterno = "" + doc_number;
+
+  if (suppliers.length <= 0) {
+    alert("Não tem fornecedores para efetuar encomendas");
+  } else {
+    $scope.makeOrderOn = true;
+    $nav.addPath({
+      name: 'Encomenda',
+      icon: '',
+      url: ''
+    });
+    $scope.orderToSend.NumDoc = ++doc_number;
+    $scope.orderToSend.NumDocExterno = "" + doc_number;
+  }
 };
 
 function clear() {
@@ -187,6 +195,7 @@ $scope.submitOrder = function () {
       $orderS.sendOrderNext($scope.orderToSend)
       .then(function onSuccess(result2) {
         console.log("Order to supplier placed succesfully", result2);
+        initOrder();
       }, function onError(e) {
         console.log(e);
       });
@@ -267,13 +276,8 @@ $scope.setupLine = function(){
     $scope.close = function(){
       $scope.modalInstance.close();
     };
-
-    for(var i=0; i<$scope.invoicesV.length; i++){
-      if($scope.invoicesV[i].DocsOriginais === $scope.orderSelected.DocsOriginais){
-        $scope.selectedInvoiceV = $scope.invoicesV[i];
-        break;
-      }
-    }
+    
+    $scope.selectedInvoiceV = $scope.orderSelected.invoice;
 
   }
 
