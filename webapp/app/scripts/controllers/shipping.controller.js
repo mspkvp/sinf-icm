@@ -87,4 +87,5 @@ angular.module('icmApp')
         $scope.order.Entidade = $nav.getViewingCompany().id; 
         $io.addVFatura(idcliente, $scope.order);*/
     };
+
   }]);

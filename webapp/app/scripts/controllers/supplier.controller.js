@@ -99,5 +99,23 @@ angular.module('icmApp')
       $scope.emitInvoice = function () {
         $scope.orderModal.dismiss('cancel');
       };
+
+      $scope.showOrderModal = function(orderSelected){
+        $scope.orderSelected = orderSelected;
+        $scope.modalInstance = $modal.open({
+          templateUrl: 'views/order-invoice-view.html',
+          controller: orderModalCtrl,
+          size: 'lg',
+          scope: $scope
+        });
+      };
+
+      function orderModalCtrl(){
+        $scope.close = function(){
+          $scope.modalInstance.close();
+        };
+
+        $scope.selectedInvoice = $scope.orderSelected.invoice;
+      }
     }
   ]);
