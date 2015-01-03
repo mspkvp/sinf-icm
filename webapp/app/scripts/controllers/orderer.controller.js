@@ -245,7 +245,13 @@ $scope.setupLine = function(){
   };
 
   $scope.addLine = function () {
-    $scope.addLineObj.TotalLiquido = Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
+    if ($scope.tmpProduct.Stock < $scope.addLineObj.Quantidade) {
+      if (!confirm("Tem a certeza que pretende encomendar uma quantidade superior ao stock do fornecedor? (Stock: " + $scope.tmpProduct.Stock + ")")) {
+        return;
+      }
+    }
+
+    $scope.addLineObj.TotalLiquido = 0 // Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
     $scope.addLineObj.TotalILiquido = Math.round(parseFloat($scope.addLineObj.TotalILiquido) * 100) / 100;
     $scope.orderList.push($scope.addLineObj);
     $scope.orderToSend.TotalMerc += $scope.addLineObj.TotalLiquido;
