@@ -74,6 +74,7 @@ angular.module('icmApp')
 // supplier stuff
 $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
+$scope.products = [];
 var tmpCompanies = $nav.getCompanies();
 for(var i = 0; i < tmpCompanies.length; i++){
   if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
@@ -84,9 +85,23 @@ for(var i = 0; i < tmpCompanies.length; i++){
 $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
 .then(
   function onSuccess(result) {
-    console.log(result);
-    $scope.products = result.data;
     $scope.gotSupplier = true;
+    $orderS.getProducts($nav.getViewingCompany().id)
+    .then(
+      function onSuccess(result2){
+        for(var i = 0; i < result.data.length; i++){
+          for(var j = 0; j < result2.data.length; j++){
+            if(result.data[i].CodArtigo == result2.data[j].CodArtigo){
+              $scope.products.push(result.data[i]);
+            }
+          }
+        }
+      },
+      function  onError(e){
+        console.log(e);
+        alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
+      }
+    );
   },
   function onError(e) {
     console.log(e);
@@ -147,7 +162,7 @@ $scope.suppliers = [];
 
 $scope.newOrder = function () {
 
-  if (suppliers.length <= 0) {
+  if ($scope.suppliers.length <= 0) {
     alert("Não tem fornecedores para efetuar encomendas");
   } else {
     $scope.makeOrderOn = true;
@@ -167,6 +182,7 @@ function clear() {
 }
 
 $scope.submitOrder = function () {
+  $nav.setLoading(true);
   $scope.orderToSend.LinhasDoc = $scope.orderList;
   for(var i = 0; i < $scope.orderToSend.LinhasDoc.length; i++){
     delete $scope.orderToSend.LinhasDoc[i]['$$hashKey'];
@@ -195,13 +211,16 @@ $scope.submitOrder = function () {
       $orderS.sendOrderNext($scope.orderToSend)
       .then(function onSuccess(result2) {
         console.log("Order to supplier placed succesfully", result2);
+        $nav.setLoading(false);
         initOrder();
+        alert("Encomenda colocada com sucesso");
       }, function onError(e) {
         console.log(e);
       });
     },
     function onError(e) {
       console.log(e);
+      $nav.setLoading(false);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     })
   .finally(
@@ -241,8 +260,15 @@ $scope.setupLine = function(){
   };
 
   $scope.addLine = function () {
-    $scope.addLineObj.TotalLiquido = Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
+    if ($scope.tmpProduct.Stock < $scope.addLineObj.Quantidade) {
+      if (!confirm("Tem a certeza que pretende encomendar uma quantidade superior ao stock do fornecedor? (Stock: " + $scope.tmpProduct.Stock + ")")) {
+        return;
+      }
+    }
+
+    $scope.addLineObj.TotalLiquido = 0 // Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
     $scope.addLineObj.TotalILiquido = Math.round(parseFloat($scope.addLineObj.TotalILiquido) * 100) / 100;
+    $scope.addLineObj.TotalLiquido = 0;
     $scope.orderList.push($scope.addLineObj);
     $scope.orderToSend.TotalMerc += $scope.addLineObj.TotalLiquido;
     $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
@@ -276,7 +302,7 @@ $scope.setupLine = function(){
     $scope.close = function(){
       $scope.modalInstance.close();
     };
-    
+
     $scope.selectedInvoiceV = $scope.orderSelected.invoice;
 
   }
