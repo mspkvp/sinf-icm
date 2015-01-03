@@ -6,7 +6,8 @@
   <!-- Order Table -->
   <div class="row">
     <div class="col-lg-12">
-      <h3>Encomenda</h3>
+      <h3>Encomenda a {{orderSelected.Entidade}}</h3>
+      {{order.Data | date: 'dd/MM/yyyy'}}
       <table class="table table-striped table-hover table-condensed table-rmv">
         <thead>
           <tr class="align">
@@ -17,7 +18,7 @@
             <th class="col-lg-2">Desconto(%)</th>
             <th class="col-lg-2">Preço Unitário(€)</th>
             <th class="col-lg-2">Total ILíquido(€)</th>
-            <th class="col-lg-2">Total Líquido(€)</th>
+            <th class="col-lg-2"><!--Total Líquido(€)--></th>
           </tr>
         </thead>
       </table>
@@ -32,7 +33,7 @@
               <td class="col-lg-1">{{product.Desconto}}</td>
               <td class="col-lg-2">{{product.PrecoUnitario}}</td>
               <td class="col-lg-2">{{product.TotalILiquido}}</td>
-              <td class="col-lg-2">{{product.TotalLiquido}}</td>
+              <td class="col-lg-2"><!--{{product.TotalLiquido}}--></td>
             </tr>
           </tbody>
         </table>
@@ -56,9 +57,13 @@
   </div>
 
   <!-- Invoice -->
-  <div class="row">
+  <div ng-hide="orderSelected.invoice">
+    <h4>A fatura ainda não foi emitida.</h4>
+  </div>
+  <div class="row" ng-show="orderSelected.invoice">
     <div class="col-lg-12">
-      <h3>Vossa Fatura</h3>
+      <h3>Fatura para {{selectedInvoice</h3>
+      {{selectedInvoice.Data | date: 'dd/MM/yyyy'}}
       <table class="table table-striped table-hover table-condensed table-rmv">
         <thead>
           <tr class="align">
@@ -76,7 +81,7 @@
       <div class="bodycontainer scrollable">
         <table class="table table-hover table-striped table-condensed table-scrollable">
           <tbody>
-            <tr ng-repeat="product in selectedInvoiceV.LinhasDoc" class="align">
+            <tr ng-repeat="product in selectedInvoice.LinhasDoc" class="align">
               <td class="col-lg-2">{{product.CodArtigo}}</td>
               <td class="col-lg-2">{{product.DescArtigo}}</td>
               <td class="col-lg-1">{{product.Quantidade}}</td>
@@ -101,7 +106,7 @@
             <th class="col-lg-2"></th>
             <th class="col-lg-2"></th>
             <th class="col-lg-2">Total:</th>
-            <th class="col-lg-1">{{selectedInvoiceV.TotalMerc}}</th>
+            <th class="col-lg-1">{{selectedInvoice.TotalMerc}}</th>
           </tr>
         </tfoot>
       </table>

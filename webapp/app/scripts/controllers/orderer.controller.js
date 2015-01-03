@@ -300,7 +300,7 @@ $scope.setupLine = function(){
       $scope.modalInstance.close();
     };
 
-    $scope.selectedInvoiceV = $scope.orderSelected.invoice;
+    $scope.selectedInvoice = $scope.orderSelected.invoice;
 
   }
 
