@@ -53,10 +53,10 @@
                 <td class="col-lg-3">{{product.DescArtigo}}</td>
                 <td class="col-lg-2">{{product.Quantidade}}</td>
                 <td class="col-lg-2">
-                  <input class="form-control" ng-class="{overStock: product.newQuantity > stocks[$index]}" type ="number" ng-model="product.newQuantity" step="1" min="0" max="{{stocks[$index] > product.Quantidade ? product.Quantidade : stocks[$index]}}" required>
+                  <input class="form-control" ng-class="{overStock: product.newQuantity > stocks[$index]}" type ="number" ng-model="product.newQuantity" step="1" min="0" max="{{stocks[$index] > product.Quantidade ? product.Quantidade : stocks[$index]}}" required ng-change="changedQuantity()">
                 </td>
                 <td class="col-lg-2">
-                  <input class="form-control" type="number" ng-model="product.PrecoUnitario" step="0.01" required>
+                  <input class="form-control" type="number" ng-model="product.PrecoUnitario" step="0.01" required ng-change="changedPrice()>
                 </td>
                 <td class="col-lg-2">{{stocks[$index]}}</td>
               </tr>
