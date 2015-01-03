@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService',
-  function ($scope, $i, $orderS, $nav, $userS, $io) {
+.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService', '$modal',
+  function ($scope, $i, $orderS, $nav, $userS, $io, $modal) {
 
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
@@ -265,5 +265,25 @@ $scope.setupLine = function(){
       $scope.orderList[i].NumLinha = i + 1;
     }
   };
+
+  $scope.showOrderModal = function(orderSelected){
+    $scope.orderSelected = orderSelected;
+    $scope.modalInstance = $modal.open({
+      templateUrl: 'views/order-invoice-view.html',
+      controller: orderModalCtrl,
+      size: 'lg',
+      scope: $scope
+    });
+  };
+
+  function orderModalCtrl(){
+    $scope.close = function(){
+      $scope.modalInstance.close();
+    };
+    
+    $scope.selectedInvoiceV = $scope.orderSelected.invoice;
+
+  }
+
 }
 ]);

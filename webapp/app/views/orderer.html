@@ -56,7 +56,7 @@
           <div class="bodycontainer scrollable">
             <table class="table table-hover table-striped table-condensed table-scrollable">
               <tbody>
-                <tr ng-repeat="order in orderHistory | filter:searchHistory" class="align">
+                <tr ng-repeat="order in orderHistory | filter:searchHistory" class="align" ng-click="showOrderModal(order)">
                   <td class="col-lg-4">{{order.id}}</td>
                   <td class="col-lg-4">{{order.Entidade | limitTo: 20}}</td>
                   <td class="col-lg-3">{{order.Data | date: 'dd/MM/yyyy'}}</td>
