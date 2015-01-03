@@ -24,22 +24,6 @@ angular.module('icmApp')
       return;
     }
 
-    $scope.priceChanged = false;
-    $scope.quantityChanged = false;
-
-    $scope.changedPrice = function() {
-      if(!priceChanged) {
-        alert("Editou o preço que o cliente espera pagar. Por favor contacte o mesmo para acordar estas alterações");
-        priceChanged = true;
-      }
-    }
-
-    $scope.changeQuantity = function() {
-      if(!priceChanged) {
-        alert("Editou a quantidade que o cliente espera receber. Por favor contacte o mesmo para acordar estas alterações");
-        quantityChanged = true;
-      }
-    }
 
     $scope.ordersToProcess = [];
 
@@ -69,6 +53,7 @@ angular.module('icmApp')
           };
         };
 
+        $nav.setLoading(true);
         $orderS.getInvoices($nav.getViewingCompany().id)
         .then(
           function onSuccess(result){
@@ -103,6 +88,8 @@ angular.module('icmApp')
           function onError(e){
             console.log(e);
           });
+
+        $nav.setLoading(false);
         /*
         $io.get();
         invoices = $io.getFatura($nav.getViewingCompany().id);

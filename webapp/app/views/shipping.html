@@ -38,10 +38,13 @@
             <tr class="align">
               <th class="col-lg-2">Código Artigo</th>
               <th class="col-lg-3">Descrição</th>
-              <th class="col-lg-2">Quantidade Pretendida</th>
-              <th class="col-lg-2">Quantidade</th>
-              <th class="col-lg-2">Preço Unitário</th>
-              <th class="col-lg-2">Stock Disponível</th>
+              <th class="col-lg-1">Quantidade Pretendida</th>
+              <th class="col-lg-1">Quantidade</th>
+              <th class="col-lg-1">Preço Unitário</th>
+              <th class="col-lg-1">Stock Disponível</th>
+              <th class="col-lg-1">Total Ilíquido</th>
+              <th class="col-lg-1">Taxas(%)</th>
+              <th class="col-lg-1">Total Líquido</th>
             </tr>
           </thead>
         </table>
@@ -51,14 +54,19 @@
               <tr class="align" ng-repeat="product in order.LinhasDoc" ng-init="product.newQuantity = product.Quantidade" ng-repeat="stock in stocks">
                 <td class="col-lg-2">{{product.CodArtigo}}</td>
                 <td class="col-lg-3">{{product.DescArtigo}}</td>
-                <td class="col-lg-2">{{product.Quantidade}}</td>
-                <td class="col-lg-2">
-                  <input class="form-control" ng-class="{overStock: product.newQuantity > stocks[$index]}" type ="number" ng-model="product.newQuantity" step="1" min="0" max="{{stocks[$index] > product.Quantidade ? product.Quantidade : stocks[$index]}}" required ng-change="changedQuantity()">
+                <td class="col-lg-1">{{product.Quantidade}}</td>
+                <td class="col-lg-1">
+                  <input class="form-control" ng-class="{overStock: product.newQuantity > stocks[$index]}" type ="number" ng-model="product.newQuantity" step="1" min="0" max="{{stocks[$index] > product.Quantidade ? product.Quantidade : stocks[$index]}}" ng-change="changedQuantity(product)" required>
                 </td>
-                <td class="col-lg-2">
-                  <input class="form-control" type="number" ng-model="product.PrecoUnitario" step="0.01" required ng-change="changedPrice()>
+                <td class="col-lg-1">
+                  <input class="form-control" type="number" ng-model="product.PrecoUnitario" step="0.01" required ng-change="changedPrice(product)">
                 </td>
-                <td class="col-lg-2">{{stocks[$index]}}</td>
+                <td class="col-lg-1">{{stocks[$index]}}</td>
+                <td class="col-lg-1">{{product.TotalILiquido | currency:"&euro;"}}</td>
+                <td class="col-lg-1">
+                <input class="form-control" type="number" ng-model="product.Taxa" ng-init="product.Taxa = 23" step="0.01" min="0" max="100" ng-change="changedTax(product)" required>
+                </td>
+                <td class="col-lg-1">{{product.TotalLiquido | currency:"&euro;"}}</td>
               </tr>
             </tbody>
           </table>

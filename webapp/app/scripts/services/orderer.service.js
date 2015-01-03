@@ -5,9 +5,11 @@ angular.module('icmApp')
 	function ($http, $nav) {
 
 		var endpoints = endpointsAPI.doc.order.from.client;
-		this.getOrders = function () {
-			var company = $nav.getViewingCompany();
-			return $http.get(endpointsAPI.doc.order.to.supplier.default.get.url + '?empresa=' + company.id);
+		this.getOrders = function (comp) {
+			var company;
+			if(comp === undefined || comp == "") company = $nav.getViewingCompany().id;
+			else company = comp;
+			return $http.get(endpointsAPI.doc.order.to.supplier.default.get.url + '?empresa=' + company);
 		};
 
 		this.getOrderSupplier = function(){
