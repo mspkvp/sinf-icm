@@ -178,7 +178,7 @@ $scope.suppliers = [];
 $scope.newOrder = function () {
 
   if ($scope.suppliers.length <= 0) {
-    alert("Não tem fornecedores para efetuar encomendas");
+    alert("Não tem fornecedores para efetuar encomendas. Por favor adicione nas ferramentas de Gestão");
   } else {
     $scope.makeOrderOn = true;
     $nav.addPath({
