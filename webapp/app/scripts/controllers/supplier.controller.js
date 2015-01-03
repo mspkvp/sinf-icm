@@ -1,40 +1,47 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
-    function ($scope, $modal, $nav, $ship, $orderS, $io) {
-      $nav.setPath([
-        $nav.getPath()[0],
-        {
-          name: 'Gerir',
-          icon: '',
-          url: '/'
-        },
-        {
-          name: 'Fornecedor',
-          icon: '',
-          url: ''
-        }
+.controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
+  function ($scope, $modal, $nav, $ship, $orderS, $io) {
+    $nav.setPath([
+      $nav.getPath()[0],
+      {
+        name: 'Gerir',
+        icon: '',
+        url: '/'
+      },
+      {
+        name: 'Fornecedor',
+        icon: '',
+        url: ''
+      }
       ]);
 
-      $scope.ordersToProcess = [];
+    if (!$userS.getLoginStatus()) {
+      alert("Please login first!");
+      $nav.setRedirection('client');
+      $nav.go('login');
+      return;
+    }
 
-      $scope.orderHistory = [];
+    $scope.ordersToProcess = [];
 
-      (function _init(){
-        var orders = [],
-          invoices = [];
+    $scope.orderHistory = [];
+
+    (function _init(){
+      var orders = [],
+      invoices = [];
           //$scope.ordersToProcess = [];
           //$scope.orderHistory = [];
-        function sortOrders(){
-          var k=0;
-          while(orders.length > 0){
-            if(k === orders.length ){
-              $scope.ordersToProcess = $scope.ordersToProcess.concat(orders);
-              break;
-            };
+          function sortOrders(){
+            var k=0;
+            while(orders.length > 0){
+              if(k === orders.length ){
+                $scope.ordersToProcess = $scope.ordersToProcess.concat(orders);
+                break;
+              };
 
-            for(var i=0; i<invoices.length; i++){
+              for(var i=0; i<invoices.length; i++){
               if(orders[k].NumDoc === invoices[i].DocsOriginais){ // is history
                 $scope.orderHistory.push(orders[k]);
                 orders.splice(k, 1);
@@ -46,39 +53,39 @@ angular.module('icmApp')
         };
 
         $orderS.getInvoices($nav.getViewingCompany().id)
-          .then(
-            function onSuccess(result){
-              var tmpCompanies = $nav.getCompanies();
-              invoices = result.data;
-              for(var i = 0; i < invoices.length; i++){
-                for(var j = 0; j < tmpCompanies.length; j++){
-                  if(invoices[i].Entidade == tmpCompanies[j].id){
-                    invoices[i].Entidade = tmpCompanies[j].name;
-                  }
+        .then(
+          function onSuccess(result){
+            var tmpCompanies = $nav.getCompanies();
+            invoices = result.data;
+            for(var i = 0; i < invoices.length; i++){
+              for(var j = 0; j < tmpCompanies.length; j++){
+                if(invoices[i].Entidade == tmpCompanies[j].id){
+                  invoices[i].Entidade = tmpCompanies[j].name;
                 }
               }
-              $orderS.getOrderSupplier()
-                .then(
-                  function onSuccess(resOrders){
-                    orders = resOrders.data;
-                    for(var i = 0; i < orders.length; i++){
-                      for(var j = 0; j < tmpCompanies.length; j++){
-                        if(orders[i].Entidade == tmpCompanies[j].id){
-                          orders[i].Entidade = tmpCompanies[j].name;
-                        }
-                      }
+            }
+            $orderS.getOrderSupplier()
+            .then(
+              function onSuccess(resOrders){
+                orders = resOrders.data;
+                for(var i = 0; i < orders.length; i++){
+                  for(var j = 0; j < tmpCompanies.length; j++){
+                    if(orders[i].Entidade == tmpCompanies[j].id){
+                      orders[i].Entidade = tmpCompanies[j].name;
                     }
-                    sortOrders();
-                    loadOrdersToProcessCompanies();
-                    loadOrdersProcessedCompaniesH();
-                  },
-                  function onError(e){
-                    console.log(e);
-                  });
-            },
-            function onError(e){
-              console.log(e);
-            });
+                  }
+                }
+                sortOrders();
+                loadOrdersToProcessCompanies();
+                loadOrdersProcessedCompaniesH();
+              },
+              function onError(e){
+                console.log(e);
+              });
+          },
+          function onError(e){
+            console.log(e);
+          });
         /*
         $io.get();
         invoices = $io.getFatura($nav.getViewingCompany().id);
@@ -133,4 +140,4 @@ angular.module('icmApp')
         $scope.selectedInvoice = $scope.orderSelected.invoice;
       }
     }
-  ]);
+    ]);
