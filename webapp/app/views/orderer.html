@@ -108,7 +108,7 @@
             <th class="col-lg-2">Desconto(%)</th>
             <th class="col-lg-2">Preço Unitário(€)<sup><a href="#fn2">2</a></sup></th>
             <th class="col-lg-2">Total ILíquido(€)</th>
-            <th class="col-lg-2">Total Líquido(€)<sup><a href="#fn3">3</a></sup></th>
+            <th class="col-lg-2"><!--Total Líquido(€)<sup><a href="#fn3">3</a></sup>--></th>
             <th class="col-lg-2">Remove</th>
           </tr>
         </thead>
@@ -124,7 +124,7 @@
               <td class="col-lg-1">{{product.Desconto}}</td>
               <td class="col-lg-2">{{product.PrecoUnitario}}</td>
               <td class="col-lg-2">{{product.TotalILiquido}}</td>
-              <td class="col-lg-2">{{product.TotalLiquido}}</td>
+              <td class="col-lg-2"><!--{{product.TotalLiquido}}--></td>
               <td class="col-lg-1">
                 <button type="button" class="btn btn-danger btn-sm fa fa-times" ng-click="rmvLine(product)">
                 </button>
@@ -182,7 +182,7 @@
                 <input type="number" class="form-control" ng-model="addLineObj.PrecoUnitario" min="1" step="0.01" required>
               </th>
               <th class="col-lg-2">{{addLineObj.TotalILiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] | number:2}}</th>
-              <th class="col-lg-2">{{addLineObj.TotalLiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] * 1.23 | number:2}}</th>
+              <th class="col-lg-2"><!--{{addLineObj.TotalLiquido = addLineObj.Quantidade * addLineObj.PrecoUnitario * [1 -addLineObj.Desconto/100] * 1.23 | number:2}}--></th>
               <th class="col-lg-1">
                  <button type="submit" class="btn btn-success" ng-click="addLine()" ng-class="{disabled: !addLineObj}">Adicionar</button>
               </th>
@@ -206,6 +206,6 @@
 
 <sup id="fn1">1. [O valor inicial de quantidade é igual ao stock atual do fornecedor]<a href="#ref1" title="Jump back to the order.">↩</a></sup>
 <sup id="fn2">1. [O PVP é retirado da base de dados do fornecedor, podendo ser alterado]<a href="#ref1" title="Jump back to the order.">↩</a></sup>
-<sup id="fn3">1. [O total líquido é calculado tendo em conta a taxa de 23%]<a href="#ref1" title="Jump back to the order.">↩</a></sup>
+<!--sup id="fn3">1. [O total líquido é calculado tendo em conta a taxa de 23%]<a href="#ref1" title="Jump back to the order.">↩</a></sup-->
 
 </div><!-- /.container-fluid -->

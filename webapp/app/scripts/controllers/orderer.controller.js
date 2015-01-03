@@ -167,6 +167,7 @@ function clear() {
 }
 
 $scope.submitOrder = function () {
+  $nav.setLoading(true);
   $scope.orderToSend.LinhasDoc = $scope.orderList;
   for(var i = 0; i < $scope.orderToSend.LinhasDoc.length; i++){
     delete $scope.orderToSend.LinhasDoc[i]['$$hashKey'];
@@ -195,13 +196,16 @@ $scope.submitOrder = function () {
       $orderS.sendOrderNext($scope.orderToSend)
       .then(function onSuccess(result2) {
         console.log("Order to supplier placed succesfully", result2);
+        $nav.setLoading(false);
         initOrder();
+        alert("Encomenda colocada com sucesso");
       }, function onError(e) {
         console.log(e);
       });
     },
     function onError(e) {
       console.log(e);
+      $nav.setLoading(false);
       alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
     })
   .finally(
