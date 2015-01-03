@@ -74,10 +74,10 @@ angular.module('icmApp')
           console.log(e);
         }
         );
-    })();
+})();
 
 
-    $scope.products = [];
+$scope.products = [];
 
 // supplier stuff
 $scope.setSupplier = function () {
@@ -93,28 +93,38 @@ for(var i = 0; i < tmpCompanies.length; i++){
 $nav.setLoading(true);
 $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
 .then(
-  function onSuccess(result2){
-    for(var i = 0; i < result.data.length; i++){
-      for(var j = 0; j < result2.data.length; j++){
-        if(result.data[i].CodArtigo == result2.data[j].CodArtigo){
-          $scope.products.push(result.data[i]);
+  function onSuccess(result){
+    $orderS.getProducts($nav.getViewingCompany().id)
+    .then(
+      function onSuccess(result2){
+        for(var i = 0; i < result.data.length; i++){
+          for(var j = 0; j < result2.data.length; j++){
+            if(result.data[i].CodArtigo == result2.data[j].CodArtigo){
+              $scope.products.push(result.data[i]);
+            }
+          }
         }
-      }
-    }
 
-    if ($scope.products.length <= 0) {
-      alert("O fornecedor selecionado não possuí produtos na base de dados em comum com a empresa cliente. Por favor adicione os desejados primeiro.");
-      $scope.products = [];
-    } else {
-      $scope.gotSupplier = true;
-    }
+        $nav.setLoading(false);
+        if ($scope.products.length <= 0) {
+          alert("O fornecedor selecionado não possuí produtos na base de dados em comum com a empresa cliente. Por favor adicione os desejados primeiro.");
+          $scope.products = [];
+        } else {
+          $scope.gotSupplier = true;
+        }
+      },
+      function  onError(e){
+        $nav.setLoading(false);
+        console.log(e);
+        alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
+      }
+      );
   },
   function  onError(e){
+    $nav.setLoading(false);
     console.log(e);
     alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
-  }
-  );
-};
+  };
 
 // order stuff
 var line_counter = 0,
