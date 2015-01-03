@@ -83,6 +83,7 @@ $scope.products = [];
 $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
 $scope.products = [];
+$scope.orderList = [];
 var tmpCompanies = $nav.getCompanies();
 for(var i = 0; i < tmpCompanies.length; i++){
   if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
@@ -124,7 +125,9 @@ $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
     $nav.setLoading(false);
     console.log(e);
     alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
-  };
+  }
+);
+};
 
 // order stuff
 var line_counter = 0,
@@ -259,7 +262,7 @@ $scope.setupLine = function(){
     DescArtigo: $scope.tmpProduct.DescArtigo,
     IdCabecDoc: $scope.orderToSend.id,
     NumLinha: ++line_counter,
-    Quantidade: 1.0,
+    Quantidade: $scope.maxStock,
     Unidade: "UN",
     Desconto: 0.0,
     PrecoUnitario: $scope.tmpProduct.PVP
