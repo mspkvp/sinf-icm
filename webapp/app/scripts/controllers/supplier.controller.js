@@ -48,11 +48,26 @@ angular.module('icmApp')
         $orderS.getInvoices($nav.getViewingCompany().id)
           .then(
             function onSuccess(result){
+              var tmpCompanies = $nav.getCompanies();
               invoices = result.data;
-              $orderS.getOrders()
+              for(var i = 0; i < invoices.length; i++){
+                for(var j = 0; j < tmpCompanies.length; j++){
+                  if(invoices[i].Entidade == tmpCompanies[j].id){
+                    invoices[i].Entidade = tmpCompanies[j].name;
+                  }
+                }
+              }
+              $orderS.getOrderSupplier()
                 .then(
                   function onSuccess(resOrders){
                     orders = resOrders.data;
+                    for(var i = 0; i < orders.length; i++){
+                      for(var j = 0; j < tmpCompanies.length; j++){
+                        if(orders[i].Entidade == tmpCompanies[j].id){
+                          orders[i].Entidade = tmpCompanies[j].name;
+                        }
+                      }
+                    }
                     sortOrders();
                     loadOrdersToProcessCompanies();
                     loadOrdersProcessedCompaniesH();
