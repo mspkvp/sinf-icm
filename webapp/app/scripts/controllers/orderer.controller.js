@@ -208,7 +208,7 @@ $scope.submitOrder = function () {
   $scope.orderToSend.Data = new Date().toJSON();
   var total = 0;
   for (var i = 0; i < $scope.orderToSend.LinhasDoc; i++) {
-    total += $scope.orderToSend.LinhasDoc.TotalLiquido;
+    total += $scope.orderToSend.LinhasDoc.TotalILiquido;
   }
   $scope.orderToSend.TotalMerc = total;
 
@@ -268,8 +268,8 @@ $scope.setupLine = function(){
     PrecoUnitario: $scope.tmpProduct.PVP
   };
 
-  selected.TotalILiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
-  selected.TotalLiquido = selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
+  selected.TotalILiquido = selected.Quantidade * selected.PrecoUnitario; // * (1 - selected.Desconto);
+  selected.TotalLiquido = 0; //selected.Quantidade * selected.PrecoUnitario * (1 - selected.Desconto);
 
 
   $scope.addLineObj = selected;
@@ -285,10 +285,10 @@ $scope.setupLine = function(){
     }
 
     $scope.addLineObj.TotalLiquido = 0 // Math.round(parseFloat($scope.addLineObj.TotalLiquido) * 100) / 100;
+    $scope.Desconto = 0.0;
     $scope.addLineObj.TotalILiquido = Math.round(parseFloat($scope.addLineObj.TotalILiquido) * 100) / 100;
-    $scope.addLineObj.TotalLiquido = 0;
     $scope.orderList.push($scope.addLineObj);
-    $scope.orderToSend.TotalMerc += $scope.addLineObj.TotalLiquido;
+    $scope.orderToSend.TotalMerc += $scope.addLineObj.TotalILiquido;
     $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
     $scope.addLineObj = undefined;
     $scope.tmpProduct = undefined;
@@ -297,7 +297,7 @@ $scope.setupLine = function(){
 
   $scope.rmvLine = function (line) {
     var nr = line.NumLinha;
-    $scope.orderToSend.TotalMerc -= line.TotalLiquido;
+    $scope.orderToSend.TotalMerc -= line.TotalILiquido;
     $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
     $scope.orderList.splice(nr - 1, 1);
     line_counter--;
