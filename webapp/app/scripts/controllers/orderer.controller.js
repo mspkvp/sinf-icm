@@ -59,7 +59,7 @@ angular.module('icmApp')
             function onError(e){
               console.log(e);
             }
-          );
+            );
 
         },
         function onError(e) {
@@ -147,7 +147,7 @@ $scope.suppliers = [];
 
 $scope.newOrder = function () {
 
-  if (suppliers.length <= 0 then) {
+  if (suppliers.length <= 0) {
     alert("Não tem fornecedores para efetuar encomendas");
   } else {
     $scope.makeOrderOn = true;
@@ -261,6 +261,5 @@ $scope.setupLine = function(){
       $scope.orderList[i].NumLinha = i + 1;
     }
   };
-
 }
 ]);
