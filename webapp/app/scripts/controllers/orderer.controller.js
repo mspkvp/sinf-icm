@@ -41,6 +41,14 @@ angular.module('icmApp')
       .then(
         function onSuccess(result) {
           $scope.orderHistory = result.data;
+          var tmpCompanies = $nav.getCompanies();
+          for(var i = 0; i < $scope.orderHistory.length; i++){
+            for(var j = 0; j < tmpCompanies.length; j++){
+              if($scope.orderHistory[i].Entidade == tmpCompanies[j].id){
+                $scope.orderHistory[i].Entidade = tmpCompanies[j].name;
+              }
+            }
+          }
           $orderS.getInvoicesV($nav.getViewingCompany().id)
           .then(
             function onSuccess(iResult){
