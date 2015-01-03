@@ -17,296 +17,12 @@ angular.module('icmApp')
         }
       ]);
 
-      $scope.ordersToProcess = [
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 1",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        },
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 2",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        },
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 3",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        }
-      ];
+      $scope.ordersToProcess = [];
 
-      $scope.orderHistory = [
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 1",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        },
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 2",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        },
-        {
-          "id": "sample string 1",
-          "Entidade": "sample string 3",
-          "NumDoc": 3,
-          "NumDocExterno": "sample string 4",
-          "Data": "2014-12-12T10:06:16.9440679+00:00",
-          "TotalMerc": 6.1,
-          "Serie": "sample string 7",
-          "LinhasDoc": [
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            },
-            {
-              "CodArtigo": "sample string 1",
-              "DescArtigo": "sample string 2",
-              "IdCabecDoc": "sample string 3",
-              "NumLinha": 4,
-              "Quantidade": 5.1,
-              "Unidade": "sample string 6",
-              "Desconto": 7.1,
-              "PrecoUnitario": 8.1,
-              "TotalILiquido": 9.1,
-              "TotalLiquido": 10.1
-            }
-          ]
-        }
-      ];
+      $scope.orderHistory = [];
 
       (function _init(){
-        var orders = [], 
+        var orders = [],
           invoices = [];
           //$scope.ordersToProcess = [];
           //$scope.orderHistory = [];
@@ -332,11 +48,26 @@ angular.module('icmApp')
         $orderS.getInvoices($nav.getViewingCompany().id)
           .then(
             function onSuccess(result){
+              var tmpCompanies = $nav.getCompanies();
               invoices = result.data;
-              $orderS.getOrders()
-                then(
+              for(var i = 0; i < invoices.length; i++){
+                for(var j = 0; j < tmpCompanies.length; j++){
+                  if(invoices[i].Entidade == tmpCompanies[j].id){
+                    invoices[i].Entidade = tmpCompanies[j].name;
+                  }
+                }
+              }
+              $orderS.getOrderSupplier()
+                .then(
                   function onSuccess(resOrders){
                     orders = resOrders.data;
+                    for(var i = 0; i < orders.length; i++){
+                      for(var j = 0; j < tmpCompanies.length; j++){
+                        if(orders[i].Entidade == tmpCompanies[j].id){
+                          orders[i].Entidade = tmpCompanies[j].name;
+                        }
+                      }
+                    }
                     sortOrders();
                     loadOrdersToProcessCompanies();
                     loadOrdersProcessedCompaniesH();
