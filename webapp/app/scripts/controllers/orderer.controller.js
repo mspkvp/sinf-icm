@@ -103,14 +103,18 @@ doc_number = 0;
 
 $scope.makeOrderOn = false;
 
-$scope.orderToSend = {
-  Entidade: "sample string 2",
-  NumDoc: 1,
-  Data: new Date().toJSON(),
-  TotalMerc: 0,
-  Serie: "B",
-  LinhasDoc: []
+function initOrder() {
+  $scope.orderToSend = {
+    Entidade: "",
+    NumDoc: 1,
+    Data: new Date().toJSON(),
+    TotalMerc: 0,
+    Serie: "B",
+    LinhasDoc: []
+  };
 };
+
+initOrder();
 
 $scope.orderList = [];
 $scope.suppliers = [];
@@ -192,6 +196,7 @@ $scope.submitOrder = function () {
       $orderS.sendOrderNext($scope.orderToSend)
       .then(function onSuccess(result2) {
         console.log("Order to supplier placed succesfully", result2);
+        initOrder();
       }, function onError(e) {
         console.log(e);
       });
