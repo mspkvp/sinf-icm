@@ -81,14 +81,24 @@ for(var i = 0; i < tmpCompanies.length; i++){
     break;
   }
 }
+$nav.setLoading(true);
 $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
 .then(
   function onSuccess(result) {
+    $nav.setLoading(false);
     console.log(result);
-    $scope.products = result.data;
-    $scope.gotSupplier = true;
+
+    var products = result.data;
+
+    if (products.length <= 0) {
+      alert("O fornecedor selecionado não possuí produtos na base de dados em comum com a empresa cliente. Por favor adicione os desejados primeiro.");
+    } else {
+      $scope.products = result.data;
+      $scope.gotSupplier = true;
+    }
   },
   function onError(e) {
+    $nav.setLoading(false);
     console.log(e);
     alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
   }
