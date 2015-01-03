@@ -7,7 +7,7 @@ angular.module('icmApp')
 		var endpoints = endpointsAPI.doc.order.from.client;
 		this.getOrders = function () {
 			var company = $nav.getViewingCompany();
-			return $http.get(endpoints.default.get.url + '?empresa=' + company.id);
+			return $http.get(endpointsAPI.doc.order.to.supplier.default.get.url + '?empresa=' + company.id);
 		};
 
 		this.getOrdersByID = function (id) {

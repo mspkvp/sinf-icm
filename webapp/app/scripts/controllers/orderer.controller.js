@@ -40,18 +40,17 @@ angular.module('icmApp')
       $orderS.getOrders()
       .then(
         function onSuccess(result) {
-          //$scope.orderHistory = result.data;
-          var orders = result.data;
-          console.log("Orders", result.data);
-          $orderS.getInvoicesV()
+          $scope.orderHistory = result.data;
+          $orderS.getInvoicesV($nav.getViewingCompany().id)
           .then(
-            function onSucces(iResult){
+            function onSuccess(iResult){
               var invoicesV = iResult.data;
-              for(var i=0; i<orders.length; i++){
-                for(var j=0, j<invoicesV.length; j++){
-                  orders[i].Completo = false;
-                  if(orders[i].DocsOriginais === invoicesV[i].NumDoc){
-                    orders[i].Completo = true;
+              for(var i = 0; i < $scope.orderHistory.length; i++){
+                for(var j = 0; j < invoicesV.length; j++){
+                  $scope.orderHistory[i].Completo = false;
+                  if($scope.orderHistory[i].DocsOriginais === invoicesV[i].NumDoc){
+                    $scope.orderHistory[i].Completo = true;
+                    $scope.orderHistory[i].invoice = invoicesV[i];
                     break;
                   }
                 }
@@ -61,7 +60,7 @@ angular.module('icmApp')
               console.log(e);
             }
           );
-          
+
         },
           function onError(e) {
           console.log(e);

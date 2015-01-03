@@ -48,6 +48,7 @@ angular.module('icmApp')
     $scope.missingCompanies = [];
 		$scope.syncSucc = '';
 		$scope.syncErr = '';
+    $scope.product = undefined;
 		$nav.setLoading(true);
 		$orderer.getProducts($scope.baseCompany)
 		.success( function(data, status, headers, config) {
