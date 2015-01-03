@@ -90,33 +90,30 @@ for(var i = 0; i < tmpCompanies.length; i++){
     break;
   }
 }
+$nav.setLoading(true);
 $orderS.getProducts($scope.selectedSupplier.CodFornecedor)
 .then(
-  function onSuccess(result) {
-    $scope.gotSupplier = true;
-    $orderS.getProducts($nav.getViewingCompany().id)
-    .then(
-      function onSuccess(result2){
-        for(var i = 0; i < result.data.length; i++){
-          for(var j = 0; j < result2.data.length; j++){
-            if(result.data[i].CodArtigo == result2.data[j].CodArtigo){
-              $scope.products.push(result.data[i]);
-            }
-          }
+  function onSuccess(result2){
+    for(var i = 0; i < result.data.length; i++){
+      for(var j = 0; j < result2.data.length; j++){
+        if(result.data[i].CodArtigo == result2.data[j].CodArtigo){
+          $scope.products.push(result.data[i]);
         }
-      },
-      function  onError(e){
-        console.log(e);
-        alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
       }
-    );
+    }
+
+    if ($scope.products.length <= 0) {
+      alert("O fornecedor selecionado não possuí produtos na base de dados em comum com a empresa cliente. Por favor adicione os desejados primeiro.");
+      $scope.products = [];
+    } else {
+      $scope.gotSupplier = true;
+    }
   },
-  function onError(e) {
+  function  onError(e){
     console.log(e);
     alert("Ocorreu um erro a processar o seu pedido. Por favor tente mais tarde.");
   }
   );
-$scope.gotSupplier = true;
 };
 
 // order stuff

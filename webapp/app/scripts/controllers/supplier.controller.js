@@ -319,7 +319,7 @@ angular.module('icmApp')
             };
 
             for(var i=0; i<invoices.length; i++){
-              if(orders[k].NumDoc === invoices[i].NumDoc){ // is history
+              if(orders[k].NumDoc === invoices[i].DocsOriginais){ // is history
                 $scope.orderHistory.push(orders[k]);
                 orders.splice(k, 1);
                 k=0;
