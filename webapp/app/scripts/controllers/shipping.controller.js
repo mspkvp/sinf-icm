@@ -1,32 +1,21 @@
 'use strict';
 
 angular.module('icmApp')
-  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
-    function controller($scope, $http, $timeout, $nav, $ship, $or, $io){
+  .controller('ShippingCtrl', ['$scope', '$http', '$timeout', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService', 'UserService',
+    function controller($scope, $http, $timeout, $nav, $ship, $or, $io, $userS){
+
+    if (!$userS.getLoginStatus()) {
+        alert("Please login first!");
+        $nav.setRedirection('client');
+        $nav.go('login');
+        return;
+    }
 
     $scope.company = $nav.getViewingCompany();
     $scope.order = $ship.getOrder();
     if(!$scope.order)
     	$nav.go('supplier');
-    $scope.products = [
-	    {
-	    	CodArtigo: "sample string 1",
-	    	DescArtigo: "sample string 2",
-	    	Stock: 3,
-	    	PVP: 4.1
-	  	},
-	  	{
-	    	CodArtigo: "sample string 1",
-	    	DescArtigo: "sample string 2",
-	    	Stock: 2,
-	    	PVP: 4.1
-	  	},
-	  	{
-	    	CodArtigo: "sample string 1",
-	    	DescArtigo: "sample string 2",
-	    	Stock: 6,
-	    	PVP: 4.1
-	  	}];
+    $scope.products = [];
 
     //console.log($scope.order);
     $scope.stocks = [];
@@ -45,7 +34,7 @@ angular.module('icmApp')
     		}
     	}
     };
-    
+
     (function init(){
         $or.getProducts($nav.getViewingCompany().id)
         .then(
@@ -84,7 +73,7 @@ angular.module('icmApp')
             );
         /*$io.addFatura($nav.getViewingCompany().id, $scope.order);
         var idcliente = $scope.order.Entidade;
-        $scope.order.Entidade = $nav.getViewingCompany().id; 
+        $scope.order.Entidade = $nav.getViewingCompany().id;
         $io.addVFatura(idcliente, $scope.order);*/
     };
 

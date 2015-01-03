@@ -38,6 +38,7 @@
             <tr class="align">
               <th class="col-lg-2">Código Artigo</th>
               <th class="col-lg-3">Descrição</th>
+              <th class="col-lg-2">Quantidade Pretendida</th>
               <th class="col-lg-2">Quantidade</th>
               <th class="col-lg-2">Preço Unitário</th>
               <th class="col-lg-2">Stock Disponível</th>
@@ -50,8 +51,9 @@
               <tr class="align" ng-repeat="product in order.LinhasDoc" ng-repeat="stock in stocks">
                 <td class="col-lg-2">{{product.CodArtigo}}</td>
                 <td class="col-lg-3">{{product.DescArtigo}}</td>
+                <td class="col-lg-2">{{product.Quantidade}}</td>
                 <td class="col-lg-2">
-                  <input class="form-control" ng-class="{overStock: product.Quantidade > stocks[$index]}" type ="number" ng-model="product.Quantidade" step="1" min="0" required></td>
+                  <input class="form-control" ng-class="{overStock: product.newQuantity > stocks[$index]}" type ="number" ng-model="product.newQuantity" step="1" min="0" max={{stocks[$index]}} required></td>
                 <td class="col-lg-2">{{product.PrecoUnitario}}</td>
                 <td class="col-lg-2">{{stocks[$index]}}</td>
               </tr>
@@ -66,7 +68,7 @@
               <th class="col-lg-2"></th>
               <th class="col-lg-2"></th>
               <th class="col-lg-2">
-                <button type="submit" class="btn btn-primary btn-block" ng-click="submitInvoice()">Aviar</button> 
+                <button type="submit" class="btn btn-primary btn-block" ng-click="submitInvoice()">Aviar</button>
               </th>
             </tr>
           </tfoot>
