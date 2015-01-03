@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService',
-  function ($scope, $modal, $nav, $ship, $orderS, $io) {
+.controller('SupplierCtrl', ['$scope', '$modal', 'NavigationService', 'ShippingService', 'OrdererService', 'IOService', 'UserService',
+  function ($scope, $modal, $nav, $ship, $orderS, $io, $userS) {
     $nav.setPath([
       $nav.getPath()[0],
       {
