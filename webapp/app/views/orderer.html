@@ -197,7 +197,7 @@
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="submitOrder()">Submeter</button>
+  <button class="btn btn-primary" ng-click="submitOrder()" ng-class="{disabled: orderList.length <= 0}">Submeter</button>
   <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
 </div>
 </div>

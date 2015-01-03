@@ -53,10 +53,6 @@ angular
         templateUrl: 'views/orderer.html',
         controller: 'OrdererCtrl'
       })
-      .when('/newOrder', {
-        templateUrl: 'views/newOrder.html',
-        controller: 'newOrderCtrl'
-      })
       .when('/supplier', {
         templateUrl: 'views/supplier.html',
         controller: 'SupplierCtrl'
