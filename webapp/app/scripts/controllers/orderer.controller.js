@@ -302,6 +302,7 @@ $scope.setupLine = function(){
   $scope.rmvLine = function (line) {
     var nr = line.NumLinha;
     $scope.orderToSend.TotalMerc -= line.TotalILiquido;
+    if($scope.orderToSend.TotalMerc < 0) $scope.orderToSend.TotalMerc = 0;
     $scope.orderToSend.TotalMerc = Math.round(parseFloat($scope.orderToSend.TotalMerc) * 100) / 100;
     $scope.orderList.splice(nr - 1, 1);
     line_counter--;
