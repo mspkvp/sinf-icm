@@ -30,6 +30,7 @@ angular.module('icmApp')
     $scope.orderHistory = [];
 
     (function _init(){
+      $nav.setLoading(true);
       var orders = [],
       invoices = [];
           //$scope.ordersToProcess = [];
@@ -80,12 +81,15 @@ angular.module('icmApp')
                 sortOrders();
                 loadOrdersToProcessCompanies();
                 loadOrdersProcessedCompaniesH();
+                $nav.setLoading(false);
               },
               function onError(e){
+                $nav.setLoading(false);
                 console.log(e);
               });
           },
           function onError(e){
+            $nav.setLoading(false);
             console.log(e);
           });
 
