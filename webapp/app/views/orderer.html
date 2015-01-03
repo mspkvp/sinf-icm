@@ -103,8 +103,8 @@
               <tr class="align">
                 <th class="col-lg-1">Código</th>
                 <th class="col-lg-1">Descrição</th>
-                <th class="col-lg-1">Quantidade<sup><a ng-href="#fn1">1</a></sup></th>
-                <th class="col-lg-2">Preço Unitário(€)<sup><a ng-href="#fn2">2</a></sup></th>
+                <th class="col-lg-1">Quantidade<sup><a ng-href="{{$location.path()}}/#fn1">1</a></sup></th>
+                <th class="col-lg-2">Preço Unitário(€)<sup><a ng-href="{{$location.path()}}/#fn2">2</a></sup></th>
                 <th class="col-lg-2">Total ILíquido(€)</th>
                 <th class="col-lg-2">Remove</th>
               </tr>
@@ -147,10 +147,11 @@
               <tr>
                 <th class="col-lg-2">Adicionar linha |</th>
                 <th class="col-lg-2">Selecione um produto</th>
+                <th class="col-lg-3">
                   <select class="form-control" ng-model="tmpProduct" ng-options="product as product.DescArtigo for product in products" ng-change="setupLine()"></select>
                 </th>
                 <th class="col-lg-1"></th>
-                <th class="col-lg-6"></th>
+                <th class="col-lg-4"></th>
               </tr>
             </thead>
           </table>
@@ -180,9 +181,8 @@
 
        <hr>
 
-       <sup id="fn1">1. [O valor inicial de quantidade é igual ao stock atual do fornecedor]<a ng-href="#ref1" title="Jump back to the order.">↩</a></sup><br>
-       <sup id="fn2">1. [O PVP é retirado da base de dados do fornecedor, podendo ser alterado]<a ng-href="#ref1" title="Jump back to the order.">↩</a></sup>
-       <!--sup id="fn3">1. [O total líquido é calculado tendo em conta a taxa de 23%]<a href="#ref1" title="Jump back to the order.">↩</a></sup-->
+       <sup id="fn1">1. [O valor inicial de quantidade é igual ao stock atual do fornecedor]<a ng-href="{{$location.path()}}/#ref1" title="Jump back to the order.">↩</a></sup><br>
+       <sup id="fn2">2. [O PVP é retirado da base de dados do fornecedor, podendo ser alterado]<a ng-href="{{$location.path()}}/#ref1" title="Jump back to the order.">↩</a></sup>
      </div>
 
      <div class="clearfix"></div>
