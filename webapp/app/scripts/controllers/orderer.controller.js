@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('icmApp')
-.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService',
-  function ($scope, $i, $orderS, $nav, $userS, $io) {
+.controller('OrdererCtrl', ['$scope', '$interval', 'OrdererService', 'NavigationService', 'UserService','IOService', '$modal',
+  function ($scope, $i, $orderS, $nav, $userS, $io, $modal) {
 
     if (!$userS.getLoginStatus()) {
       alert("Please login first!");
@@ -48,7 +48,7 @@ angular.module('icmApp')
             function onSucces(iResult){
               var invoicesV = iResult.data;
               for(var i=0; i<orders.length; i++){
-                for(var j=0, j<invoicesV.length; j++){
+                for(var j=0; j<invoicesV.length; j++){
                   orders[i].Completo = false;
                   if(orders[i].DocsOriginais === invoicesV[i].NumDoc){
                     orders[i].Completo = true;
@@ -252,6 +252,30 @@ $scope.setupLine = function(){
       $scope.orderList[i].NumLinha = i + 1;
     }
   };
+
+  $scope.showOrderModal = function(orderSelected){
+    $scope.orderSelected = orderSelected;
+    $scope.modalInstance = $modal.open({
+      templateUrl: 'views/order-invoice-view.html',
+      controller: orderModalCtrl,
+      size: 'lg',
+      scope: $scope
+    });
+  };
+
+  function orderModalCtrl(){
+    $scope.close = function(){
+      $scope.modalInstance.close();
+    };
+
+    for(var i=0; i<$scope.invoicesV.length; i++){
+      if($scope.invoicesV[i].DocsOriginais === $scope.orderSelected.DocsOriginais){
+        $scope.selectedInvoiceV = $scope.invoicesV[i];
+        break;
+      }
+    }
+
+  }
 
 }
 ]);
