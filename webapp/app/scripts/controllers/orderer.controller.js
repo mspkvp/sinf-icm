@@ -85,7 +85,6 @@ $scope.setSupplier = function () {
 //  $scope.orderToSend.Entidade = $scope.selectedSupplier.NomeFornecedor;
 $scope.products = [];
 $scope.orderList = [];
-$scope.orderToSend.TotalMerc = 0;
 var tmpCompanies = $nav.getCompanies();
 for(var i = 0; i < tmpCompanies.length; i++){
   if(tmpCompanies[i].name == $scope.selectedSupplier.NomeFornecedor){
