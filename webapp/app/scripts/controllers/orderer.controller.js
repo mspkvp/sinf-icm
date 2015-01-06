@@ -53,10 +53,11 @@ angular.module('icmApp')
           .then(
             function onSuccess(iResult){
               var invoicesV = iResult.data;
+              console.log("INVOICES = " + JSON.stringify(invoicesV));
               for(var i = 0; i < $scope.orderHistory.length; i++){
                 for(var j = 0; j < invoicesV.length; j++){
                   $scope.orderHistory[i].Completo = false;
-                  if($scope.orderHistory[i].DocsOriginais === invoicesV[i].NumDoc){
+                  if(invoicesV[i] != undefined && $scope.orderHistory[i].NumDoc == invoicesV[i].DocsOriginais){
                     $scope.orderHistory[i].Completo = true;
                     $scope.orderHistory[i].invoice = invoicesV[i];
                     break;

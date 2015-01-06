@@ -82,50 +82,51 @@ angular.module('icmApp')
 
     $scope.submitInvoice = function submitInvoice(){
     	// update on quantities is done with ng-model
+      var tmpOrder = $scope.order;
       $nav.setLoading(true);
       var total = 0;
-      delete $scope.order.NumDocExt;
-      delete $scope.order['$$hashKey'];
-      for(var i = 0; i < $scope.order.LinhasDoc.length; i++){
-        delete $scope.order.LinhasDoc[i].Taxa;
-        $scope.order.LinhasDoc[i].Quantidade = $scope.order.LinhasDoc[i].newQuantity;
-        delete $scope.order.LinhasDoc[i].newQuantity;
-        total += $scope.order.LinhasDoc[i].TotalLiquido;
+      delete tmpOrder.NumDocExt;
+      delete tmpOrder['$$hashKey'];
+      for(var i = 0; i < tmpOrder.LinhasDoc.length; i++){
+        delete tmpOrder.LinhasDoc[i].Taxa;
+        tmpOrder.LinhasDoc[i].Quantidade = tmpOrder.LinhasDoc[i].newQuantity;
+        delete tmpOrder.LinhasDoc[i].newQuantity;
+        total += tmpOrder.LinhasDoc[i].TotalLiquido;
       }
-        $scope.order.TotalMerc = total;
+        tmpOrder.TotalMerc = total;
         $io.get();
         var tmpCompanies = $nav.getCompanies();
         for(var i = 0; i < tmpCompanies.length; i++){
-          if($scope.order.Entidade == tmpCompanies[i].name){
-            $scope.order.Entidade = tmpCompanies[i].id;
+          if(tmpOrder.Entidade == tmpCompanies[i].name){
+            tmpOrder.Entidade = tmpCompanies[i].id;
             break;
           }
         }
         var numDoc = $io.incNewDoc($nav.getViewingCompany().id);
-        $scope.order.DocsOriginais = $scope.order.NumDoc;
-        $scope.order.NumDoc = numDoc;
-        console.log("BEFORE, ORDER = " + JSON.stringify($scope.order));
-        $or.sendInvoice($nav.getViewingCompany().id, $scope.order)
+        tmpOrder.DocsOriginais = tmpOrder.NumDoc;
+        tmpOrder.NumDoc = numDoc;
+        console.log("BEFORE, ORDER = " + JSON.stringify(tmpOrder));
+        $or.sendInvoice($nav.getViewingCompany().id, tmpOrder)
             .then(
                 function onSuccess(result){
-                    var idCliente = $scope.order.Entidade;
-                    $scope.order.Entidade = $nav.getViewingCompany().id;
+                    var idCliente = tmpOrder.Entidade;
+                    tmpOrder.Entidade = $nav.getViewingCompany().id;
                     var orders = $or.getOrders(idCliente)
                       .then(
                         function onSuccess(result){
                           console.log("Got Orders");
                           var docOriginal;
                           for(var i = 0; i < result.data.length; i++){
-                            if(result.data[i].NumDocExt == $scope.order.NumDoc){
+                            if(result.data[i].NumDocExt == tmpOrder.NumDoc){
                               docOriginal = result.data[i].NumDoc;
                               break;
                             }
                           }
-                          $scope.order.NumDocExterno = $scope.order.NumDoc;
+                          tmpOrder.NumDocExterno = tmpOrder.NumDoc;
                           numDoc = $io.incNewDoc(idCliente);
-                          $scope.order.DocsOriginais = docOriginal;
-                          console.log("BEFORE SEND INVOICE, ORDER = " + JSON.stringify($scope.order));
-                          $or.sendInvoiceV(idCliente, $scope.order)
+                          tmpOrder.DocsOriginais = docOriginal;
+                          console.log("BEFORE SEND INVOICE, ORDER = " + JSON.stringify(tmpOrder));
+                          $or.sendInvoiceV(idCliente, tmpOrder)
                           .then(
                             function onSuccess(result){
                               console.log("Invoice Submitted Successfully");

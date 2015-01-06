@@ -38,13 +38,15 @@ angular.module('icmApp')
           function sortOrders(){
             var k=0;
             while(orders.length > 0){
-              if(k === orders.length ){
+              if(k == orders.length ){
                 $scope.ordersToProcess = $scope.ordersToProcess.concat(orders);
                 break;
               };
 
               for(var i=0; i<invoices.length; i++){
-              if(orders[k].NumDoc === invoices[i].DocsOriginais){ // is history
+                console.log("ORDER K = " + JSON.stringify(orders[k]));
+              if(orders[k] != undefined && orders[k].NumDoc == invoices[i].DocsOriginais){ // is history
+                orders[k].invoice = invoices[i];
                 $scope.orderHistory.push(orders[k]);
                 orders.splice(k, 1);
                 k=0;
@@ -58,6 +60,7 @@ angular.module('icmApp')
         $orderS.getInvoices($nav.getViewingCompany().id)
         .then(
           function onSuccess(result){
+            console.log("GETTING INVOICES, SIZE = " + result.data.length);
             var tmpCompanies = $nav.getCompanies();
             invoices = result.data;
             for(var i = 0; i < invoices.length; i++){
@@ -93,14 +96,6 @@ angular.module('icmApp')
             console.log(e);
           });
 
-        $nav.setLoading(false);
-        /*
-        $io.get();
-        invoices = $io.getFatura($nav.getViewingCompany().id);
-        orders = $io.getEncomendaDeCliente($nav.getViewingCompany().id);
-        sortOrders();
-        loadOrdersToProcessCompanies();
-        loadOrdersProcessedCompaniesH();*/
       })();
 
       function loadOrdersToProcessCompanies() {
@@ -144,7 +139,7 @@ angular.module('icmApp')
         $scope.close = function(){
           $scope.modalInstance.close();
         };
-
+        console.log("selected = " + JSON.stringify($scope.orderSelected));
         $scope.selectedInvoice = $scope.orderSelected.invoice;
       }
     }
